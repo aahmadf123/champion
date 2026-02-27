@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The University of Toledo Champions Complex is a transformational $11M investment in the holistic development of 450+ Rocket student-athletes. Join the Rocket Fund and leave your legacy." />
+  <title>Champions Complex | University of Toledo Athletics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --midnight-blue: #003E7E;
+      --gold: #FFD200;
+      --dark-blue: #000F3E;
+      --space-blue: #102B5F;
+      --azure: #009CE5;
+      --neutral: #D3C1AE;
+      --white: #ffffff;
+      --off-white: #F4F4F4;
+      --text-light: rgba(255,255,255,0.85);
+      --transition-base: 0.4s ease;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--dark-blue);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ============================================================
+       SKIP LINK (ACCESSIBILITY)
+    ============================================================ */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      background: var(--gold);
+      color: var(--dark-blue);
+      padding: 0.75rem 1.5rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+      border-radius: 0 0 6px 6px;
+      z-index: 10000;
+      transition: top 0.2s;
+    }
+    .skip-link:focus {
+      top: 0;
+    }
+
+    /* ============================================================
+       PERSISTENT HEADER BAR
+    ============================================================ */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(0, 15, 62, 0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 64px;
+      transition: background var(--transition-base);
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .header-brand-rocket {
+      width: 36px;
+      height: 36px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: var(--dark-blue);
+      font-size: 1rem;
+    }
+
+    .header-brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .header-brand-text span:first-child {
+      font-size: 0.6rem;
+      font-weight: 500;
+      color: var(--neutral);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .header-brand-text strong {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .header-nav a {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: color var(--transition-base);
+    }
+
+    .header-nav a:hover {
+      color: var(--gold);
+    }
+
+    .header-give-btn {
+      background: var(--gold);
+      color: var(--dark-blue);
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 0.55rem 1.4rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: background var(--transition-base), transform 0.2s;
+      white-space: nowrap;
+    }
+
+    .header-give-btn:hover {
+      background: #e6bc00;
+      transform: translateY(-1px);
+    }
+
+    /* ============================================================
+       SECTION UTILITIES
+    ============================================================ */
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      font-weight: 800;
+      line-height: 1.15;
+    }
+
+    .section-body {
+      font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--text-light);
+    }
+
+    .gold-text {
+      color: var(--gold);
+    }
+
+    .divider-gold {
+      width: 56px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin: 1.25rem 0 1.75rem;
+    }
+
+    /* ============================================================
+       FADE-IN ANIMATION (INTERSECTION OBSERVER)
+    ============================================================ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .fade-in-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .fade-in-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .fade-in-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ============================================================
+       BLOCK 1: HERO
+    ============================================================ */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 680px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      overflow: hidden;
+      padding-top: 64px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('Exterior__Main_Entry_MSA.jpg');
+      background-size: cover;
+      background-position: center center;
+      animation: kenBurns 18s ease-in-out infinite alternate;
+      transform-origin: center center;
+    }
+
+    @keyframes kenBurns {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.06); }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0, 9, 30, 0.92) 0%,
+        rgba(0, 15, 62, 0.6) 40%,
+        rgba(0, 15, 62, 0.25) 75%,
+        transparent 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 6vw 6vw;
+      max-width: 900px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--gold);
+      color: var(--dark-blue);
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 3px;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.6rem, 7vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 24px rgba(0,0,0,0.5);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-weight: 400;
+      color: var(--text-light);
+      max-width: 560px;
+      line-height: 1.6;
+      margin-bottom: 2.25rem;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--dark-blue);
+      font-size: 0.85rem;
+      font-weight: 800;
+      padding: 0.9rem 2.2rem;
+      border-radius: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: #e6bc00;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(255, 210, 0, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.85rem 2rem;
+      border-radius: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      border: 2px solid rgba(255,255,255,0.5);
+      transition: border-color 0.25s, color 0.25s;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .hero-scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      right: 6vw;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      opacity: 0.6;
+    }
+
+    .hero-scroll-indicator span {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: var(--white);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(0.6); }
+    }
+
+    /* ============================================================
+       BLOCK 2: STATS BAR
+    ============================================================ */
+    .stats-bar {
+      background: var(--gold);
+      padding: 0;
+    }
+
+    .stats-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .stat-item {
+      padding: 1.75rem 1.5rem;
+      text-align: center;
+      border-right: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .stat-item:last-child {
+      border-right: none;
+    }
+
+    .stat-number {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 900;
+      color: var(--dark-blue);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: rgba(0,15,62,0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* ============================================================
+       BLOCK 3: EXECUTIVE VISION
+    ============================================================ */
+    .vision-section {
+      background: var(--white);
+      color: var(--dark-blue);
+      padding: 7rem 6vw;
+    }
+
+    .vision-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .vision-left .section-label {
+      color: var(--midnight-blue);
+    }
+
+    .vision-left .section-title {
+      color: var(--dark-blue);
+    }
+
+    .vision-left .section-body {
+      color: rgba(0,15,62,0.72);
+      margin-top: 1.25rem;
+    }
+
+    .vision-left .divider-gold {
+      background: var(--gold);
+    }
+
+    .vision-right {
+      position: relative;
+    }
+
+    .vision-image-stack {
+      position: relative;
+    }
+
+    .vision-image-main {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 24px 64px rgba(0,15,62,0.2);
+    }
+
+    .vision-image-secondary {
+      position: absolute;
+      bottom: -2rem;
+      left: -2rem;
+      width: 55%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 4px solid var(--white);
+      box-shadow: 0 12px 32px rgba(0,15,62,0.25);
+    }
+
+    .vision-quote-block {
+      background: var(--midnight-blue);
+      color: var(--white);
+      padding: 5rem 6vw;
+      text-align: center;
+    }
+
+    .vision-quote-text {
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 700;
+      font-style: italic;
+      max-width: 860px;
+      margin: 0 auto;
+      line-height: 1.4;
+    }
+
+    .vision-quote-author {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ============================================================
+       BLOCK 4: FUNDRAISING PROGRESS
+    ============================================================ */
+    .progress-section {
+      background: var(--dark-blue);
+      padding: 6rem 6vw;
+    }
+
+    .progress-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .progress-header {
+      margin-bottom: 3rem;
+    }
+
+    .progress-bar-container {
+      background: rgba(255,255,255,0.1);
+      border-radius: 100px;
+      height: 20px;
+      position: relative;
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: 100px;
+      background: linear-gradient(90deg, var(--midnight-blue), var(--gold));
+      width: 0%;
+      transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .progress-bar-fill::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: 60px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25));
+      border-radius: 0 100px 100px 0;
+    }
+
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.75rem;
+    }
+
+    .progress-labels span {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-light);
+    }
+
+    .progress-labels .raised-label {
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .progress-callout {
+      margin-top: 3rem;
+      background: rgba(255,210,0,0.07);
+      border: 1px solid rgba(255,210,0,0.25);
+      border-radius: 10px;
+      padding: 2rem 2.5rem;
+    }
+
+    .progress-callout-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .progress-callout p {
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* ============================================================
+       BLOCK 5: PILLARS OF EXCELLENCE
+    ============================================================ */
+    .pillars-section {
+      background: var(--space-blue);
+      padding: 7rem 6vw;
+    }
+
+    .pillars-header {
+      max-width: 1200px;
+      margin: 0 auto 4rem;
+      text-align: center;
+    }
+
+    .pillars-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .pillar-card {
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--dark-blue);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      cursor: default;
+    }
+
+    .pillar-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 56px rgba(0,0,0,0.45);
+    }
+
+    .pillar-image {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .pillar-card:hover .pillar-image {
+      transform: scale(1.04);
+    }
+
+    .pillar-image-wrapper {
+      overflow: hidden;
+    }
+
+    .pillar-body {
+      padding: 2rem 2rem 2.25rem;
+    }
+
+    .pillar-icon {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.65rem;
+    }
+
+    .pillar-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 0.85rem;
+      line-height: 1.25;
+    }
+
+    .pillar-text {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--text-light);
+      line-height: 1.75;
+    }
+
+    .pillar-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 1.25rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .pillar-link:hover {
+      border-color: var(--gold);
+    }
+
+    /* ============================================================
+       BLOCK 6: PARALLAX PULL QUOTE
+    ============================================================ */
+    .parallax-quote {
+      position: relative;
+      padding: 8rem 6vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .parallax-quote-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('Indoor_Turf__Interior_Facing_MSA.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      filter: brightness(0.28);
+    }
+
+    .parallax-quote-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 900px;
+    }
+
+    .parallax-quote-content blockquote {
+      font-size: clamp(1.5rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1.3;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    .parallax-quote-content blockquote span {
+      color: var(--gold);
+    }
+
+    /* ============================================================
+       BLOCK 7: DAY IN THE LIFE TIMELINE
+    ============================================================ */
+    .timeline-section {
+      background: var(--white);
+      color: var(--dark-blue);
+      padding: 7rem 6vw;
+    }
+
+    .timeline-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .timeline-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+
+    .timeline-header .section-label {
+      color: var(--midnight-blue);
+    }
+
+    .timeline-header .section-title {
+      color: var(--dark-blue);
+    }
+
+    .timeline-header .divider-gold {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .timeline-track {
+      position: relative;
+      padding-left: 3rem;
+    }
+
+    .timeline-track::before {
+      content: '';
+      position: absolute;
+      left: 0.75rem;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold), var(--midnight-blue));
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.25rem;
+      top: 0.25rem;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 3px solid var(--white);
+      box-shadow: 0 0 0 3px var(--midnight-blue);
+    }
+
+    .timeline-time {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--midnight-blue);
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-event-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--dark-blue);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-event-text {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: rgba(0,15,62,0.72);
+      line-height: 1.7;
+    }
+
+    .timeline-image {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 12px 36px rgba(0,15,62,0.15);
+    }
+
+    .timeline-item:nth-child(even) .timeline-text {
+      order: 2;
+    }
+
+    .timeline-item:nth-child(even) .timeline-img {
+      order: 1;
+    }
+
+    /* ============================================================
+       BLOCK 8: CAMPUS & CORRIDOR
+    ============================================================ */
+    .campus-section {
+      background: var(--midnight-blue);
+      padding: 7rem 6vw;
+    }
+
+    .campus-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .campus-image {
+      width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+      aspect-ratio: 4/3;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+    }
+
+    /* ============================================================
+       BLOCK 9: CHAMPIONS CORRIDOR PARALLAX
+    ============================================================ */
+    .corridor-parallax {
+      position: relative;
+      padding: 9rem 6vw;
+      overflow: hidden;
+    }
+
+    .corridor-parallax-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('Champions_Entry_MSA.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      filter: brightness(0.3);
+    }
+
+    .corridor-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    /* ============================================================
+       BLOCK 10: NAMING RIGHTS
+    ============================================================ */
+    .naming-section {
+      background: var(--dark-blue);
+      padding: 7rem 6vw;
+    }
+
+    .naming-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .naming-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .naming-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .naming-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 10px;
+      padding: 2rem 1.75rem;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .naming-card:hover {
+      background: rgba(255,210,0,0.06);
+      border-color: rgba(255,210,0,0.3);
+    }
+
+    .naming-tier {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .naming-space {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .naming-amount {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .naming-desc {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--text-light);
+      line-height: 1.65;
+    }
+
+    .naming-contact-bar {
+      background: var(--gold);
+      border-radius: 10px;
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .naming-contact-bar-text {
+      color: var(--dark-blue);
+    }
+
+    .naming-contact-bar-text p:first-child {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+
+    .naming-contact-bar-text p:last-child {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--dark-blue);
+    }
+
+    .naming-contact-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-dark {
+      background: var(--dark-blue);
+      color: var(--white);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.75rem 1.75rem;
+      border-radius: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: background 0.25s;
+      display: inline-block;
+    }
+
+    .btn-dark:hover {
+      background: var(--space-blue);
+    }
+
+    /* ============================================================
+       BLOCK 11: FINAL CTA
+    ============================================================ */
+    .cta-section {
+      background: var(--space-blue);
+      padding: 8rem 6vw;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,210,0,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .cta-section .section-title {
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      margin-bottom: 1.25rem;
+    }
+
+    .cta-section .section-body {
+      margin-bottom: 2.5rem;
+      font-size: 1.05rem;
+    }
+
+    .cta-give-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .cta-contact {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--text-light);
+    }
+
+    .cta-contact a {
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .site-footer {
+      background: var(--dark-blue);
+      border-top: 2px solid rgba(255,210,0,0.2);
+      padding: 2rem 6vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-brand {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-light);
+    }
+
+    .footer-brand strong {
+      color: var(--gold);
+    }
+
+    .footer-legal {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .vision-inner {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .vision-image-secondary {
+        display: none;
+      }
+
+      .campus-inner {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .naming-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-nav {
+        display: none;
+      }
+
+      .stats-inner {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat-item {
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+      }
+
+      .pillars-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .naming-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .naming-contact-bar {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-content {
+        padding: 0 1.25rem 3rem;
+      }
+
+      .vision-section,
+      .pillars-section,
+      .campus-section,
+      .naming-section,
+      .timeline-section {
+        padding: 4rem 5vw;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stats-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-title {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Skip To Main Content</a>
+
+  <!-- PERSISTENT HEADER -->
+  <header class="site-header" role="banner">
+    <div class="header-brand">
+      <div class="header-brand-rocket">R</div>
+      <div class="header-brand-text">
+        <span>University of Toledo</span>
+        <strong>Rocket Fund</strong>
+      </div>
+    </div>
+    <nav class="header-nav" aria-label="Primary navigation">
+      <a href="#vision">The Vision</a>
+      <a href="#pillars">The Facility</a>
+      <a href="#legacy">Leave a Legacy</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="https://supportutrockets.com/giving-opportunities" class="header-give-btn" aria-label="Give Now to the Champions Complex">Give Now</a>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ============================================================
+         BLOCK 1: HERO
+    ============================================================ -->
+    <section class="hero" aria-label="Champions Complex Campaign Hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="hero-content">
+        <div class="hero-eyebrow" aria-hidden="true">Capital Campaign &bull; $11M Goal</div>
+        <h1 class="hero-title">
+          Champions<br />
+          <span class="gold-text">Complex.</span>
+        </h1>
+        <p class="hero-subtitle">
+          A once-in-a-generation investment in every Rocket who walks through these doors. 74,000 square feet. 450+ student-athletes. One unified vision.
+        </p>
+        <div class="hero-cta-group">
+          <a href="https://supportutrockets.com/giving-opportunities" class="btn-primary">Leave Your Legacy</a>
+          <a href="#vision" class="btn-outline">Explore the Vision</a>
+        </div>
+      </div>
+      <div class="hero-scroll-indicator" aria-hidden="true">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BLOCK 2: STATS BAR
+    ============================================================ -->
+    <section class="stats-bar" aria-label="Campaign key statistics">
+      <div class="stats-inner">
+        <div class="stat-item fade-in">
+          <div class="stat-number" data-count="450" data-suffix="+">0+</div>
+          <div class="stat-label">Student-Athletes Served</div>
+        </div>
+        <div class="stat-item fade-in">
+          <div class="stat-number" data-count="74000" data-suffix=" Sq Ft">0 Sq Ft</div>
+          <div class="stat-label">Renovated Facility</div>
+        </div>
+        <div class="stat-item fade-in">
+          <div class="stat-number" data-prefix="$" data-count="11" data-suffix="M+">$0M+</div>
+          <div class="stat-label">Fundraising Goal</div>
+        </div>
+        <div class="stat-item fade-in">
+          <div class="stat-number" data-count="19" data-suffix=" Sports">0 Sports</div>
+          <div class="stat-label">Programs Unified</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BLOCK 3: EXECUTIVE VISION
+    ============================================================ -->
+    <section id="vision" class="vision-section" aria-label="Project vision and overview">
+      <div class="vision-inner">
+        <div class="vision-left fade-in-left">
+          <p class="section-label">A Watershed Moment for Rocket Athletics</p>
+          <h2 class="section-title">One building.<br />Every Rocket.</h2>
+          <div class="divider-gold"></div>
+          <p class="section-body">
+            The Champions Complex is a transformational renovation of the University of Toledo's 74,000-square-foot Health Education Building, strategically reimagined to centralize every dimension of student-athlete development under one roof. For the first time in program history, academics, nutrition, mental health, elite training, and team culture will all exist in a single, modern environment at the heart of our main campus.
+          </p>
+          <p class="section-body" style="margin-top:1rem;">
+            This is not simply a facilities upgrade. This is a declaration. When you invest in the Champions Complex, you are directly expanding the capabilities of every Rocket athlete, regardless of sport or scholarship status. You are changing what it means to be a Rocket.
+          </p>
+          <a href="#pillars" class="btn-primary" style="margin-top:2rem; display:inline-block;">See the Facility</a>
+        </div>
+        <div class="vision-right fade-in-right">
+          <div class="vision-image-stack">
+            <img
+              src="Exterior__East_Perspective_MSA.jpg"
+              alt="Champions Complex exterior east perspective showing the full scale of the renovated facility"
+              class="vision-image-main"
+            />
+            <img
+              src="Champions_Corridor_MSA.jpg"
+              alt="Champions Corridor interior hallway with Rocket branding and modern finishes"
+              class="vision-image-secondary"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISION QUOTE BAND -->
+    <div class="vision-quote-block fade-in" aria-label="Campaign vision statement">
+      <p class="vision-quote-text">
+        "When you invest in young people, you change lives. The Champions Complex will single-handedly improve the daily lives of every Rocket student-athlete by bringing everything they need to compete and succeed into one transformational space."
+      </p>
+      <p class="vision-quote-author">Bryan B. Blair &mdash; Vice President &amp; Director of Athletics, University of Toledo</p>
+    </div>
+
+    <!-- ============================================================
+         BLOCK 4: FUNDRAISING PROGRESS
+    ============================================================ -->
+    <section class="progress-section fade-in" aria-label="Fundraising campaign progress">
+      <div class="progress-inner">
+        <div class="progress-header">
+          <p class="section-label" style="text-align:center;">Campaign Momentum</p>
+          <h2 class="section-title" style="text-align:center;">
+            The Armes <span class="gold-text">Leadership Challenge</span>
+          </h2>
+          <p class="section-body" style="text-align:center;max-width:640px;margin:1rem auto 0;">
+            Roy and Marcia Armes have ignited the charge with a transformational leadership commitment to the Champions Complex. Their dedication is the foundation upon which this campaign is built. Now, we call on the broader Rocket community to match their belief in what is possible.
+          </p>
+        </div>
+        <div class="progress-bar-container" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" aria-label="45 percent of fundraising goal reached">
+          <div class="progress-bar-fill" data-target-width="45"></div>
+        </div>
+        <div class="progress-labels">
+          <span class="raised-label">Leadership Gifts Secured</span>
+          <span>$11.0M Goal</span>
+        </div>
+        <div class="progress-callout">
+          <p class="progress-callout-title">Join Roy and Marcia in Building the Future</p>
+          <p>
+            Capital campaign studies consistently show that 70 to 80 percent of total funds are generated by the top tier of donors before a campaign ever reaches the public. By acting now, your gift carries compounding influence, inspiring peer donors, unlocking naming opportunities, and accelerating the timeline to groundbreaking. Every dollar committed today brings the Champions Complex one step closer to reality.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BLOCK 5: PILLARS OF EXCELLENCE
+    ============================================================ -->
+    <section id="pillars" class="pillars-section" aria-label="Champions Complex facility pillars">
+      <div class="pillars-header fade-in">
+        <p class="section-label">74,000 Square Feet of Purpose</p>
+        <h2 class="section-title">Built for Every Dimension<br />of <span class="gold-text">Rocket Excellence</span></h2>
+        <div class="divider-gold" style="margin: 1.25rem auto 0;"></div>
+      </div>
+      <div class="pillars-grid">
+
+        <!-- Pillar 1: Academic Center -->
+        <div class="pillar-card fade-in">
+          <div class="pillar-image-wrapper">
+            <img
+              src="AcademicsLounge_MSA.jpg"
+              alt="Modern academic center lounge with collaborative seating and Rocket-branded wall murals"
+              class="pillar-image"
+            />
+          </div>
+          <div class="pillar-body">
+            <p class="pillar-icon">Pillar One &mdash; Academic Excellence</p>
+            <h3 class="pillar-title">The Academic Center</h3>
+            <p class="pillar-text">
+              Doubling down on the classroom. The expanded Academic Center provides flexible collaborative lounges, private glass-walled tutoring rooms, and technology-integrated study stations, all within steps of training and dining. By eliminating the commute between campus buildings, student-athletes reclaim hours each week for deeper academic engagement and faster recovery. This is where Rocket degrees are built alongside Rocket victories.
+            </p>
+            <a href="#legacy" class="pillar-link" aria-label="Inquire about naming the Academic Center">Naming Opportunities &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Pillar 2: Performance Dining -->
+        <div class="pillar-card fade-in">
+          <div class="pillar-image-wrapper">
+            <img
+              src="Training_Table_MSA.jpg"
+              alt="Performance dining center with open seating, natural light, and Toledo branding"
+              class="pillar-image"
+            />
+          </div>
+          <div class="pillar-body">
+            <p class="pillar-icon">Pillar Two &mdash; Nutrition & Recovery</p>
+            <h3 class="pillar-title">The Performance Dining Center</h3>
+            <p class="pillar-text">
+              Elite athletic performance begins at the table. The Performance Dining Center is designed to fuel the competitive dreams of all 450+ Rocket student-athletes with high-caliber nutrition tailored to sport-specific recovery demands. Expansive windows, communal team tables, and a high-energy atmosphere transform every meal into an extension of the team culture that drives championships. Iron sharpens iron, even over breakfast.
+            </p>
+            <a href="#legacy" class="pillar-link" aria-label="Inquire about naming the Performance Dining Center">Naming Opportunities &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Pillar 3: Baseball Locker Room -->
+        <div class="pillar-card fade-in">
+          <div class="pillar-image-wrapper">
+            <img
+              src="Baseball_Locker_RoomLounge_MSA.jpg"
+              alt="Baseball team locker room lounge with gold ceiling feature, custom lockers, and team media screen"
+              class="pillar-image"
+            />
+          </div>
+          <div class="pillar-body">
+            <p class="pillar-icon">Pillar Three &mdash; Team Spaces</p>
+            <h3 class="pillar-title">Baseball &amp; Softball Return Home</h3>
+            <p class="pillar-text">
+              For too long, our baseball and softball programs have operated in isolation at Scott Park, separated from the culture, resources, and community of the main campus. The Champions Complex ends that chapter permanently. State-of-the-art locker rooms featuring custom dark-wood lockers, illuminated gold Rocket ceiling features, and team film rooms bring the same professional-grade environment to every Rocket athlete, regardless of sport. This is their homecoming.
+            </p>
+            <a href="#legacy" class="pillar-link" aria-label="Inquire about naming the baseball or softball locker rooms">Naming Opportunities &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Pillar 4: Indoor Turf -->
+        <div class="pillar-card fade-in">
+          <div class="pillar-image-wrapper">
+            <img
+              src="Indoor_Turf__Interior_Facing_MSA.jpg"
+              alt="11,000 square foot indoor training turf with Toledo Rockets branding and batting cage netting"
+              class="pillar-image"
+            />
+          </div>
+          <div class="pillar-body">
+            <p class="pillar-icon">Pillar Four &mdash; Year-Round Training</p>
+            <h3 class="pillar-title">The Indoor Training Turf</h3>
+            <p class="pillar-text">
+              Ohio winters no longer dictate the ceiling of Rocket development. The 11,000-square-foot Indoor Training Turf gives baseball, softball, and multi-sport athletes the ability to practice, condition, and compete at full intensity twelve months a year. Featuring high-quality synthetic turf, professional batting cage netting, and unlimited overhead clearance, this space eliminates a longstanding competitive disadvantage and redefines what Toledo Athletics can recruit on.
+            </p>
+            <a href="#legacy" class="pillar-link" aria-label="Inquire about naming the Indoor Training Turf">Naming Opportunities &rarr;</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BLOCK 6: PARALLAX PULL QUOTE
+    ============================================================ -->
+    <div class="parallax-quote" aria-hidden="false">
+      <div class="parallax-quote-bg" aria-hidden="true"></div>
+      <div class="parallax-quote-content fade-in">
+        <blockquote>
+          "The Champions Complex will <span>redefine what it means</span> to be a Rocket. When the facility opens, every student-athlete we recruit, every coach we hire, and every opponent we face will know exactly who we are."
+        </blockquote>
+        <p class="vision-quote-author" style="color:var(--gold);">University of Toledo Athletics &mdash; Champions Complex Capital Campaign</p>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         BLOCK 7: DAY IN THE LIFE TIMELINE
+    ============================================================ -->
+    <section class="timeline-section" aria-label="A day in the life of a Rocket student-athlete">
+      <div class="timeline-inner">
+        <div class="timeline-header fade-in">
+          <p class="section-label">The Human Return on Investment</p>
+          <h2 class="section-title">A Day in the Life<br />of a <span style="color:var(--midnight-blue);">Rocket Athlete</span></h2>
+          <div class="divider-gold"></div>
+          <p class="section-body" style="color:rgba(0,15,62,0.72);max-width:600px;margin:0 auto;">
+            The Champions Complex is not a collection of rooms. It is a carefully designed daily environment that removes friction, saves time, and creates the conditions where both athletic and academic excellence become inevitable.
+          </p>
+        </div>
+        <div class="timeline-track">
+
+          <div class="timeline-item">
+            <div class="timeline-text fade-in-left">
+              <p class="timeline-time">7:00 AM &mdash; Morning</p>
+              <h3 class="timeline-event-title">Fuel. Strategize. Connect.</h3>
+              <p class="timeline-event-text">
+                The day begins in the Performance Dining Center. Athletes fuel for the demands ahead with sport-specific nutrition plans curated by on-site dietitians. Coaches share early film notes over the team tables. In a single space, preparation has already begun. No van ride to a remote dining hall. No wasted time. Just Rockets, together.
+              </p>
+            </div>
+            <div class="timeline-img fade-in-right">
+              <img src="Training_Table_MSA.jpg" alt="Athletes gathering in the Performance Dining Center in the morning" class="timeline-image" />
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-text fade-in-left">
+              <p class="timeline-time">9:00 AM &mdash; Mid-Morning</p>
+              <h3 class="timeline-event-title">Study Hall. Tutoring. Graduation.</h3>
+              <p class="timeline-event-text">
+                One floor up, the Academic Center is alive with focused energy. Athletes move between collaborative open workstations and private glass-walled tutoring rooms. Academic advisors are embedded in the space, not a separate building across campus. The result: higher grade point averages, greater graduation rates, and student-athletes who leave Toledo genuinely prepared for life beyond sport.
+              </p>
+            </div>
+            <div class="timeline-img fade-in-right">
+              <img src="AcademicsStudy_MSA.jpg" alt="Student-athletes studying and working with tutors in the academic center" class="timeline-image" />
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-text fade-in-left">
+              <p class="timeline-time">2:00 PM &mdash; Afternoon</p>
+              <h3 class="timeline-event-title">Recovery. Wellness. Mental Strength.</h3>
+              <p class="timeline-event-text">
+                The Student-Athlete Wellness Suite provides access to sports psychologists, mental performance coaches, and recovery specialists. In a modern collegiate landscape where mental health is as critical as physical conditioning, this embedded access removes the stigma and the commute, ensuring every Rocket has the full support system they need to perform at the highest level and thrive as a human being.
+              </p>
+            </div>
+            <div class="timeline-img fade-in-right">
+              <img src="AcademicsLounge_MSA.jpg" alt="Athletes relaxing and meeting with support staff in the wellness and academic lounge" class="timeline-image" />
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-text fade-in-left">
+              <p class="timeline-time">4:00 PM &mdash; Practice</p>
+              <h3 class="timeline-event-title">Year-Round. Every Day. No Excuses.</h3>
+              <p class="timeline-event-text">
+                The 11,000-square-foot Indoor Training Turf does not care about the weather outside. Baseball and softball athletes work on hitting mechanics, fielding repetitions, and conditioning drills throughout January, February, and March, months that previously rendered outdoor development impossible. This is the competitive difference that changes rosters, changes records, and changes the trajectory of a program.
+              </p>
+            </div>
+            <div class="timeline-img fade-in-right">
+              <img src="Indoor_Turf__Interior_Facing_MSA.jpg" alt="Athletes practicing year-round on the indoor training turf" class="timeline-image" />
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BLOCK 8: CAMPUS INTEGRATION & CORRIDOR
+    ============================================================ -->
+    <section class="campus-section" aria-label="Campus integration and the Champions Corridor">
+      <div class="campus-inner">
+        <div class="fade-in-left">
+          <img
+            src="Champions_Entry_MSA.jpg"
+            alt="Champions Corridor entry hallway with Toledo mural and interactive video display"
+            class="campus-image"
+          />
+        </div>
+        <div class="fade-in-right">
+          <p class="section-label">Where Legacy Meets Tomorrow</p>
+          <h2 class="section-title">The Champions<br /><span class="gold-text">Corridor</span></h2>
+          <div class="divider-gold"></div>
+          <p class="section-body">
+            Every great program has a spine. Ours will be the Champions Corridor, a signature interior concourse that celebrates the full breadth of Rocket athletics history while propelling every athlete toward the future. Dynamic displays, trophy cases, and interactive media will honor decades of championships, bowl game victories, and academic All-Americans, while serving as a daily reminder to every athlete that they carry that legacy forward.
+          </p>
+          <p class="section-body" style="margin-top:1rem;">
+            This is where donors become legends. A naming opportunity within the Champions Corridor ensures that your commitment to Rocket Athletics is woven permanently into the story we tell, every single day.
+          </p>
+          <a href="#legacy" class="btn-primary" style="margin-top:2rem;display:inline-block;">Explore Legacy Opportunities</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORRIDOR PARALLAX QUOTE -->
+    <div class="corridor-parallax" aria-label="Champions Corridor legacy statement">
+      <div class="corridor-parallax-bg" aria-hidden="true"></div>
+      <div class="corridor-content fade-in">
+        <p class="section-label" style="text-align:center;color:var(--gold);">Honoring the Past. Fueling the Future.</p>
+        <h2 class="section-title" style="text-align:center;font-size:clamp(1.8rem,4vw,3rem);margin-bottom:1.25rem;">
+          Your name. This corridor. Rocket history.
+        </h2>
+        <p class="section-body" style="text-align:center;max-width:600px;margin:0 auto 2rem;">
+          The Champions Corridor is more than a hallway. It is the living heartbeat of Toledo Athletics, a space where legends from every era of Rocket sport share walls with the champions of tomorrow. Naming rights within this signature space offer the most powerful form of institutional legacy available in this campaign.
+        </p>
+        <div style="text-align:center;">
+          <a href="#legacy" class="btn-primary">Inquire About Naming</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXTERIOR CAMPUS SECTION -->
+    <section style="background:var(--dark-blue);padding:7rem 6vw;" aria-label="Exterior campus integration view">
+      <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;" class="campus-inner">
+        <div class="fade-in-left">
+          <p class="section-label">A Campus Landmark</p>
+          <h2 class="section-title">More Than a Building.<br /><span class="gold-text">A Campus Statement.</span></h2>
+          <div class="divider-gold"></div>
+          <p class="section-body">
+            The Champions Complex does not exist in isolation. It is architected to integrate seamlessly into the pedestrian experience of our main campus, featuring outdoor gathering spaces, yellow Toledo-branded seating, vibrant landscaping, and a towering Rocket sculpture that will become an iconic landmark for alumni, prospective students, and the broader Toledo community. The investment extends beyond the walls.
+          </p>
+          <p class="section-body" style="margin-top:1rem;">
+            By reclaiming a centralized, underutilized campus building and returning our baseball and softball programs from the geographically isolated Scott Park facility, we are not just building a better athletic complex. We are building a more unified, more vibrant, and more competitive university.
+          </p>
+        </div>
+        <div class="fade-in-right">
+          <img
+            src="Exterior__East_Perspective_MSA.jpg"
+            alt="Wide-angle daytime exterior view of the Champions Complex showing outdoor plaza, Toledo branding, and campus integration"
+            class="campus-image"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- SOFTBALL LOCKER ROOMS SECTION -->
+    <section style="background:var(--space-blue);padding:7rem 6vw;" aria-label="Softball and baseball facility upgrades">
+      <div style="max-width:1200px;margin:0 auto;">
+        <div style="text-align:center;margin-bottom:3.5rem;" class="fade-in">
+          <p class="section-label">Elite Facilities for Every Rocket</p>
+          <h2 class="section-title">Professional-Grade.<br /><span class="gold-text">For Every Athlete.</span></h2>
+          <div class="divider-gold" style="margin:1.25rem auto 0;"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;" class="campus-inner">
+          <div class="fade-in-left">
+            <img
+              src="Softball_Locker_RoomLounge_MSA.jpg"
+              alt="Softball locker room lounge with gold Rocket ceiling feature and team film screen"
+              style="width:100%;border-radius:8px;object-fit:cover;aspect-ratio:16/9;box-shadow:0 20px 60px rgba(0,0,0,0.45);"
+            />
+            <div style="padding:1.75rem 0 0;">
+              <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;">Softball Program</p>
+              <h3 style="font-size:1.25rem;font-weight:800;margin-bottom:0.75rem;">A Locker Room Worthy of Champions</h3>
+              <p class="section-body" style="font-size:0.88rem;">
+                Softball returns to the main campus in a space that rivals any facility in the MAC. Custom dark-wood lockers, embedded player nameplates, an illuminated Rocket ceiling feature, and a team film lounge create an elite environment where recruiting wins are made before a pitch is ever thrown.
+              </p>
+            </div>
+          </div>
+          <div class="fade-in-right">
+            <img
+              src="Baseball_Locker_RoomSeats_MSA.jpg"
+              alt="Baseball locker room team meeting area with film screen and Rocket branding"
+              style="width:100%;border-radius:8px;object-fit:cover;aspect-ratio:16/9;box-shadow:0 20px 60px rgba(0,0,0,0.45);"
+            />
+            <div style="padding:1.75rem 0 0;">
+              <p style="font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;">Baseball Program</p>
+              <h3 style="font-size:1.25rem;font-weight:800;margin-bottom:0.75rem;">Where Teams Are Built Before the First Pitch</h3>
+              <p class="section-body" style="font-size:0.88rem;">
+                The baseball locker room functions as both a daily gathering place and a film study theater. Athletes arrive, get locked in, and leave with a shared competitive mindset. Dedicated team meeting chairs and a large format screen ensure preparation is not an afterthought but a cornerstone of the Champions Complex experience.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BLOCK 10: NAMING RIGHTS / LEAVE YOUR LEGACY
+    ============================================================ -->
+    <section id="legacy" class="naming-section" aria-label="Naming rights and legacy giving opportunities">
+      <div class="naming-inner">
+        <div class="naming-header fade-in">
+          <p class="section-label">Leave Your Legacy</p>
+          <h2 class="section-title">Naming Opportunities<br /><span class="gold-text">Available Now</span></h2>
+          <div class="divider-gold" style="margin:1.25rem auto 0;"></div>
+          <p class="section-body" style="text-align:center;max-width:660px;margin:1.5rem auto 0;">
+            Naming rights within the Champions Complex represent the most powerful form of philanthropic legacy available in the history of University of Toledo Athletics. These opportunities are limited, and several are already in active conversations. Contact us today to secure your space in Rocket history.
+          </p>
+        </div>
+        <div class="naming-grid">
+
+          <div class="naming-card fade-in">
+            <p class="naming-tier">Premier Opportunity</p>
+            <p class="naming-space">Performance Dining Center</p>
+            <p class="naming-amount">Contact for Details</p>
+            <p class="naming-desc">Maximum daily visibility among all 450+ athletes. High alignment with nutrition, health, and peak athletic performance. Ideal for corporate food and health brand partners or major individual philanthropists.</p>
+          </div>
+
+          <div class="naming-card fade-in">
+            <p class="naming-tier">Premier Opportunity</p>
+            <p class="naming-space">Indoor Training Turf &mdash; 11,000 Sq Ft</p>
+            <p class="naming-amount">Contact for Details</p>
+            <p class="naming-desc">The single largest and most visually commanding space in the complex. A dominant branding footprint across the most photographed and filmed area of the facility. The signature athletic training asset of the campaign.</p>
+          </div>
+
+          <div class="naming-card fade-in">
+            <p class="naming-tier">Major Opportunity</p>
+            <p class="naming-space">Academic Center</p>
+            <p class="naming-amount">Contact for Details</p>
+            <p class="naming-desc">Direct investment in graduation rates and post-athletic career preparation. Prestigious institutional association with academic excellence. Ideal for educational foundations, civic organizations, or legacy-minded alumni.</p>
+          </div>
+
+          <div class="naming-card fade-in">
+            <p class="naming-tier">Major Opportunity</p>
+            <p class="naming-space">Student-Athlete Wellness Suite</p>
+            <p class="naming-amount">Contact for Details</p>
+            <p class="naming-desc">Position your gift at the forefront of the most important movement in collegiate athletics: comprehensive mental health support. A naming here signals a profound commitment to the whole person, not just the athlete.</p>
+          </div>
+
+          <div class="naming-card fade-in">
+            <p class="naming-tier">Signature Opportunity</p>
+            <p class="naming-space">The Champions Corridor</p>
+            <p class="naming-amount">Contact for Details</p>
+            <p class="naming-desc">High-traffic, museum-quality interior concourse celebrating every era of Rocket athletics. Permanent association with the history and future of Toledo Athletics. Ideal for corporate sponsors or syndicates of alumni united by a shared legacy.</p>
+          </div>
+
+          <div class="naming-card fade-in">
+            <p class="naming-tier">Program-Specific Opportunity</p>
+            <p class="naming-space">Baseball &amp; Softball Locker Rooms</p>
+            <p class="naming-amount">Contact for Details</p>
+            <p class="naming-desc">A deeply personal opportunity for sport-specific alumni and former student-athletes. Celebrate the homecoming of two programs returning to the main campus after years in isolation at Scott Park. Your name. Their home.</p>
+          </div>
+
+        </div>
+
+        <div class="naming-contact-bar fade-in">
+          <div class="naming-contact-bar-text">
+            <p>To Discuss Naming Rights and Major Gifts, Contact the Rocket Fund Directly</p>
+            <p>419-530-4183 &nbsp;&nbsp;&bull;&nbsp;&nbsp; rocketfund@utoledo.edu</p>
+          </div>
+          <div class="naming-contact-actions">
+            <a href="tel:4195304183" class="btn-dark" aria-label="Call the Rocket Fund at 419-530-4183">Call Us</a>
+            <a href="https://supportutrockets.com/giving-opportunities" class="btn-dark" aria-label="Schedule a private briefing about the Champions Complex">Schedule a Briefing</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BLOCK 11: FINAL CTA
+    ============================================================ -->
+    <section id="contact" class="cta-section" aria-label="Final call to action">
+      <div class="cta-inner fade-in">
+        <p class="section-label" style="text-align:center;">The Time is Now</p>
+        <h2 class="section-title">
+          Redefine What It Means<br />to Be a <span class="gold-text">Rocket.</span>
+        </h2>
+        <p class="section-body" style="max-width:580px;margin:1.25rem auto 0;">
+          The Champions Complex will transform how 450+ Rocket student-athletes prepare, recover, learn, and compete. This is your opportunity to be permanently woven into that story. Whether you are making a major capital gift, exploring naming rights, or joining the broader campaign, every commitment brings this vision one step closer to steel and concrete. Your Rockets are waiting.
+        </p>
+        <div class="cta-give-group" style="margin-top:2.5rem;">
+          <a href="https://supportutrockets.com/giving-opportunities" class="btn-primary" style="font-size:0.95rem;padding:1.1rem 2.75rem;">Leave Your Legacy &mdash; Give Now</a>
+          <a href="tel:4195304183" class="btn-outline" style="font-size:0.9rem;padding:1rem 2rem;">Call 419-530-4183</a>
+        </div>
+        <p class="cta-contact" style="margin-top:2rem;">
+          To schedule a private facility briefing or discuss major gift opportunities, contact the Rocket Fund at
+          <a href="mailto:rocketfund@utoledo.edu">rocketfund@utoledo.edu</a>
+        </p>
+        <p class="cta-contact" style="margin-top:0.5rem;font-size:0.78rem;">
+          Gifts may be structured as cash, multi-year pledges, stock transfers, IRA distributions, or charitable remainder trusts. University of Toledo is a 501(c)(3) institution. All gifts are tax-deductible to the extent permitted by law.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <p class="footer-brand">
+      <strong>Toledo Rocket Fund</strong> &nbsp;&bull;&nbsp; Champions Complex Capital Campaign
+    </p>
+    <p class="footer-legal">
+      &copy; 2026 University of Toledo Athletics. All Rights Reserved.
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // ============================================================
+      // INTERSECTION OBSERVER FOR FADE-IN ANIMATIONS
+      // ============================================================
+      var animatedElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right');
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+      animatedElements.forEach(function (el) {
+        observer.observe(el);
+      });
+
+      // ============================================================
+      // COUNTER ANIMATION FOR STATS BAR
+      // ============================================================
+      function animateCounter(el) {
+        var target = parseInt(el.getAttribute('data-count'), 10);
+        var prefix = el.getAttribute('data-prefix') || '';
+        var suffix = el.getAttribute('data-suffix') || '';
+        var duration = 1800;
+        var start = null;
+
+        function step(timestamp) {
+          if (!start) start = timestamp;
+          var progress = Math.min((timestamp - start) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          var current = Math.floor(eased * target);
+          el.textContent = prefix + current.toLocaleString() + suffix;
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            el.textContent = prefix + target.toLocaleString() + suffix;
+          }
+        }
+
+        requestAnimationFrame(step);
+      }
+
+      var counterObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              animateCounter(entry.target);
+              counterObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      document.querySelectorAll('[data-count]').forEach(function (el) {
+        counterObserver.observe(el);
+      });
+
+      // ============================================================
+      // PROGRESS BAR ANIMATION
+      // ============================================================
+      var progressBarFill = document.querySelector('.progress-bar-fill');
+      if (progressBarFill) {
+        var progressObserver = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                var targetWidth = entry.target.getAttribute('data-target-width');
+                setTimeout(function () {
+                  entry.target.style.width = targetWidth + '%';
+                }, 300);
+                progressObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.4 }
+        );
+        progressObserver.observe(progressBarFill);
+      }
+
+      // ============================================================
+      // SMOOTH SCROLL FOR ANCHOR LINKS
+      // ============================================================
+      document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+        anchor.addEventListener('click', function (e) {
+          var target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            var headerHeight = 64;
+            var targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+          }
+        });
+      });
+
+      // ============================================================
+      // HEADER TRANSPARENCY ON SCROLL
+      // ============================================================
+      var header = document.querySelector('.site-header');
+      window.addEventListener('scroll', function () {
+        if (window.scrollY > 80) {
+          header.style.background = 'rgba(0, 9, 30, 0.99)';
+        } else {
+          header.style.background = 'rgba(0, 15, 62, 0.97)';
+        }
+      }, { passive: true });
+
+    })();
+  </script>
+
+</body>
+</html>
