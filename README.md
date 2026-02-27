@@ -1,2 +1,0 @@
-# champion
-Champions complex
