@@ -42,8 +42,7 @@ a{text-decoration:none;color:inherit}
 .site-nav.scrolled{background:rgba(0,34,68,0.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:10px 0;box-shadow:0 2px 20px rgba(0,0,0,0.3)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:var(--container-width);margin:0 auto;padding:0 24px}
 .nav-logo{display:flex;align-items:center;gap:12px}
-.nav-logo-text{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--white);text-transform:uppercase;letter-spacing:1px;line-height:1.2}
-.nav-logo-text span{color:var(--gold);display:block;font-size:0.7rem;font-weight:500;letter-spacing:2px}
+.nav-logo-img{height:48px;width:auto;display:block}
 .nav-links{display:flex;align-items:center;gap:32px}
 .nav-links a{font-family:var(--font-body);font-size:0.9rem;font-weight:600;color:rgba(255,255,255,0.85);text-transform:uppercase;letter-spacing:1px;transition:color 0.3s ease;position:relative}
 .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--gold);transition:width 0.3s ease}
@@ -117,17 +116,18 @@ a{text-decoration:none;color:inherit}
 /* ============================================
    GALLERY SECTION
    ============================================ */
-.gallery{padding:var(--section-padding);background:var(--off-white)}
-.gallery-header{text-align:center;margin-bottom:56px}
-.gallery-header .section-title{color:var(--navy)}
-.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:280px 280px;gap:16px}
+.gallery{padding:var(--section-padding);background:var(--navy-deep)}
+.gallery-header{text-align:center;margin-bottom:48px}
+.gallery-header .section-title{color:var(--white)}
+.gallery-header .section-text{color:rgba(255,255,255,0.55);margin:0 auto}
+.gallery-grid{display:grid;grid-template-columns:1.1fr 1fr 1fr;grid-template-rows:310px 310px;gap:4px}
 .gallery-item{overflow:hidden;position:relative;cursor:pointer}
-.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease}
-.gallery-item:hover img{transform:scale(1.06)}
-.gallery-item-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,34,68,0.7) 0%,transparent 60%);opacity:0;transition:opacity 0.4s ease;display:flex;align-items:flex-end;padding:20px}
-.gallery-item:hover .gallery-item-overlay{opacity:1}
-.gallery-item-overlay span{font-family:var(--font-display);font-size:0.85rem;color:var(--white);text-transform:uppercase;letter-spacing:1px}
-.gallery-item:nth-child(1){grid-column:span 2}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease;filter:brightness(0.8)}
+.gallery-item:hover img{transform:scale(1.05);filter:brightness(0.65)}
+.gallery-item-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,15,30,0.9) 0%,transparent 55%);opacity:1;display:flex;align-items:flex-end;padding:24px}
+.gallery-item-overlay span{font-family:var(--font-display);font-size:0.85rem;color:rgba(255,255,255,0.8);text-transform:uppercase;letter-spacing:2px;border-left:2px solid var(--gold);padding-left:12px;transition:color 0.3s ease}
+.gallery-item:hover .gallery-item-overlay span{color:var(--gold)}
+.gallery-item:nth-child(1){grid-row:span 2}
 .gallery-item:nth-child(4){grid-column:span 2}
 
 /* ============================================
@@ -190,8 +190,7 @@ a{text-decoration:none;color:inherit}
    ============================================ */
 .site-footer{background:var(--navy-deep);color:rgba(255,255,255,0.4);padding:40px 0;text-align:center}
 .footer-inner{display:flex;flex-direction:column;align-items:center;gap:16px}
-.footer-logo{font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--white);text-transform:uppercase;letter-spacing:2px}
-.footer-logo span{color:var(--gold)}
+.footer-logo img{height:40px;width:auto;display:block;opacity:0.85}
 .footer-links{display:flex;gap:24px}
 .footer-links a{font-size:0.8rem;color:rgba(255,255,255,0.4);transition:color 0.3s ease}
 .footer-links a:hover{color:var(--gold)}
@@ -238,12 +237,36 @@ a{text-decoration:none;color:inherit}
 @keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* ============================================
+   DAY IN THE LIFE TIMELINE
+   ============================================ */
+.day-in-life{padding:var(--section-padding);background:var(--off-white)}
+.dil-header{text-align:center;margin-bottom:64px}
+.dil-header .section-title{color:var(--navy)}
+.dil-header .section-text{margin:0 auto}
+.dil-timeline{position:relative;max-width:860px;margin:0 auto}
+.dil-timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--gold),var(--gold-dark));transform:translateX(-50%);z-index:0}
+.dil-item{display:flex;align-items:flex-start;margin-bottom:52px;position:relative}
+.dil-item:last-child{margin-bottom:0}
+.dil-time-col{flex:1;padding-right:36px;text-align:right;padding-top:2px;order:1}
+.dil-node{flex:0 0 48px;display:flex;justify-content:center;z-index:1;order:2}
+.dil-dot{width:16px;height:16px;background:var(--gold);border-radius:50%;border:3px solid var(--off-white);box-shadow:0 0 0 2px var(--gold-dark);margin-top:4px}
+.dil-content-col{flex:1;padding-left:36px;order:3}
+.dil-item--flip .dil-time-col{order:3;text-align:left;padding-right:0;padding-left:36px}
+.dil-item--flip .dil-content-col{order:1;text-align:right;padding-left:0;padding-right:36px}
+.dil-time{font-family:var(--font-display);font-size:1.3rem;font-weight:700;color:var(--navy);display:block;line-height:1}
+.dil-venue{font-size:0.7rem;text-transform:uppercase;letter-spacing:2px;color:var(--gold-dark);font-weight:600;display:block;margin-top:4px}
+.dil-title{font-family:var(--font-display);font-size:1.05rem;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px}
+.dil-desc{font-size:0.875rem;line-height:1.7;color:var(--gray-600)}
+.dil-mobile-time{display:none}
+
+/* ============================================
    RESPONSIVE
    ============================================ */
 @media(max-width:1024px){
 .features-grid{grid-template-columns:repeat(2,1fr)}
-.gallery-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:auto}
-.gallery-item:nth-child(1),.gallery-item:nth-child(4){grid-column:span 1}
+.gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+.gallery-item:nth-child(1){grid-row:span 1;grid-column:span 1}
+.gallery-item:nth-child(4){grid-column:span 1}
 .vision-grid,.impact-grid,.contact-wrapper{grid-template-columns:1fr;gap:40px}
 .vision-image-accent{display:none}
 }
@@ -254,11 +277,19 @@ a{text-decoration:none;color:inherit}
 .nav-links.open{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--navy);padding:20px 24px;gap:16px;border-top:1px solid rgba(255,255,255,0.1)}
 .hero-stats{flex-direction:column;gap:20px}
 .features-grid{grid-template-columns:1fr}
-.gallery-grid{grid-template-columns:1fr;grid-template-rows:auto}
+.gallery-grid{grid-template-columns:1fr;grid-template-rows:220px 220px 220px 220px}
+.gallery-item:nth-child(1){grid-row:span 1}
+.gallery-item:nth-child(4){grid-column:span 1}
 .persistent-bar{display:block}
 body{padding-bottom:70px}
 .hero-title{font-size:clamp(2.2rem,8vw,3.5rem)}
 .section-title{font-size:clamp(1.8rem,5vw,2.5rem)}
+.dil-timeline::before{left:7px;transform:none}
+.dil-item{flex-wrap:wrap}
+.dil-time-col{display:none}
+.dil-node{order:0;flex:0 0 32px}
+.dil-content-col{order:1!important;flex:1;text-align:left!important;padding-left:12px!important;padding-right:0!important}
+.dil-mobile-time{display:block;font-family:var(--font-display);font-size:0.75rem;font-weight:600;color:var(--gold-dark);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
 }
 
 @media(max-width:480px){
@@ -276,15 +307,11 @@ body{padding-bottom:70px}
 <nav class="site-nav" id="siteNav">
   <div class="nav-inner">
     <a href="#" class="nav-logo">
-      <div class="nav-logo-text">
-        Toledo Athletics
-        <span>Champions Complex</span>
-      </div>
+      <img src="images/UT_Athletics_Primary_Logo_for_Dark_Background.png" alt="University of Toledo Athletics" class="nav-logo-img">
     </a>
     <div class="nav-links" id="navLinks">
       <a href="#vision">Vision</a>
       <a href="#features">Features</a>
-      <a href="#gallery">Gallery</a>
       <a href="#impact">Impact</a>
       <a href="#contact" class="nav-contact-btn">Contact Us</a>
     </div>
@@ -435,36 +462,122 @@ body{padding-bottom:70px}
           <p class="feature-card-desc">Purpose-built team facilities that give Rocket softball their own dedicated home on campus with locker rooms and a comfortable player lounge.</p>
         </div>
       </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-card-image">
+          <img src="images/Champions_Corridor_MSA.jpg" alt="Champions Corridor" width="600" height="400" loading="lazy">
+        </div>
+        <div class="feature-card-body">
+          <h3 class="feature-card-title">Champions Corridor</h3>
+          <p class="feature-card-desc">The iconic spine of the facility connecting every space, lined with the history of Rocket Athletics and built to inspire every athlete who walks through it.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ========================================
-     GALLERY SECTION
+     DAY IN THE LIFE SECTION
      ======================================== -->
-<section class="gallery" id="gallery">
+<section class="day-in-life" id="day-in-life">
   <div class="container">
-    <div class="gallery-header reveal">
-      <p class="section-label">Gallery</p>
-      <h2 class="section-title">A Closer Look</h2>
+    <div class="dil-header reveal">
+      <p class="section-label">Student-Athlete Experience</p>
+      <h2 class="section-title">A Day in the Life of a Rocket</h2>
+      <p class="section-text">From the weight room at dawn to the study hall at dusk, the Champions Complex is the heartbeat of every Rocket's day.</p>
     </div>
-    <div class="gallery-grid">
-      <div class="gallery-item reveal">
-        <img src="images/Champions_Corridor_MSA.jpg" alt="Champions Corridor" width="600" height="400" loading="lazy">
-        <div class="gallery-item-overlay"><span>Champions Corridor</span></div>
+    <div class="dil-timeline">
+
+      <div class="dil-item reveal">
+        <div class="dil-time-col">
+          <span class="dil-time">6:00 AM</span>
+          <span class="dil-venue">Weight Room</span>
+        </div>
+        <div class="dil-node"><div class="dil-dot"></div></div>
+        <div class="dil-content-col">
+          <div class="dil-mobile-time">6:00 AM &middot; Weight Room</div>
+          <h3 class="dil-title">Morning Conditioning</h3>
+          <p class="dil-desc">Before the campus wakes up, Rockets are already putting in the work. Strength and conditioning sessions set the physical and mental tone for everything that follows.</p>
+        </div>
       </div>
-      <div class="gallery-item reveal reveal-delay-1">
-        <img src="images/AcademicsStudy_MSA.jpg" alt="Academics Study Area" width="600" height="400" loading="lazy">
-        <div class="gallery-item-overlay"><span>Study Center</span></div>
+
+      <div class="dil-item dil-item--flip reveal reveal-delay-1">
+        <div class="dil-time-col">
+          <span class="dil-time">8:00 AM</span>
+          <span class="dil-venue">Training Table</span>
+        </div>
+        <div class="dil-node"><div class="dil-dot"></div></div>
+        <div class="dil-content-col">
+          <div class="dil-mobile-time">8:00 AM &middot; Training Table</div>
+          <h3 class="dil-title">Breakfast at the Training Table</h3>
+          <p class="dil-desc">Nutrition is performance. Athletes gather for chef-prepared, sport-specific meals that accelerate recovery and fuel the full demands of a student-athlete's day.</p>
+        </div>
       </div>
-      <div class="gallery-item reveal reveal-delay-2">
-        <img src="images/Baseball_Locker_RoomSeats_MSA.jpg" alt="Baseball Locker Room" width="600" height="400" loading="lazy">
-        <div class="gallery-item-overlay"><span>Baseball Locker Room</span></div>
+
+      <div class="dil-item reveal reveal-delay-2">
+        <div class="dil-time-col">
+          <span class="dil-time">9:30 AM</span>
+          <span class="dil-venue">Academic Center</span>
+        </div>
+        <div class="dil-node"><div class="dil-dot"></div></div>
+        <div class="dil-content-col">
+          <div class="dil-mobile-time">9:30 AM &middot; Academic Center</div>
+          <h3 class="dil-title">Morning Study Session</h3>
+          <p class="dil-desc">Between classes, the Academic Center provides a focused environment for studying, tutoring, and advisor meetings — all steps away from the practice field.</p>
+        </div>
       </div>
-      <div class="gallery-item reveal reveal-delay-3">
-        <img src="images/Softball_Locker_RoomSeats_MSA.jpg" alt="Softball Locker Room" width="600" height="400" loading="lazy">
-        <div class="gallery-item-overlay"><span>Softball Locker Room</span></div>
+
+      <div class="dil-item dil-item--flip reveal reveal-delay-1">
+        <div class="dil-time-col">
+          <span class="dil-time">12:30 PM</span>
+          <span class="dil-venue">Training Table</span>
+        </div>
+        <div class="dil-node"><div class="dil-dot"></div></div>
+        <div class="dil-content-col">
+          <div class="dil-mobile-time">12:30 PM &middot; Training Table</div>
+          <h3 class="dil-title">Team Lunch</h3>
+          <p class="dil-desc">The Training Table is more than a dining hall — it's where team culture is forged. Midday meals bring squads together, fueling both the body and the bond between teammates.</p>
+        </div>
       </div>
+
+      <div class="dil-item reveal reveal-delay-2">
+        <div class="dil-time-col">
+          <span class="dil-time">2:30 PM</span>
+          <span class="dil-venue">Indoor Turf</span>
+        </div>
+        <div class="dil-node"><div class="dil-dot"></div></div>
+        <div class="dil-content-col">
+          <div class="dil-mobile-time">2:30 PM &middot; Indoor Turf</div>
+          <h3 class="dil-title">Afternoon Practice</h3>
+          <p class="dil-desc">The indoor turf facility means preparation never stops — rain, snow, or shine. Year-round access to a full-scale training surface keeps Rockets sharp every day of the year.</p>
+        </div>
+      </div>
+
+      <div class="dil-item dil-item--flip reveal reveal-delay-1">
+        <div class="dil-time-col">
+          <span class="dil-time">5:30 PM</span>
+          <span class="dil-venue">Academic Center</span>
+        </div>
+        <div class="dil-node"><div class="dil-dot"></div></div>
+        <div class="dil-content-col">
+          <div class="dil-mobile-time">5:30 PM &middot; Academic Center</div>
+          <h3 class="dil-title">Evening Study Hall</h3>
+          <p class="dil-desc">When practice ends, the pursuit of excellence continues. Dedicated study hall time and academic support resources help Rockets succeed in the classroom as they do in competition.</p>
+        </div>
+      </div>
+
+      <div class="dil-item reveal reveal-delay-2">
+        <div class="dil-time-col">
+          <span class="dil-time">7:30 PM</span>
+          <span class="dil-venue">Team Meeting Room</span>
+        </div>
+        <div class="dil-node"><div class="dil-dot"></div></div>
+        <div class="dil-content-col">
+          <div class="dil-mobile-time">7:30 PM &middot; Team Meeting Room</div>
+          <h3 class="dil-title">Film Review &amp; Team Meeting</h3>
+          <p class="dil-desc">The day closes with preparation for tomorrow. State-of-the-art meeting rooms with film review capabilities let coaches and athletes break down every detail of their performance.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -575,7 +688,7 @@ body{padding-bottom:70px}
 <footer class="site-footer">
   <div class="container">
     <div class="footer-inner">
-      <div class="footer-logo">Toledo <span>Athletics</span></div>
+      <div class="footer-logo"><img src="images/UT_Athletics_Primary_Logo_for_Dark_Background.png" alt="University of Toledo Athletics"></div>
       <div class="footer-links">
         <a href="https://utrockets.com" target="_blank" rel="noopener noreferrer">UTRockets.com</a>
         <a href="https://supportutrockets.com" target="_blank" rel="noopener noreferrer">Support UT Rockets</a>
