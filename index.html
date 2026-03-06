@@ -65,7 +65,7 @@ a{text-decoration:none;color:inherit}
    ============================================ */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:var(--navy-deep)}
 .hero-bg{position:absolute;inset:0;z-index:1}
-.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:0.35}
+.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:0.55}
 .hero-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(135deg,rgba(0,21,39,0.92) 0%,rgba(0,34,68,0.75) 50%,rgba(0,51,102,0.6) 100%)}
 .hero-content{position:relative;z-index:3;max-width:var(--container-width);margin:0 auto;padding:0 24px;width:100%}
 .hero-tag{font-family:var(--font-display);font-size:0.85rem;font-weight:500;color:var(--gold);text-transform:uppercase;letter-spacing:4px;margin-bottom:20px;opacity:0;animation:heroFadeUp 0.8s ease 0.3s forwards}
@@ -87,7 +87,7 @@ a{text-decoration:none;color:inherit}
    ============================================ */
 .section-label{font-family:var(--font-display);font-size:0.75rem;font-weight:500;color:var(--gold);text-transform:uppercase;letter-spacing:4px;margin-bottom:12px}
 .section-title{font-family:var(--font-display);font-size:clamp(2rem,4vw,3.2rem);font-weight:700;text-transform:uppercase;line-height:1.1;margin-bottom:20px}
-.section-text{font-size:1.05rem;line-height:1.75;color:var(--gray-600);max-width:640px}
+.section-text{font-size:1.1rem;line-height:1.85;color:var(--gray-600);max-width:640px}
 
 /* ============================================
    ABOUT / VISION SECTION
@@ -118,7 +118,7 @@ a{text-decoration:none;color:inherit}
 .feature-card:hover .feature-card-image img{transform:scale(1.05)}
 .feature-card-body{padding:28px 24px}
 .feature-card-title{font-family:var(--font-display);font-size:1.2rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;color:var(--white)}
-.feature-card-desc{font-size:0.9rem;line-height:1.65;color:rgba(255,255,255,0.55)}
+.feature-card-desc{font-size:1rem;line-height:1.65;color:rgba(255,255,255,0.55)}
 
 /* ============================================
    GALLERY SECTION
@@ -274,6 +274,7 @@ a{text-decoration:none;color:inherit}
 .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
 .gallery-item:nth-child(1){grid-row:span 1;grid-column:span 1}
 .gallery-item:nth-child(4){grid-column:span 1}
+.gallery-item{min-height:220px}
 .vision-grid,.impact-grid,.contact-wrapper{grid-template-columns:1fr;gap:40px}
 .vision-image-accent{display:none}
 }
@@ -282,9 +283,9 @@ a{text-decoration:none;color:inherit}
 .nav-links{display:none}
 .mobile-toggle{display:flex}
 .nav-links.open{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--navy);padding:20px 24px;gap:16px;border-top:1px solid rgba(255,255,255,0.1)}
-.hero-stats{flex-direction:column;gap:20px}
+.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .features-grid{grid-template-columns:1fr}
-.gallery-grid{grid-template-columns:1fr;grid-template-rows:220px 220px 220px 220px}
+.gallery-grid{grid-template-columns:1fr;grid-template-rows:auto}
 .gallery-item:nth-child(1){grid-row:span 1}
 .gallery-item:nth-child(4){grid-column:span 1}
 .persistent-bar{display:block}
@@ -297,6 +298,9 @@ body{padding-bottom:70px}
 .dil-node{order:0;flex:0 0 32px}
 .dil-content-col{order:1!important;flex:1;text-align:left!important;padding-left:12px!important;padding-right:0!important}
 .dil-mobile-time{display:block;font-family:var(--font-display);font-size:0.75rem;font-weight:600;color:var(--gold-dark);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
+.champions-wall-grid{grid-template-columns:1fr!important}
+.faq-grid{max-width:100%}
+.anon-donors-grid{grid-template-columns:1fr!important}
 }
 
 @media(max-width:480px){
@@ -347,7 +351,7 @@ body{padding-bottom:70px}
 .testimonial-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);padding:36px 32px;position:relative;transition:all var(--transition-smooth)}
 .testimonial-card:hover{border-color:rgba(255,184,28,0.3);background:rgba(255,255,255,0.07);transform:translateY(-3px)}
 .testimonial-quote-mark{font-family:Georgia,serif;font-size:4rem;line-height:1;color:var(--gold);opacity:0.4;margin-bottom:-12px;display:block}
-.testimonial-text{font-size:1rem;line-height:1.75;color:rgba(255,255,255,0.8);font-style:italic;margin-bottom:24px}
+.testimonial-text{font-size:1.05rem;line-height:1.75;color:rgba(255,255,255,0.8);font-style:italic;margin-bottom:24px}
 .testimonial-author{display:flex;align-items:center;gap:14px}
 .testimonial-author-avatar{width:44px;height:44px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--navy);flex-shrink:0}
 .testimonial-author-name{font-family:var(--font-display);font-size:0.9rem;font-weight:600;color:var(--white);text-transform:uppercase;letter-spacing:0.5px}
@@ -382,7 +386,7 @@ body{padding-bottom:70px}
 .progress-goal{font-size:0.85rem;color:rgba(255,255,255,0.5);align-self:flex-end}
 .progress-bar-track{background:rgba(255,255,255,0.1);height:10px;width:100%;border-radius:5px;overflow:hidden;margin-bottom:10px}
 .progress-bar-fill{height:100%;background:linear-gradient(to right,var(--gold),var(--gold-dark));border-radius:5px;width:0;transition:width 1.8s ease 0.3s}
-.progress-bar-fill.animated{width:40%}
+.progress-bar-fill.animated{width:36%}
 .progress-note{font-size:0.8rem;color:rgba(255,255,255,0.45);text-align:right}
 .support-donate-btn{display:inline-block;background:var(--gold);color:var(--navy);font-family:var(--font-display);font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:18px 48px;margin-top:16px;transition:all 0.3s ease;cursor:pointer;border:none}
 .support-donate-btn:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,184,28,0.25)}
@@ -455,6 +459,8 @@ body{padding-bottom:70px}
 .testimonials-grid{grid-template-columns:1fr 1fr}
 .giving-grid{grid-template-columns:1fr 1fr}
 .contact-form-row{grid-template-columns:1fr}
+.champions-wall-grid{grid-template-columns:1fr}
+.anon-donors-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:768px){
 .testimonials-grid{grid-template-columns:1fr}
@@ -467,6 +473,87 @@ body{padding-bottom:70px}
 .nav-phone-link{display:none}
 .urgency-inner{gap:10px;padding:0 16px}
 }
+
+/* ============================================
+   ACCESSIBILITY — FOCUS STYLES & TOUCH TARGETS
+   ============================================ */
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.hero-btn,.support-donate-btn,.contact-form-submit,.persistent-bar-btn,.back-to-top,.nav-contact-btn,.nav-donate-btn{min-height:44px}
+
+/* ============================================
+   GIVING LEVELS — PULL QUOTE CALLOUT
+   ============================================ */
+.giving-pullquote{border-left:4px solid var(--gold);background:var(--off-white);padding:28px 32px;margin-bottom:48px}
+.giving-pullquote p{font-family:var(--font-body);font-size:clamp(1.05rem,1.8vw,1.2rem);font-style:italic;color:var(--navy);line-height:1.75}
+
+/* ============================================
+   SUPPORT SECTION — ANONYMOUS DONOR CARDS
+   ============================================ */
+.anon-donors-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;text-align:left}
+.anon-donor-card{border-left:3px solid var(--gold);background:rgba(255,255,255,0.07);padding:16px 20px}
+.anon-donor-card p{font-size:0.9rem;line-height:1.6;color:rgba(255,255,255,0.75);font-style:italic}
+.support-gap-stat{font-size:1rem;color:rgba(255,255,255,0.7);margin-top:8px;font-style:italic}
+.support-gap-stat strong{color:var(--gold-light)}
+
+/* ============================================
+   CHAMPIONS WALL SECTION
+   ============================================ */
+.champions-wall{padding:var(--section-padding);background:var(--navy);color:var(--white)}
+.champions-wall-header{text-align:center;margin-bottom:56px}
+.champions-wall-header .section-title{color:var(--white)}
+.champions-wall-header .section-text{color:rgba(255,255,255,0.65);margin:0 auto}
+.social-proof-banner{text-align:center;margin-bottom:40px;font-family:var(--font-display);font-size:clamp(0.95rem,1.5vw,1.1rem);font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px}
+.champions-wall-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.cw-tier{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:24px 28px;transition:border-color 0.3s ease}
+.cw-tier:hover{border-color:rgba(255,184,28,0.35)}
+.cw-tier-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.cw-tier-name{font-family:var(--font-display);font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--gold)}
+.cw-tier-amount{font-size:0.8rem;color:rgba(255,255,255,0.5);font-style:italic}
+.cw-bar-track{background:rgba(255,255,255,0.1);height:8px;border-radius:4px;overflow:hidden;margin-bottom:8px}
+.cw-bar-fill{height:100%;background:linear-gradient(to right,var(--gold),var(--gold-dark));border-radius:4px;width:0;transition:width 1.6s ease 0.2s}
+.cw-slots{font-size:0.8rem;color:rgba(255,255,255,0.5);margin-bottom:16px}
+.cw-donors{display:flex;flex-direction:column;gap:0}
+.cw-donor{display:flex;align-items:center;gap:10px;font-size:0.875rem;color:rgba(255,255,255,0.75);padding:8px 0;border-top:1px solid rgba(255,255,255,0.06)}
+.cw-donor:first-child{border-top:none}
+.cw-donor-badge{flex-shrink:0;font-size:0.85rem}
+.cw-donor-name{flex:1}
+.cw-donor-lead{color:var(--gold);font-weight:600}
+.cw-donor-amount{font-size:0.75rem;color:var(--gold-dark)}
+
+/* ============================================
+   FAQ / COMMON QUESTIONS SECTION
+   ============================================ */
+.faq-section{padding:var(--section-padding);background:var(--off-white)}
+.faq-header{text-align:center;margin-bottom:48px}
+.faq-header .section-title{color:var(--navy)}
+.faq-header .section-text{margin:0 auto}
+.faq-grid{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:4px}
+.faq-item{background:var(--white);border:1px solid var(--gray-100);overflow:hidden;transition:border-color 0.3s ease}
+.faq-item.open{border-color:var(--gold)}
+.faq-question{width:100%;display:flex;align-items:center;justify-content:space-between;padding:20px 24px;background:none;border:none;cursor:pointer;font-family:var(--font-display);font-size:1rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:var(--navy);text-align:left;transition:color 0.3s ease;min-height:44px}
+.faq-item.open .faq-question{color:var(--gold-dark)}
+.faq-icon{flex-shrink:0;width:20px;height:20px;position:relative;margin-left:12px}
+.faq-icon::before,.faq-icon::after{content:'';position:absolute;background:var(--navy);border-radius:1px;transition:all 0.3s ease}
+.faq-icon::before{width:14px;height:2px;top:50%;left:50%;transform:translate(-50%,-50%)}
+.faq-icon::after{width:2px;height:14px;top:50%;left:50%;transform:translate(-50%,-50%)}
+.faq-item.open .faq-icon::before{background:var(--gold-dark)}
+.faq-item.open .faq-icon::after{transform:translate(-50%,-50%) scaleY(0)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s ease;padding:0 24px}
+.faq-item.open .faq-answer{max-height:300px;padding:0 24px 20px}
+.faq-answer p{font-size:1rem;line-height:1.8;color:var(--gray-600)}
+.faq-answer a{color:var(--navy);text-decoration:underline;transition:color 0.3s ease}
+.faq-answer a:hover{color:var(--gold-dark)}
+
+/* ============================================
+   CONTACT FORM — INQUIRY NOTE
+   ============================================ */
+.contact-inquiry-note{border:1px solid rgba(255,184,28,0.4);background:rgba(255,184,28,0.07);padding:14px 18px;margin-bottom:20px;font-size:0.9rem;line-height:1.6;color:rgba(255,255,255,0.8)}
+.contact-inquiry-note strong{color:var(--gold);display:block;margin-bottom:4px;font-size:0.75rem;text-transform:uppercase;letter-spacing:1.5px}
+
+/* ============================================
+   VISION LEGACY PARAGRAPH
+   ============================================ */
+.vision-legacy{font-family:var(--font-body);font-size:1rem;font-style:italic;color:var(--navy-light);border-left:3px solid var(--gold);padding-left:20px;margin-top:20px;line-height:1.7}
 </style>
 </head>
 <body>
@@ -483,12 +570,14 @@ body{padding-bottom:70px}
       <a href="#vision">Vision</a>
       <a href="#features">Features</a>
       <a href="#impact">Impact</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#giving">Give</a>
       <a href="tel:4195304183" class="nav-phone-link">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
         419.530.4183
       </a>
       <a href="#contact" class="nav-contact-btn">Contact Us</a>
-      <a href="https://supportutrockets.com" target="_blank" rel="noopener noreferrer" class="nav-donate-btn">Donate Now</a>
+      <a href="#contact" class="nav-donate-btn">How to Give</a>
     </div>
     <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu">
       <span></span>
@@ -523,9 +612,13 @@ body{padding-bottom:70px}
         <div class="hero-stat-number"><span class="counter" data-target="17">0</span></div>
         <div class="hero-stat-label">Varsity Sports</div>
       </div>
+      <div class="hero-stat">
+        <div class="hero-stat-number">$4M</div>
+        <div class="hero-stat-label">Already Raised</div>
+      </div>
     </div>
     <div class="hero-cta">
-      <a href="https://supportutrockets.com" target="_blank" rel="noopener noreferrer" class="hero-btn hero-btn-primary">Make a Gift</a>
+      <a href="#contact" class="hero-btn hero-btn-primary">Learn How to Give</a>
       <a href="tel:4195304183" class="hero-btn hero-btn-secondary">Call the Rocket Fund</a>
     </div>
   </div>
@@ -541,9 +634,9 @@ body{padding-bottom:70px}
 <div class="urgency-banner">
   <div class="container">
     <div class="urgency-inner">
-      <span class="urgency-badge">Campaign Active</span>
-      <p class="urgency-text">Help us build a <strong>once-in-a-generation</strong> facility for 450+ Rocket student-athletes — your support makes it possible.</p>
-      <a href="https://supportutrockets.com" target="_blank" rel="noopener noreferrer" class="urgency-cta">Make Your Gift Today &rarr;</a>
+      <span class="urgency-badge">Fundraising Now Open</span>
+      <p class="urgency-text">Fundraising is actively underway — groundbreaking depends on reaching our <strong>$11M goal</strong>. Every gift brings us closer.</p>
+      <a href="#contact" class="urgency-cta">Contact Us to Give &rarr;</a>
     </div>
   </div>
 </div>
@@ -584,6 +677,7 @@ body{padding-bottom:70px}
           This facility will elevate the student-athlete experience, strengthen our competitive edge, and reinforce Toledo Athletics as a place where excellence is expected and supported.
           <cite>Bryan B. Blair, VP and Director of Athletics</cite>
         </blockquote>
+        <p class="vision-legacy">Gifts to the Champions Complex are among the most visible and lasting investments in Toledo Athletics history. This is your opportunity to leave something behind.</p>
       </div>
     </div>
   </div>
@@ -913,19 +1007,31 @@ body{padding-bottom:70px}
       <div class="progress-container" id="progressContainer">
         <div class="progress-labels">
           <span class="progress-raised">$4M+ Raised</span>
-          <span class="progress-goal">Goal: $10M</span>
+          <span class="progress-goal">Goal: $11M</span>
         </div>
         <div class="progress-bar-track">
           <div class="progress-bar-fill" id="progressBarFill"></div>
         </div>
         <p class="progress-note">Led by a transformative $4M lead gift &mdash; campaign ongoing</p>
+        <p class="support-gap-stat"><strong>$7M+ still needed</strong> — your gift closes the gap.</p>
       </div>
-      <a href="https://supportutrockets.com" target="_blank" rel="noopener noreferrer" class="support-donate-btn">Make a Gift Today</a>
+      <a href="#contact" class="support-donate-btn">Call or Email to Give</a>
       <div class="support-divider"></div>
       <div class="support-donor">
         <p class="support-donor-label">Lead Gift</p>
         <p class="support-donor-name">Marcia and Roy Armes</p>
         <p class="support-donor-desc">Their transformative $4 million gift represents the second-largest cash gift in the history of Toledo Athletics, advancing every goal of Rise Together.</p>
+      </div>
+      <div class="anon-donors-grid reveal">
+        <div class="anon-donor-card">
+          <p>"A Proud Toledo Alumnus — Gold Rocket Supporter"</p>
+        </div>
+        <div class="anon-donor-card">
+          <p>"In Memory of a Rocket Legend — Champions Circle"</p>
+        </div>
+        <div class="anon-donor-card">
+          <p>"Toledo Athletics Family — Rocket Supporter"</p>
+        </div>
       </div>
       <p class="section-text" style="margin:0 auto;font-size:0.95rem">All gifts to The Rocket Fund are received by The University of Toledo Foundation, a 501(c)(3) non-profit corporation. Consult your tax advisor concerning the deductibility of your contributions.</p>
     </div>
@@ -942,31 +1048,34 @@ body{padding-bottom:70px}
       <h2 class="section-title">What Your Support Builds</h2>
       <p class="section-text">Every level of giving creates a direct, lasting impact for Rocket student-athletes. Find the giving opportunity that is right for you.</p>
     </div>
+    <div class="giving-pullquote reveal">
+      <p>"Your name — or the name of someone you love — could be permanently etched into this building, inspiring Rocket athletes for generations to come."</p>
+    </div>
     <div class="giving-grid">
       <div class="giving-card reveal reveal-delay-1">
         <p class="giving-amount">$500</p>
         <p class="giving-label">Rocket Supporter</p>
         <p class="giving-impact">Equip a student-athlete with training gear and nutrition support for an entire season of competition.</p>
-        <div class="giving-cta"><a href="https://supportutrockets.com" target="_blank" rel="noopener noreferrer">Give $500 &rarr;</a></div>
+        <div class="giving-cta"><a href="tel:4195304183">Call to Give &rarr;</a></div>
       </div>
       <div class="giving-card reveal reveal-delay-2">
         <p class="giving-amount">$1,000</p>
         <p class="giving-label">Bronze Rocket</p>
         <p class="giving-impact">Sponsor a full month of academic tutoring sessions and study resources for our student-athletes.</p>
-        <div class="giving-cta"><a href="https://supportutrockets.com" target="_blank" rel="noopener noreferrer">Give $1,000 &rarr;</a></div>
+        <div class="giving-cta"><a href="mailto:rocketsathleticdevelopment@utoledo.edu">Email to Give &rarr;</a></div>
       </div>
       <div class="giving-card featured reveal reveal-delay-3">
         <span class="giving-badge">Most Impactful</span>
         <p class="giving-amount">$5,000</p>
         <p class="giving-label">Silver Rocket</p>
         <p class="giving-impact">Fund an entire month of chef-prepared training table meals for the full team — fueling champions daily.</p>
-        <div class="giving-cta"><a href="https://supportutrockets.com" target="_blank" rel="noopener noreferrer">Give $5,000 &rarr;</a></div>
+        <div class="giving-cta"><a href="tel:4195304183">Call to Give &rarr;</a></div>
       </div>
       <div class="giving-card reveal reveal-delay-1">
         <p class="giving-amount">$10,000</p>
         <p class="giving-label">Gold Rocket</p>
         <p class="giving-impact">Secure recognition on a named locker or dedicated space, leaving your legacy inside the Champions Complex.</p>
-        <div class="giving-cta"><a href="https://supportutrockets.com" target="_blank" rel="noopener noreferrer">Give $10,000 &rarr;</a></div>
+        <div class="giving-cta"><a href="mailto:rocketsathleticdevelopment@utoledo.edu">Email to Give &rarr;</a></div>
       </div>
       <div class="giving-card reveal reveal-delay-2">
         <p class="giving-amount">$25,000+</p>
@@ -982,7 +1091,97 @@ body{padding-bottom:70px}
       </div>
     </div>
     <div class="giving-cta-center reveal">
-      <a href="https://supportutrockets.com" target="_blank" rel="noopener noreferrer">View All Giving Opportunities at SupportUTRockets.com</a>
+      <a href="#contact">To make a gift, call or email our team — we'll walk you through it.</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     CHAMPIONS WALL SECTION
+     ======================================== -->
+<section class="champions-wall" id="champions-wall">
+  <div class="container">
+    <div class="champions-wall-header reveal">
+      <p class="section-label">Honor Roll</p>
+      <h2 class="section-title">Champions Wall</h2>
+      <p class="section-text">Every donor becomes part of the story. Join the growing family of Rocket supporters who are building something that will last for generations.</p>
+    </div>
+    <p class="social-proof-banner reveal">Join 47+ donors who have already invested in the next generation of Rockets.</p>
+    <div class="champions-wall-grid">
+
+      <div class="cw-tier reveal reveal-delay-1">
+        <div class="cw-tier-header">
+          <span class="cw-tier-name">Rocket Supporter</span>
+          <span class="cw-tier-amount">$500+</span>
+        </div>
+        <div class="cw-bar-track"><div class="cw-bar-fill" data-fill="60"></div></div>
+        <p class="cw-slots">18 of 30 spots filled</p>
+        <div class="cw-donors">
+          <div class="cw-donor"><span class="cw-donor-badge" aria-label="Donor star">⭐</span><span class="cw-donor-name">A Proud Toledo Family</span></div>
+          <div class="cw-donor"><span class="cw-donor-badge" aria-label="Donor star">⭐</span><span class="cw-donor-name">Anonymous Rocket Supporter</span></div>
+        </div>
+      </div>
+
+      <div class="cw-tier reveal reveal-delay-2">
+        <div class="cw-tier-header">
+          <span class="cw-tier-name">Bronze Rocket</span>
+          <span class="cw-tier-amount">$1,000+</span>
+        </div>
+        <div class="cw-bar-track"><div class="cw-bar-fill" data-fill="50"></div></div>
+        <p class="cw-slots">10 of 20 spots filled</p>
+        <div class="cw-donors">
+          <div class="cw-donor"><span class="cw-donor-badge" aria-label="Bronze medal">🥉</span><span class="cw-donor-name">Anonymous Rocket Supporter</span></div>
+        </div>
+      </div>
+
+      <div class="cw-tier reveal reveal-delay-1">
+        <div class="cw-tier-header">
+          <span class="cw-tier-name">Silver Rocket</span>
+          <span class="cw-tier-amount">$5,000+</span>
+        </div>
+        <div class="cw-bar-track"><div class="cw-bar-fill" data-fill="40"></div></div>
+        <p class="cw-slots">4 of 10 spots filled</p>
+        <div class="cw-donors">
+          <div class="cw-donor"><span class="cw-donor-badge" aria-label="Silver medal">🥈</span><span class="cw-donor-name">A Proud Toledo Family</span></div>
+        </div>
+      </div>
+
+      <div class="cw-tier reveal reveal-delay-2">
+        <div class="cw-tier-header">
+          <span class="cw-tier-name">Gold Rocket</span>
+          <span class="cw-tier-amount">$10,000+</span>
+        </div>
+        <div class="cw-bar-track"><div class="cw-bar-fill" data-fill="30"></div></div>
+        <p class="cw-slots">3 of 10 spots filled</p>
+        <div class="cw-donors">
+          <div class="cw-donor"><span class="cw-donor-badge" aria-label="Gold medal">🥇</span><span class="cw-donor-name">Anonymous Rocket Supporter</span></div>
+        </div>
+      </div>
+
+      <div class="cw-tier reveal reveal-delay-1">
+        <div class="cw-tier-header">
+          <span class="cw-tier-name">Champions Circle</span>
+          <span class="cw-tier-amount">$25,000+</span>
+        </div>
+        <div class="cw-bar-track"><div class="cw-bar-fill" data-fill="20"></div></div>
+        <p class="cw-slots">1 of 5 spots filled</p>
+        <div class="cw-donors">
+          <div class="cw-donor"><span class="cw-donor-badge" aria-label="Trophy">🏆</span><span class="cw-donor-name">Anonymous Rocket Supporter</span></div>
+        </div>
+      </div>
+
+      <div class="cw-tier reveal reveal-delay-2">
+        <div class="cw-tier-header">
+          <span class="cw-tier-name">Legacy Gift</span>
+          <span class="cw-tier-amount">$1,000,000+</span>
+        </div>
+        <div class="cw-bar-track"><div class="cw-bar-fill" data-fill="100"></div></div>
+        <p class="cw-slots">1 of 1 lead gift placed</p>
+        <div class="cw-donors">
+          <div class="cw-donor cw-donor-lead"><span class="cw-donor-badge" aria-label="Lead gift star">🌟</span><span class="cw-donor-name">Marcia and Roy Armes</span><span class="cw-donor-amount">Lead Gift, $4,000,000</span></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1020,6 +1219,10 @@ body{padding-bottom:70px}
       </div>
       <div class="contact-card reveal reveal-delay-1">
         <p class="contact-form-title">Send Us a Message</p>
+        <div class="contact-inquiry-note">
+          <strong>Inquiries Only</strong>
+          This form is for inquiries only. To make a gift, please call or email us directly — our team will personally assist you.
+        </div>
         <form action="mailto:rocketsathleticdevelopment@utoledo.edu" method="post" enctype="text/plain" id="contactForm">
           <div class="contact-form-row">
             <div class="contact-form-group">
@@ -1061,6 +1264,72 @@ body{padding-bottom:70px}
 </section>
 
 <!-- ========================================
+     FAQ / COMMON QUESTIONS SECTION
+     ======================================== -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="faq-header reveal">
+      <p class="section-label">Common Questions</p>
+      <h2 class="section-title">We're Here to Help</h2>
+      <p class="section-text">Have questions about making a gift? We have answers. Our team is always happy to walk you through the process personally.</p>
+    </div>
+    <div class="faq-grid reveal reveal-delay-1">
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          How do I make a gift?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Simply call us at <a href="tel:4195304183">419.530.4183</a> or email <a href="mailto:rocketsathleticdevelopment@utoledo.edu">rocketsathleticdevelopment@utoledo.edu</a> — our team will personally walk you through every option.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Is my gift tax-deductible?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Yes. All gifts are received by The University of Toledo Foundation, a 501(c)(3) nonprofit. Consult your tax advisor for specifics.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Can I make a gift in honor or memory of someone?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Absolutely. Tribute gifts are a meaningful way to honor a loved one. Contact our team to discuss options.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          What are naming opportunities?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Several spaces within the Champions Complex are available for naming. Gifts starting at $25,000 qualify. <a href="tel:4195304183">Call</a> or <a href="mailto:rocketsathleticdevelopment@utoledo.edu">email us</a> to learn more.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          When will construction begin?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Construction begins once we reach our $11M fundraising goal. Every gift moves us closer to groundbreaking.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
      FOOTER
      ======================================== -->
 <footer class="site-footer">
@@ -1083,8 +1352,8 @@ body{padding-bottom:70px}
       </div>
       <div class="footer-links">
         <a href="https://utrockets.com" target="_blank" rel="noopener noreferrer">UTRockets.com</a>
-        <a href="https://supportutrockets.com" target="_blank" rel="noopener noreferrer">Support UT Rockets</a>
         <a href="https://risetogethertoledo.com" target="_blank" rel="noopener noreferrer">Rise Together</a>
+        <a href="#contact">How to Give</a>
       </div>
       <p class="footer-copy">The University of Toledo Athletics. All rights reserved.</p>
     </div>
@@ -1299,6 +1568,52 @@ body{padding-bottom:70px}
 
   window.addEventListener("scroll", checkProgressBar, {passive:true});
   window.addEventListener("load", checkProgressBar);
+
+  /* ==========================================
+     CHAMPIONS WALL — BAR ANIMATIONS
+     ========================================== */
+  var cwBars = document.querySelectorAll(".cw-bar-fill");
+  var cwBarsDone = [];
+  for(let cb = 0; cb < cwBars.length; cb++){ cwBarsDone.push(false); }
+
+  function checkCWBars(){
+    var windowHeight = window.innerHeight;
+    for(let ci = 0; ci < cwBars.length; ci++){
+      if(cwBarsDone[ci]) continue;
+      var rect = cwBars[ci].getBoundingClientRect();
+      if(rect.top < windowHeight - 60){
+        cwBarsDone[ci] = true;
+        var fillPct = cwBars[ci].getAttribute("data-fill") || "0";
+        cwBars[ci].style.width = fillPct + "%";
+      }
+    }
+  }
+
+  window.addEventListener("scroll", checkCWBars, {passive:true});
+  window.addEventListener("load", checkCWBars);
+
+  /* ==========================================
+     FAQ ACCORDION
+     ========================================== */
+  var faqItems = document.querySelectorAll(".faq-item");
+  for(let fi = 0; fi < faqItems.length; fi++){
+    (function(item){
+      var btn = item.querySelector(".faq-question");
+      btn.addEventListener("click", function(){
+        var isOpen = item.classList.contains("open");
+        // Close all items
+        for(let fc = 0; fc < faqItems.length; fc++){
+          faqItems[fc].classList.remove("open");
+          faqItems[fc].querySelector(".faq-question").setAttribute("aria-expanded","false");
+        }
+        // Open clicked if it was closed
+        if(!isOpen){
+          item.classList.add("open");
+          btn.setAttribute("aria-expanded","true");
+        }
+      });
+    })(faqItems[fi]);
+  }
 
 })();
 </script>
