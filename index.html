@@ -92,12 +92,13 @@ a{text-decoration:none;color:inherit}
 /* ============================================
    ABOUT / VISION SECTION
    ============================================ */
-.vision{padding:var(--section-padding);background:var(--white)}
-.vision-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.vision{padding:0;background:var(--white);overflow:hidden}
+.vision-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch}
 .vision-image{position:relative;overflow:hidden}
-.vision-image img{width:100%;height:400px;object-fit:cover;transition:transform 0.6s ease}
+.vision-image img{width:100%;height:100%;object-fit:cover;min-height:520px;transition:transform 0.6s ease}
 .vision-image:hover img{transform:scale(1.03)}
-.vision-image-accent{position:absolute;bottom:-16px;right:-16px;width:120px;height:120px;border:3px solid var(--gold);z-index:-1}
+.vision-image-accent{display:none}
+.vision-content{display:flex;flex-direction:column;justify-content:center;padding:80px 48px 80px 60px}
 .vision-content .section-title{color:var(--navy)}
 .vision-quote{font-family:var(--font-body);font-size:1rem;font-style:italic;color:var(--navy-light);border-left:3px solid var(--gold);padding-left:20px;margin-top:28px;line-height:1.7}
 .vision-quote cite{display:block;font-style:normal;font-weight:600;color:var(--navy);margin-top:8px;font-size:0.85rem}
@@ -111,11 +112,14 @@ a{text-decoration:none;color:inherit}
 .features-header .section-title{color:var(--white)}
 .features-header .section-text{margin:0 auto;color:rgba(255,255,255,0.6)}
 .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
-.feature-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:0;overflow:hidden;transition:all var(--transition-smooth);position:relative}
+.feature-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:0;overflow:hidden;transition:all var(--transition-smooth);position:relative;cursor:pointer}
 .feature-card:hover{transform:translateY(-4px);border-color:rgba(255,184,28,0.3);background:rgba(255,255,255,0.06)}
-.feature-card-image{width:100%;height:220px;overflow:hidden}
+.feature-card-image{width:100%;height:220px;overflow:hidden;position:relative}
 .feature-card-image img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease}
 .feature-card:hover .feature-card-image img{transform:scale(1.05)}
+.feature-card .gallery-zoom-hint{position:absolute;top:10px;right:10px;background:rgba(0,0,0,0.55);width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:50%;opacity:0;transition:opacity 0.3s ease;z-index:2}
+.feature-card .gallery-zoom-hint svg{width:16px;height:16px;fill:white}
+.feature-card:hover .gallery-zoom-hint{opacity:1}
 .feature-card-body{padding:28px 24px}
 .feature-card-title{font-family:var(--font-display);font-size:1.2rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;color:var(--white)}
 .feature-card-desc{font-size:1rem;line-height:1.65;color:rgba(255,255,255,0.55)}
@@ -140,10 +144,11 @@ a{text-decoration:none;color:inherit}
 /* ============================================
    IMPACT SECTION
    ============================================ */
-.impact{padding:var(--section-padding);background:var(--white)}
-.impact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.impact-image{position:relative}
-.impact-image img{width:100%;height:450px;object-fit:cover}
+.impact{padding:0;background:var(--white);overflow:hidden}
+.impact-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch}
+.impact-content{display:flex;flex-direction:column;justify-content:center;padding:80px 60px 80px 48px;margin-left:auto;max-width:calc(var(--container-width) / 2)}
+.impact-image{position:relative;overflow:hidden}
+.impact-image img{width:100%;height:100%;object-fit:cover;min-height:520px}
 .impact-badge{position:absolute;top:24px;left:24px;background:var(--gold);padding:16px 20px;font-family:var(--font-display);text-align:center}
 .impact-badge-number{font-size:1.8rem;font-weight:700;color:var(--navy);line-height:1}
 .impact-badge-text{font-size:0.6rem;text-transform:uppercase;letter-spacing:2px;color:var(--navy);font-weight:600}
@@ -160,6 +165,14 @@ a{text-decoration:none;color:inherit}
 .support-content{position:relative;z-index:1;max-width:700px;margin:0 auto}
 .support .section-title{color:var(--white);margin-bottom:20px}
 .support .section-text{color:rgba(255,255,255,0.65);margin:0 auto 40px}
+.support-contact-methods{display:flex;flex-direction:column;gap:16px;max-width:500px;margin:32px auto 0}
+.support-contact-method{display:flex;align-items:center;gap:16px;padding:20px 24px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);transition:all 0.3s ease}
+.support-contact-method:hover{border-color:var(--gold);background:rgba(255,255,255,0.1)}
+.support-contact-method .contact-method-icon{width:48px;height:48px;background:var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.support-contact-method .contact-method-icon svg{width:22px;height:22px;fill:var(--navy)}
+.support-contact-method .contact-method-details{flex:1;text-align:left}
+.support-contact-method .contact-method-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,0.5);margin-bottom:2px}
+.support-contact-method .contact-method-value{font-family:var(--font-display);font-size:1.15rem;font-weight:600;color:var(--white)}
 .support-donor{margin-bottom:48px}
 .support-donor-label{font-size:0.75rem;text-transform:uppercase;letter-spacing:3px;color:var(--gold);margin-bottom:8px}
 .support-donor-name{font-family:var(--font-display);font-size:1.6rem;font-weight:600;color:var(--white)}
@@ -275,8 +288,11 @@ a{text-decoration:none;color:inherit}
 .gallery-item:nth-child(1){grid-row:span 1;grid-column:span 1}
 .gallery-item:nth-child(4){grid-column:span 1}
 .gallery-item{min-height:220px}
-.vision-grid,.impact-grid,.contact-wrapper{grid-template-columns:1fr;gap:40px}
+.vision-grid,.impact-grid{grid-template-columns:1fr;gap:0}
+.vision-content,.impact-content{padding:60px 24px}
+.vision-image img,.impact-image img{min-height:350px}
 .vision-image-accent{display:none}
+.contact-wrapper{grid-template-columns:1fr;gap:40px}
 }
 
 @media(max-width:768px){
@@ -603,9 +619,26 @@ body{padding-bottom:70px}
 .lightbox-prev svg,.lightbox-next svg{width:22px;height:22px;fill:currentColor}
 @media(max-width:768px){.gallery-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:480px){.gallery-grid{grid-template-columns:1fr}}
+
+/* ============================================
+   LOADING VIDEO OVERLAY
+   ============================================ */
+.loading-overlay{position:fixed;inset:0;z-index:99999;background:var(--navy-deep);display:flex;align-items:center;justify-content:center;transition:opacity 0.8s ease}
+.loading-overlay video{width:100%;height:100%;object-fit:cover}
+.loading-overlay.fade-out{opacity:0;pointer-events:none}
+.loading-overlay .skip-btn{position:absolute;bottom:40px;right:40px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:var(--white);font-family:var(--font-display);font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;padding:12px 28px;cursor:pointer;transition:all 0.3s ease;z-index:1}
+.loading-overlay .skip-btn:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
 </style>
 </head>
 <body>
+
+<!-- LOADING VIDEO OVERLAY -->
+<div class="loading-overlay" id="loadingOverlay">
+  <video id="loadingVideo" autoplay muted playsinline>
+    <source src="loading video/ut_vid.mp4" type="video/mp4">
+  </video>
+  <button class="skip-btn" id="skipBtn">Skip Intro</button>
+</div>
 
 <!-- ========================================
      NAVIGATION
@@ -623,7 +656,7 @@ body{padding-bottom:70px}
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
         419.530.4183
       </a>
-      <a href="#contact" class="nav-contact-btn">Contact Us</a>
+      <a href="#support" class="nav-contact-btn">Contact Us</a>
     </div>
     <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu">
       <span></span>
@@ -660,7 +693,7 @@ body{padding-bottom:70px}
       </div>
     </div>
     <div class="hero-cta">
-      <a href="#contact" class="hero-btn hero-btn-primary">Support the Complex</a>
+      <a href="#support" class="hero-btn hero-btn-primary">Support the Complex</a>
       <a href="tel:4195304183" class="hero-btn hero-btn-secondary">Call the Rocket Fund</a>
     </div>
   </div>
@@ -678,7 +711,7 @@ body{padding-bottom:70px}
     <div class="urgency-inner">
       <span class="urgency-badge">Fundraising Now Open</span>
       <p class="urgency-text">Fundraising is actively underway — groundbreaking depends on reaching our <strong>$11M goal</strong>. Every gift brings us closer.</p>
-      <a href="#contact" class="urgency-cta">Contact Us to Give &rarr;</a>
+      <a href="#support" class="urgency-cta">Contact Us to Give &rarr;</a>
     </div>
   </div>
 </div>
@@ -705,11 +738,9 @@ body{padding-bottom:70px}
      VISION SECTION
      ======================================== -->
 <section class="vision" id="vision">
-  <div class="container">
     <div class="vision-grid">
       <div class="vision-image reveal-left">
         <img src="images/Exterior__Main_Entry_MSA.jpg" alt="Champions Complex Main Entry Rendering" width="800" height="533" loading="lazy">
-        <div class="vision-image-accent"></div>
       </div>
       <div class="vision-content reveal-right reveal-delay-1">
         <p class="section-label">The Vision</p>
@@ -722,7 +753,6 @@ body{padding-bottom:70px}
         <p class="vision-legacy">Gifts to the Champions Complex are among the most visible and lasting investments in Toledo Athletics history. This is your opportunity to leave something behind.</p>
       </div>
     </div>
-  </div>
 </section>
 
 <!-- ========================================
@@ -733,142 +763,99 @@ body{padding-bottom:70px}
     <div class="features-header reveal">
       <p class="section-label">What Is Inside</p>
       <h2 class="section-title">World-Class Spaces for World-Class Athletes</h2>
-      <p class="section-text">From training grounds to study halls, every space within the Champions Complex is purpose-built to support the complete student-athlete experience.</p>
+      <p class="section-text">From training grounds to study halls, every space within the Champions Complex is purpose-built to support the complete student-athlete experience. Click any image to view in full detail.</p>
     </div>
     <div class="features-grid">
-      <div class="feature-card reveal-scale reveal-delay-1">
+      <div class="feature-card reveal-scale reveal-delay-1 gallery-item" data-title="East Perspective" tabindex="0" role="button" aria-label="View East Perspective — click to enlarge">
+        <div class="feature-card-image">
+          <img src="images/Exterior__East_Perspective_MSA.jpg" alt="Champions Complex — East Perspective" width="600" height="400" loading="lazy">
+          <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
+        </div>
+        <div class="feature-card-body">
+          <h3 class="feature-card-title">East Perspective</h3>
+          <p class="feature-card-desc">A stunning exterior view of the Champions Complex from the east, showcasing the modern design that will anchor the athletic campus.</p>
+        </div>
+      </div>
+      <div class="feature-card reveal reveal-delay-2 gallery-item" data-title="Main Entry" tabindex="0" role="button" aria-label="View Main Entry — click to enlarge">
+        <div class="feature-card-image">
+          <img src="images/Exterior__Main_Entry_MSA.jpg" alt="Champions Complex — Main Entry" width="600" height="400" loading="lazy">
+          <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
+        </div>
+        <div class="feature-card-body">
+          <h3 class="feature-card-title">Main Entry</h3>
+          <p class="feature-card-desc">The welcoming main entry of the Champions Complex, designed to make a bold first impression for recruits, student-athletes, and visitors.</p>
+        </div>
+      </div>
+      <div class="feature-card reveal reveal-delay-3 gallery-item" data-title="Indoor Turf Facility" tabindex="0" role="button" aria-label="View Indoor Turf Facility — click to enlarge">
         <div class="feature-card-image">
           <img src="images/Indoor_Turf__Interior_Facing_MSA.jpg" alt="Indoor Turf Facility" width="600" height="400" loading="lazy">
+          <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
         </div>
         <div class="feature-card-body">
           <h3 class="feature-card-title">Indoor Turf Facility</h3>
           <p class="feature-card-desc">A dedicated indoor training space that allows year-round practice for baseball, softball, and multi-sport use regardless of weather conditions.</p>
         </div>
       </div>
-      <div class="feature-card reveal reveal-delay-2">
+      <div class="feature-card reveal reveal-delay-1 gallery-item" data-title="Training Table" tabindex="0" role="button" aria-label="View Training Table — click to enlarge">
         <div class="feature-card-image">
           <img src="images/Training_Table_MSA.jpg" alt="Training Table Dining Area" width="600" height="400" loading="lazy">
+          <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
         </div>
         <div class="feature-card-body">
           <h3 class="feature-card-title">Training Table</h3>
           <p class="feature-card-desc">A modern dining facility designed to fuel peak performance, providing nutritionally balanced meals in a communal setting that fosters team culture.</p>
         </div>
       </div>
-      <div class="feature-card reveal reveal-delay-3">
+      <div class="feature-card reveal reveal-delay-2 gallery-item" data-title="Academic Lounge" tabindex="0" role="button" aria-label="View Academic Lounge — click to enlarge">
         <div class="feature-card-image">
           <img src="images/AcademicsLounge_MSA.jpg" alt="Academic Lounge Area" width="600" height="400" loading="lazy">
+          <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
         </div>
         <div class="feature-card-body">
           <h3 class="feature-card-title">Academic Center</h3>
           <p class="feature-card-desc">Dedicated lounge and study spaces where student-athletes can focus on their academic goals with access to tutoring and academic support services.</p>
         </div>
       </div>
-      <div class="feature-card reveal reveal-delay-1">
+      <div class="feature-card reveal reveal-delay-3 gallery-item" data-title="Champions Entry" tabindex="0" role="button" aria-label="View Champions Entry — click to enlarge">
         <div class="feature-card-image">
           <img src="images/Champions_Entry_MSA.jpg" alt="Champions Entry" width="600" height="400" loading="lazy">
+          <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
         </div>
         <div class="feature-card-body">
           <h3 class="feature-card-title">Champions Entry</h3>
           <p class="feature-card-desc">A grand entryway that sets the tone for the entire facility, celebrating Toledo's athletic legacy while inspiring the next generation of champions.</p>
         </div>
       </div>
-      <div class="feature-card reveal reveal-delay-2">
+      <div class="feature-card reveal reveal-delay-1 gallery-item" data-title="Baseball Team Suite" tabindex="0" role="button" aria-label="View Baseball Team Suite — click to enlarge">
         <div class="feature-card-image">
           <img src="images/Baseball_Locker_RoomLounge_MSA.jpg" alt="Baseball Locker Room Lounge" width="600" height="400" loading="lazy">
+          <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
         </div>
         <div class="feature-card-body">
           <h3 class="feature-card-title">Baseball Team Suite</h3>
           <p class="feature-card-desc">State-of-the-art team spaces featuring locker rooms, meeting areas, and lounge facilities designed to bring baseball back to the main campus.</p>
         </div>
       </div>
-      <div class="feature-card reveal reveal-delay-3">
+      <div class="feature-card reveal reveal-delay-2 gallery-item" data-title="Softball Team Suite" tabindex="0" role="button" aria-label="View Softball Team Suite — click to enlarge">
         <div class="feature-card-image">
           <img src="images/Softball_Locker_RoomLounge_MSA.jpg" alt="Softball Locker Room Lounge" width="600" height="400" loading="lazy">
+          <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
         </div>
         <div class="feature-card-body">
           <h3 class="feature-card-title">Softball Team Suite</h3>
           <p class="feature-card-desc">Purpose-built team facilities that give Rocket softball their own dedicated home on campus with locker rooms and a comfortable player lounge.</p>
         </div>
       </div>
-      <div class="feature-card reveal reveal-delay-1">
+      <div class="feature-card reveal reveal-delay-3 gallery-item" data-title="Champions Corridor" tabindex="0" role="button" aria-label="View Champions Corridor — click to enlarge">
         <div class="feature-card-image">
           <img src="images/Champions_Corridor_MSA.jpg" alt="Champions Corridor" width="600" height="400" loading="lazy">
+          <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
         </div>
         <div class="feature-card-body">
           <h3 class="feature-card-title">Champions Corridor</h3>
           <p class="feature-card-desc">The iconic spine of the facility connecting every space, lined with the history of Rocket Athletics and built to inspire every athlete who walks through it.</p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========================================
-     GALLERY SECTION
-     ======================================== -->
-<section class="gallery" id="gallery">
-  <div class="container">
-    <div class="gallery-header reveal">
-      <p class="section-label">Project Renderings</p>
-      <h2 class="section-title">Inside the Champions Complex</h2>
-      <p class="section-text">An architectural vision for the future of Toledo Athletics. Click any image to view in full detail.</p>
-    </div>
-    <div class="gallery-grid">
-
-      <div class="gallery-item reveal reveal-delay-1" data-title="East Perspective" tabindex="0" role="button" aria-label="View East Perspective — click to enlarge">
-        <img src="images/Exterior__East_Perspective_MSA.jpg" alt="Champions Complex — East Perspective" loading="lazy">
-        <div class="gallery-item-overlay"><span>East Perspective</span></div>
-        <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
-      </div>
-
-      <div class="gallery-item reveal reveal-delay-2" data-title="Main Entry" tabindex="0" role="button" aria-label="View Main Entry — click to enlarge">
-        <img src="images/Exterior__Main_Entry_MSA.jpg" alt="Champions Complex — Main Entry" loading="lazy">
-        <div class="gallery-item-overlay"><span>Main Entry</span></div>
-        <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
-      </div>
-
-      <div class="gallery-item reveal reveal-delay-3" data-title="Champions Entry" tabindex="0" role="button" aria-label="View Champions Entry — click to enlarge">
-        <img src="images/Champions_Entry_MSA.jpg" alt="Champions Entry Lobby" loading="lazy">
-        <div class="gallery-item-overlay"><span>Champions Entry</span></div>
-        <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
-      </div>
-
-      <div class="gallery-item reveal reveal-delay-1" data-title="Champions Corridor" tabindex="0" role="button" aria-label="View Champions Corridor — click to enlarge">
-        <img src="images/Champions_Corridor_MSA.jpg" alt="Champions Corridor" loading="lazy">
-        <div class="gallery-item-overlay"><span>Champions Corridor</span></div>
-        <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
-      </div>
-
-      <div class="gallery-item reveal reveal-delay-2" data-title="Indoor Turf Facility" tabindex="0" role="button" aria-label="View Indoor Turf Facility — click to enlarge">
-        <img src="images/Indoor_Turf__Interior_Facing_MSA.jpg" alt="Indoor Turf Facility" loading="lazy">
-        <div class="gallery-item-overlay"><span>Indoor Turf Facility</span></div>
-        <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
-      </div>
-
-      <div class="gallery-item reveal reveal-delay-3" data-title="Training Table" tabindex="0" role="button" aria-label="View Training Table — click to enlarge">
-        <img src="images/Training_Table_MSA.jpg" alt="Training Table Dining Area" loading="lazy">
-        <div class="gallery-item-overlay"><span>Training Table</span></div>
-        <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
-      </div>
-
-      <div class="gallery-item reveal reveal-delay-1" data-title="Academic Lounge" tabindex="0" role="button" aria-label="View Academic Lounge — click to enlarge">
-        <img src="images/AcademicsLounge_MSA.jpg" alt="Academic Lounge" loading="lazy">
-        <div class="gallery-item-overlay"><span>Academic Lounge</span></div>
-        <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
-      </div>
-
-      <div class="gallery-item reveal reveal-delay-2" data-title="Baseball Team Suite" tabindex="0" role="button" aria-label="View Baseball Team Suite — click to enlarge">
-        <img src="images/Baseball_Locker_RoomLounge_MSA.jpg" alt="Baseball Locker Room Lounge" loading="lazy">
-        <div class="gallery-item-overlay"><span>Baseball Team Suite</span></div>
-        <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
-      </div>
-
-      <div class="gallery-item reveal reveal-delay-3" data-title="Softball Team Suite" tabindex="0" role="button" aria-label="View Softball Team Suite — click to enlarge">
-        <img src="images/Softball_Locker_RoomLounge_MSA.jpg" alt="Softball Locker Room Lounge" loading="lazy">
-        <div class="gallery-item-overlay"><span>Softball Team Suite</span></div>
-        <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -1048,7 +1035,6 @@ body{padding-bottom:70px}
      IMPACT SECTION
      ======================================== -->
 <section class="impact" id="impact">
-  <div class="container">
     <div class="impact-grid">
       <div class="impact-content reveal-left">
         <p class="section-label">The Impact</p>
@@ -1071,7 +1057,6 @@ body{padding-bottom:70px}
         </div>
       </div>
     </div>
-  </div>
 </section>
 
 <!-- ========================================
@@ -1129,10 +1114,30 @@ body{padding-bottom:70px}
 <section class="support" id="support">
   <div class="container">
     <div class="support-content reveal">
-      <p class="section-label">Your Support Matters</p>
+      <p class="section-label">Get Involved</p>
       <h2 class="section-title">Transformative Projects Take Tremendous Support</h2>
       <p class="section-text">We are just getting started — and we need your help. The Champions Complex represents a once-in-a-generation opportunity to transform the lives of 450+ Rocket student-athletes. Every gift, at every level, brings us closer to groundbreaking.</p>
-      <a href="#contact" class="support-donate-btn">Call or Email to Give</a>
+      <p class="section-text" style="color:rgba(255,255,255,0.65);margin:0 auto 40px">For information on how you can help bring this once-in-a-generation project to life, reach out to the Rocket Fund team.</p>
+      <div class="support-contact-methods">
+        <a href="tel:4195304183" class="support-contact-method">
+          <div class="contact-method-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          </div>
+          <div class="contact-method-details">
+            <p class="contact-method-label">Call the Rocket Fund</p>
+            <p class="contact-method-value">419.530.4183</p>
+          </div>
+        </a>
+        <a href="mailto:rocketsathleticdevelopment@utoledo.edu" class="support-contact-method">
+          <div class="contact-method-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </div>
+          <div class="contact-method-details">
+            <p class="contact-method-label">Email Us</p>
+            <p class="contact-method-value">rocketsathleticdevelopment@utoledo.edu</p>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -1190,7 +1195,7 @@ body{padding-bottom:70px}
       </div>
     </div>
     <div class="giving-cta-center reveal">
-      <a href="#contact">To make a gift, call or email our team — we'll walk you through it.</a>
+      <a href="#support">To make a gift, call or email our team — we'll walk you through it.</a>
     </div>
   </div>
 </section>
@@ -1279,41 +1284,6 @@ body{padding-bottom:70px}
         </div>
       </div>
 
-    </div>
-  </div>
-</section>
-
-<!-- ========================================
-     CONTACT SECTION
-     ======================================== -->
-<section class="contact" id="contact">
-  <div class="container">
-    <div class="contact-wrapper" style="grid-template-columns:1fr;max-width:700px;margin:0 auto">
-      <div class="contact-info reveal">
-        <p class="section-label">Get Involved</p>
-        <h2 class="section-title">Ready to Make an Impact?</h2>
-        <p class="section-text">For information on how you can help bring this once-in-a-generation project to life, reach out to the Rocket Fund team. We would be happy to discuss giving opportunities and how your support can help build champions.</p>
-        <div class="contact-methods">
-          <a href="tel:4195304183" class="contact-method">
-            <div class="contact-method-icon">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-            </div>
-            <div class="contact-method-details">
-              <p class="contact-method-label">Call the Rocket Fund</p>
-              <p class="contact-method-value">419.530.4183</p>
-            </div>
-          </a>
-          <a href="mailto:rocketsathleticdevelopment@utoledo.edu" class="contact-method">
-            <div class="contact-method-icon">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-            </div>
-            <div class="contact-method-details">
-              <p class="contact-method-label">Email Us</p>
-              <p class="contact-method-value">rocketsathleticdevelopment@utoledo.edu</p>
-            </div>
-          </a>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -1440,6 +1410,31 @@ body{padding-bottom:70px}
 <script>
 (function(){
   "use strict";
+
+  /* ==========================================
+     LOADING VIDEO OVERLAY
+     ========================================== */
+  var loadingOverlay = document.getElementById("loadingOverlay");
+  var loadingVideo = document.getElementById("loadingVideo");
+  var skipBtn = document.getElementById("skipBtn");
+
+  function dismissOverlay(){
+    if(!loadingOverlay) return;
+    loadingOverlay.classList.add("fade-out");
+    setTimeout(function(){
+      loadingOverlay.style.display = "none";
+    }, 800);
+  }
+
+  if(loadingVideo){
+    loadingVideo.addEventListener("ended", dismissOverlay);
+  }
+  if(skipBtn){
+    skipBtn.addEventListener("click", function(){
+      if(loadingVideo) loadingVideo.pause();
+      dismissOverlay();
+    });
+  }
 
   /* ==========================================
      NAVIGATION SCROLL BEHAVIOR
@@ -1651,9 +1646,9 @@ body{padding-bottom:70px}
   }
 
   /* ==========================================
-     GALLERY LIGHTBOX
+     GALLERY LIGHTBOX (FEATURE CARDS)
      ========================================== */
-  var galleryItems = document.querySelectorAll(".gallery-item");
+  var galleryItems = document.querySelectorAll(".features .gallery-item");
   var lightbox = document.getElementById("lightbox");
   var lightboxImg = document.getElementById("lightboxImg");
   var lightboxCaption = document.getElementById("lightboxCaption");
@@ -1665,7 +1660,7 @@ body{padding-bottom:70px}
 
   var galleryData = [];
   for(var gi = 0; gi < galleryItems.length; gi++){
-    var gImg = galleryItems[gi].querySelector("img");
+    var gImg = galleryItems[gi].querySelector(".feature-card-image img");
     galleryData.push({
       src: gImg.getAttribute("src"),
       alt: gImg.getAttribute("alt"),
