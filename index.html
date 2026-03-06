@@ -554,6 +554,55 @@ body{padding-bottom:70px}
    VISION LEGACY PARAGRAPH
    ============================================ */
 .vision-legacy{font-family:var(--font-body);font-size:1rem;font-style:italic;color:var(--navy-light);border-left:3px solid var(--gold);padding-left:20px;margin-top:20px;line-height:1.7}
+
+/* ============================================
+   ENHANCED REVEAL ANIMATIONS
+   ============================================ */
+.reveal-left{opacity:0;transform:translateX(-60px);transition:opacity 0.75s ease,transform 0.75s ease}
+.reveal-left.revealed{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(60px);transition:opacity 0.75s ease,transform 0.75s ease}
+.reveal-right.revealed{opacity:1;transform:translateX(0)}
+.reveal-scale{opacity:0;transform:scale(0.88);transition:opacity 0.75s ease,transform 0.75s ease}
+.reveal-scale.revealed{opacity:1;transform:scale(1)}
+.reveal,.reveal-left,.reveal-right,.reveal-scale{}
+
+/* ============================================
+   GALLERY SECTION (IMPROVED)
+   ============================================ */
+.gallery{padding:var(--section-padding);background:var(--navy-deep)}
+.gallery-header{text-align:center;margin-bottom:48px}
+.gallery-header .section-title{color:var(--white)}
+.gallery-header .section-text{color:rgba(255,255,255,0.55);margin:0 auto}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.gallery-item{overflow:hidden;position:relative;cursor:pointer;background:rgba(0,10,25,0.8);aspect-ratio:16/9}
+.gallery-item:nth-child(1){grid-row:span 1;grid-column:span 1}
+.gallery-item:nth-child(4){grid-column:span 1}
+.gallery-item img{width:100%;height:100%;object-fit:contain;transition:opacity 0.35s ease;display:block}
+.gallery-item:hover img{opacity:0.82}
+.gallery-item-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,15,30,0.88) 0%,transparent 55%);display:flex;align-items:flex-end;padding:14px 16px;pointer-events:none}
+.gallery-item-overlay span{font-family:var(--font-display);font-size:0.78rem;color:rgba(255,255,255,0.85);text-transform:uppercase;letter-spacing:1.5px;border-left:2px solid var(--gold);padding-left:10px;transition:color 0.3s ease}
+.gallery-item:hover .gallery-item-overlay span{color:var(--gold)}
+.gallery-zoom-hint{position:absolute;top:10px;right:10px;background:rgba(0,0,0,0.55);width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:50%;opacity:0;transition:opacity 0.3s ease}
+.gallery-zoom-hint svg{width:16px;height:16px;fill:white}
+.gallery-item:hover .gallery-zoom-hint{opacity:1}
+
+/* ============================================
+   LIGHTBOX
+   ============================================ */
+.lightbox{position:fixed;inset:0;z-index:9999;background:rgba(0,5,15,0.96);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.35s ease}
+.lightbox.open{opacity:1;pointer-events:all}
+.lightbox-inner{position:relative;display:flex;flex-direction:column;align-items:center;max-width:92vw}
+.lightbox-img{max-width:88vw;max-height:78vh;object-fit:contain;display:block;border:1px solid rgba(255,184,28,0.2);box-shadow:0 24px 80px rgba(0,0,0,0.7)}
+.lightbox-caption{font-family:var(--font-display);font-size:0.8rem;color:rgba(255,255,255,0.65);text-transform:uppercase;letter-spacing:2px;margin-top:14px;text-align:center}
+.lightbox-counter{font-size:0.75rem;color:rgba(255,255,255,0.4);margin-top:5px;text-align:center}
+.lightbox-close{position:absolute;top:-52px;right:0;background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.65);line-height:1;padding:6px;transition:color 0.2s ease;font-size:2rem}
+.lightbox-close:hover{color:var(--gold)}
+.lightbox-prev,.lightbox-next{position:fixed;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.55);border:1px solid rgba(255,255,255,0.2);color:white;width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.25s ease;z-index:1}
+.lightbox-prev{left:16px}.lightbox-next{right:16px}
+.lightbox-prev:hover,.lightbox-next:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.lightbox-prev svg,.lightbox-next svg{width:22px;height:22px;fill:currentColor}
+@media(max-width:768px){.gallery-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.gallery-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -570,14 +619,11 @@ body{padding-bottom:70px}
       <a href="#vision">Vision</a>
       <a href="#features">Features</a>
       <a href="#impact">Impact</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#giving">Give</a>
       <a href="tel:4195304183" class="nav-phone-link">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
         419.530.4183
       </a>
       <a href="#contact" class="nav-contact-btn">Contact Us</a>
-      <a href="#contact" class="nav-donate-btn">How to Give</a>
     </div>
     <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu">
       <span></span>
@@ -612,13 +658,9 @@ body{padding-bottom:70px}
         <div class="hero-stat-number"><span class="counter" data-target="17">0</span></div>
         <div class="hero-stat-label">Varsity Sports</div>
       </div>
-      <div class="hero-stat">
-        <div class="hero-stat-number">$4M</div>
-        <div class="hero-stat-label">Already Raised</div>
-      </div>
     </div>
     <div class="hero-cta">
-      <a href="#contact" class="hero-btn hero-btn-primary">Learn How to Give</a>
+      <a href="#contact" class="hero-btn hero-btn-primary">Support the Complex</a>
       <a href="tel:4195304183" class="hero-btn hero-btn-secondary">Call the Rocket Fund</a>
     </div>
   </div>
@@ -665,11 +707,11 @@ body{padding-bottom:70px}
 <section class="vision" id="vision">
   <div class="container">
     <div class="vision-grid">
-      <div class="vision-image reveal">
+      <div class="vision-image reveal-left">
         <img src="images/Exterior__Main_Entry_MSA.jpg" alt="Champions Complex Main Entry Rendering" width="800" height="533" loading="lazy">
         <div class="vision-image-accent"></div>
       </div>
-      <div class="vision-content reveal reveal-delay-1">
+      <div class="vision-content reveal-right reveal-delay-1">
         <p class="section-label">The Vision</p>
         <h2 class="section-title">Redefining What It Means to Be a Rocket</h2>
         <p class="section-text">The Champions Complex is one of the most meaningful investments ever made in the lives of Toledo student-athletes. This project will renovate and re-imagine the existing Health Education Building, covering 74,000 square feet and maximizing its centralized campus location. Every design decision has been made with the daily experience of our Rockets in mind.</p>
@@ -694,7 +736,7 @@ body{padding-bottom:70px}
       <p class="section-text">From training grounds to study halls, every space within the Champions Complex is purpose-built to support the complete student-athlete experience.</p>
     </div>
     <div class="features-grid">
-      <div class="feature-card reveal reveal-delay-1">
+      <div class="feature-card reveal-scale reveal-delay-1">
         <div class="feature-card-image">
           <img src="images/Indoor_Turf__Interior_Facing_MSA.jpg" alt="Indoor Turf Facility" width="600" height="400" loading="lazy">
         </div>
@@ -760,6 +802,92 @@ body{padding-bottom:70px}
     </div>
   </div>
 </section>
+
+<!-- ========================================
+     GALLERY SECTION
+     ======================================== -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="gallery-header reveal">
+      <p class="section-label">Project Renderings</p>
+      <h2 class="section-title">Inside the Champions Complex</h2>
+      <p class="section-text">An architectural vision for the future of Toledo Athletics. Click any image to view in full detail.</p>
+    </div>
+    <div class="gallery-grid">
+
+      <div class="gallery-item reveal reveal-delay-1" data-title="East Perspective" tabindex="0" role="button" aria-label="View East Perspective — click to enlarge">
+        <img src="images/Exterior__East_Perspective_MSA.jpg" alt="Champions Complex — East Perspective" loading="lazy">
+        <div class="gallery-item-overlay"><span>East Perspective</span></div>
+        <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
+      </div>
+
+      <div class="gallery-item reveal reveal-delay-2" data-title="Main Entry" tabindex="0" role="button" aria-label="View Main Entry — click to enlarge">
+        <img src="images/Exterior__Main_Entry_MSA.jpg" alt="Champions Complex — Main Entry" loading="lazy">
+        <div class="gallery-item-overlay"><span>Main Entry</span></div>
+        <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
+      </div>
+
+      <div class="gallery-item reveal reveal-delay-3" data-title="Champions Entry" tabindex="0" role="button" aria-label="View Champions Entry — click to enlarge">
+        <img src="images/Champions_Entry_MSA.jpg" alt="Champions Entry Lobby" loading="lazy">
+        <div class="gallery-item-overlay"><span>Champions Entry</span></div>
+        <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
+      </div>
+
+      <div class="gallery-item reveal reveal-delay-1" data-title="Champions Corridor" tabindex="0" role="button" aria-label="View Champions Corridor — click to enlarge">
+        <img src="images/Champions_Corridor_MSA.jpg" alt="Champions Corridor" loading="lazy">
+        <div class="gallery-item-overlay"><span>Champions Corridor</span></div>
+        <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
+      </div>
+
+      <div class="gallery-item reveal reveal-delay-2" data-title="Indoor Turf Facility" tabindex="0" role="button" aria-label="View Indoor Turf Facility — click to enlarge">
+        <img src="images/Indoor_Turf__Interior_Facing_MSA.jpg" alt="Indoor Turf Facility" loading="lazy">
+        <div class="gallery-item-overlay"><span>Indoor Turf Facility</span></div>
+        <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
+      </div>
+
+      <div class="gallery-item reveal reveal-delay-3" data-title="Training Table" tabindex="0" role="button" aria-label="View Training Table — click to enlarge">
+        <img src="images/Training_Table_MSA.jpg" alt="Training Table Dining Area" loading="lazy">
+        <div class="gallery-item-overlay"><span>Training Table</span></div>
+        <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
+      </div>
+
+      <div class="gallery-item reveal reveal-delay-1" data-title="Academic Lounge" tabindex="0" role="button" aria-label="View Academic Lounge — click to enlarge">
+        <img src="images/AcademicsLounge_MSA.jpg" alt="Academic Lounge" loading="lazy">
+        <div class="gallery-item-overlay"><span>Academic Lounge</span></div>
+        <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
+      </div>
+
+      <div class="gallery-item reveal reveal-delay-2" data-title="Baseball Team Suite" tabindex="0" role="button" aria-label="View Baseball Team Suite — click to enlarge">
+        <img src="images/Baseball_Locker_RoomLounge_MSA.jpg" alt="Baseball Locker Room Lounge" loading="lazy">
+        <div class="gallery-item-overlay"><span>Baseball Team Suite</span></div>
+        <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
+      </div>
+
+      <div class="gallery-item reveal reveal-delay-3" data-title="Softball Team Suite" tabindex="0" role="button" aria-label="View Softball Team Suite — click to enlarge">
+        <img src="images/Softball_Locker_RoomLounge_MSA.jpg" alt="Softball Locker Room Lounge" loading="lazy">
+        <div class="gallery-item-overlay"><span>Softball Team Suite</span></div>
+        <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX MODAL -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lightbox-prev" id="lightboxPrev" aria-label="Previous image">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+  </button>
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close image viewer">&times;</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+    <p class="lightbox-counter" id="lightboxCounter"></p>
+  </div>
+  <button class="lightbox-next" id="lightboxNext" aria-label="Next image">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+  </button>
+</div>
 
 <!-- ========================================
      TESTIMONIALS SECTION
@@ -922,7 +1050,7 @@ body{padding-bottom:70px}
 <section class="impact" id="impact">
   <div class="container">
     <div class="impact-grid">
-      <div class="impact-content reveal">
+      <div class="impact-content reveal-left">
         <p class="section-label">The Impact</p>
         <h2 class="section-title">Transforming Lives, Building Champions</h2>
         <p class="section-text">The Champions Complex will single-handedly improve the lives of all 450+ Rocket student-athletes while returning baseball and softball programs to the main campus from Scott Park.</p>
@@ -935,7 +1063,7 @@ body{padding-bottom:70px}
           <li>Dedicated academic support spaces with tutoring resources</li>
         </ul>
       </div>
-      <div class="impact-image reveal reveal-delay-1">
+      <div class="impact-image reveal-right reveal-delay-1">
         <img src="images/Training_Table_MSA.jpg" alt="Training Table and Nutrition Center" width="800" height="533" loading="lazy">
         <div class="impact-badge">
           <div class="impact-badge-number">74K</div>
@@ -1003,37 +1131,8 @@ body{padding-bottom:70px}
     <div class="support-content reveal">
       <p class="section-label">Your Support Matters</p>
       <h2 class="section-title">Transformative Projects Take Tremendous Support</h2>
-      <p class="section-text">Thanks to the leadership of generous donors and loyal Rockets, we are making significant progress towards our fundraising goal. Your investment in the Champions Complex directly impacts the lives of student-athletes for decades to come.</p>
-      <div class="progress-container" id="progressContainer">
-        <div class="progress-labels">
-          <span class="progress-raised">$4M+ Raised</span>
-          <span class="progress-goal">Goal: $11M</span>
-        </div>
-        <div class="progress-bar-track">
-          <div class="progress-bar-fill" id="progressBarFill"></div>
-        </div>
-        <p class="progress-note">Led by a transformative $4M lead gift &mdash; campaign ongoing</p>
-        <p class="support-gap-stat"><strong>$7M+ still needed</strong> — your gift closes the gap.</p>
-      </div>
+      <p class="section-text">We are just getting started — and we need your help. The Champions Complex represents a once-in-a-generation opportunity to transform the lives of 450+ Rocket student-athletes. Every gift, at every level, brings us closer to groundbreaking.</p>
       <a href="#contact" class="support-donate-btn">Call or Email to Give</a>
-      <div class="support-divider"></div>
-      <div class="support-donor">
-        <p class="support-donor-label">Lead Gift</p>
-        <p class="support-donor-name">Marcia and Roy Armes</p>
-        <p class="support-donor-desc">Their transformative $4 million gift represents the second-largest cash gift in the history of Toledo Athletics, advancing every goal of Rise Together.</p>
-      </div>
-      <div class="anon-donors-grid reveal">
-        <div class="anon-donor-card">
-          <p>"A Proud Toledo Alumnus — Gold Rocket Supporter"</p>
-        </div>
-        <div class="anon-donor-card">
-          <p>"In Memory of a Rocket Legend — Champions Circle"</p>
-        </div>
-        <div class="anon-donor-card">
-          <p>"Toledo Athletics Family — Rocket Supporter"</p>
-        </div>
-      </div>
-      <p class="section-text" style="margin:0 auto;font-size:0.95rem">All gifts to The Rocket Fund are received by The University of Toledo Foundation, a 501(c)(3) non-profit corporation. Consult your tax advisor concerning the deductibility of your contributions.</p>
     </div>
   </div>
 </section>
@@ -1104,9 +1203,8 @@ body{padding-bottom:70px}
     <div class="champions-wall-header reveal">
       <p class="section-label">Honor Roll</p>
       <h2 class="section-title">Champions Wall</h2>
-      <p class="section-text">Every donor becomes part of the story. Join the growing family of Rocket supporters who are building something that will last for generations.</p>
+      <p class="section-text">Every donor becomes part of the story. Be among the first Rocket supporters to have your name on the Champions Wall — building something that will last for generations.</p>
     </div>
-    <p class="social-proof-banner reveal">Join 47+ donors who have already invested in the next generation of Rockets.</p>
     <div class="champions-wall-grid">
 
       <div class="cw-tier reveal reveal-delay-1">
@@ -1114,11 +1212,10 @@ body{padding-bottom:70px}
           <span class="cw-tier-name">Rocket Supporter</span>
           <span class="cw-tier-amount">$500+</span>
         </div>
-        <div class="cw-bar-track"><div class="cw-bar-fill" data-fill="60"></div></div>
-        <p class="cw-slots">18 of 30 spots filled</p>
+        <div class="cw-bar-track"><div class="cw-bar-fill" data-fill="0"></div></div>
+        <p class="cw-slots">0 of 30 spots filled</p>
         <div class="cw-donors">
-          <div class="cw-donor"><span class="cw-donor-badge" aria-label="Donor star">⭐</span><span class="cw-donor-name">A Proud Toledo Family</span></div>
-          <div class="cw-donor"><span class="cw-donor-badge" aria-label="Donor star">⭐</span><span class="cw-donor-name">Anonymous Rocket Supporter</span></div>
+          <div class="cw-donor" style="color:rgba(255,255,255,0.35);font-style:italic">No donors yet — be the first!</div>
         </div>
       </div>
 
@@ -1127,10 +1224,10 @@ body{padding-bottom:70px}
           <span class="cw-tier-name">Bronze Rocket</span>
           <span class="cw-tier-amount">$1,000+</span>
         </div>
-        <div class="cw-bar-track"><div class="cw-bar-fill" data-fill="50"></div></div>
-        <p class="cw-slots">10 of 20 spots filled</p>
+        <div class="cw-bar-track"><div class="cw-bar-fill" data-fill="0"></div></div>
+        <p class="cw-slots">0 of 20 spots filled</p>
         <div class="cw-donors">
-          <div class="cw-donor"><span class="cw-donor-badge" aria-label="Bronze medal">🥉</span><span class="cw-donor-name">Anonymous Rocket Supporter</span></div>
+          <div class="cw-donor" style="color:rgba(255,255,255,0.35);font-style:italic">No donors yet — be the first!</div>
         </div>
       </div>
 
@@ -1139,10 +1236,10 @@ body{padding-bottom:70px}
           <span class="cw-tier-name">Silver Rocket</span>
           <span class="cw-tier-amount">$5,000+</span>
         </div>
-        <div class="cw-bar-track"><div class="cw-bar-fill" data-fill="40"></div></div>
-        <p class="cw-slots">4 of 10 spots filled</p>
+        <div class="cw-bar-track"><div class="cw-bar-fill" data-fill="0"></div></div>
+        <p class="cw-slots">0 of 10 spots filled</p>
         <div class="cw-donors">
-          <div class="cw-donor"><span class="cw-donor-badge" aria-label="Silver medal">🥈</span><span class="cw-donor-name">A Proud Toledo Family</span></div>
+          <div class="cw-donor" style="color:rgba(255,255,255,0.35);font-style:italic">No donors yet — be the first!</div>
         </div>
       </div>
 
@@ -1151,10 +1248,10 @@ body{padding-bottom:70px}
           <span class="cw-tier-name">Gold Rocket</span>
           <span class="cw-tier-amount">$10,000+</span>
         </div>
-        <div class="cw-bar-track"><div class="cw-bar-fill" data-fill="30"></div></div>
-        <p class="cw-slots">3 of 10 spots filled</p>
+        <div class="cw-bar-track"><div class="cw-bar-fill" data-fill="0"></div></div>
+        <p class="cw-slots">0 of 10 spots filled</p>
         <div class="cw-donors">
-          <div class="cw-donor"><span class="cw-donor-badge" aria-label="Gold medal">🥇</span><span class="cw-donor-name">Anonymous Rocket Supporter</span></div>
+          <div class="cw-donor" style="color:rgba(255,255,255,0.35);font-style:italic">No donors yet — be the first!</div>
         </div>
       </div>
 
@@ -1163,10 +1260,10 @@ body{padding-bottom:70px}
           <span class="cw-tier-name">Champions Circle</span>
           <span class="cw-tier-amount">$25,000+</span>
         </div>
-        <div class="cw-bar-track"><div class="cw-bar-fill" data-fill="20"></div></div>
-        <p class="cw-slots">1 of 5 spots filled</p>
+        <div class="cw-bar-track"><div class="cw-bar-fill" data-fill="0"></div></div>
+        <p class="cw-slots">0 of 5 spots filled</p>
         <div class="cw-donors">
-          <div class="cw-donor"><span class="cw-donor-badge" aria-label="Trophy">🏆</span><span class="cw-donor-name">Anonymous Rocket Supporter</span></div>
+          <div class="cw-donor" style="color:rgba(255,255,255,0.35);font-style:italic">No donors yet — be the first!</div>
         </div>
       </div>
 
@@ -1175,10 +1272,10 @@ body{padding-bottom:70px}
           <span class="cw-tier-name">Legacy Gift</span>
           <span class="cw-tier-amount">$1,000,000+</span>
         </div>
-        <div class="cw-bar-track"><div class="cw-bar-fill" data-fill="100"></div></div>
-        <p class="cw-slots">1 of 1 lead gift placed</p>
+        <div class="cw-bar-track"><div class="cw-bar-fill" data-fill="0"></div></div>
+        <p class="cw-slots">0 of 1 spots filled</p>
         <div class="cw-donors">
-          <div class="cw-donor cw-donor-lead"><span class="cw-donor-badge" aria-label="Lead gift star">🌟</span><span class="cw-donor-name">Marcia and Roy Armes</span><span class="cw-donor-amount">Lead Gift, $4,000,000</span></div>
+          <div class="cw-donor" style="color:rgba(255,255,255,0.35);font-style:italic">No donors yet — be the first!</div>
         </div>
       </div>
 
@@ -1191,7 +1288,7 @@ body{padding-bottom:70px}
      ======================================== -->
 <section class="contact" id="contact">
   <div class="container">
-    <div class="contact-wrapper">
+    <div class="contact-wrapper" style="grid-template-columns:1fr;max-width:700px;margin:0 auto">
       <div class="contact-info reveal">
         <p class="section-label">Get Involved</p>
         <h2 class="section-title">Ready to Make an Impact?</h2>
@@ -1215,48 +1312,6 @@ body{padding-bottom:70px}
               <p class="contact-method-value">rocketsathleticdevelopment@utoledo.edu</p>
             </div>
           </a>
-        </div>
-      </div>
-      <div class="contact-card reveal reveal-delay-1">
-        <p class="contact-form-title">Send Us a Message</p>
-        <div class="contact-inquiry-note">
-          <strong>Inquiries Only</strong>
-          This form is for inquiries only. To make a gift, please call or email us directly — our team will personally assist you.
-        </div>
-        <form action="mailto:rocketsathleticdevelopment@utoledo.edu" method="post" enctype="text/plain" id="contactForm">
-          <div class="contact-form-row">
-            <div class="contact-form-group">
-              <label for="cf-name">Full Name</label>
-              <input type="text" id="cf-name" name="Name" placeholder="Your name" required>
-            </div>
-            <div class="contact-form-group">
-              <label for="cf-phone">Phone Number</label>
-              <input type="tel" id="cf-phone" name="Phone" placeholder="(555) 555-5555">
-            </div>
-          </div>
-          <div class="contact-form-group">
-            <label for="cf-email">Email Address</label>
-            <input type="email" id="cf-email" name="Email" placeholder="your@email.com" required>
-          </div>
-          <div class="contact-form-group">
-            <label for="cf-subject">I am interested in</label>
-            <select id="cf-subject" name="Subject">
-              <option value="Making a donation">Making a donation</option>
-              <option value="Naming rights information">Naming rights information</option>
-              <option value="Campaign general inquiry">Campaign general inquiry</option>
-              <option value="Scheduling a visit">Scheduling a visit</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-          <div class="contact-form-group">
-            <label for="cf-message">Message (optional)</label>
-            <textarea id="cf-message" name="Message" placeholder="Tell us how you'd like to help..."></textarea>
-          </div>
-          <button type="submit" class="contact-form-submit">Send Message</button>
-        </form>
-        <div class="contact-office-info">
-          <strong>Office Address</strong>
-          <p>Athletic Development Office &mdash; University of Toledo<br>2801 West Bancroft Street MS 302, Toledo, OH 43606<br>Mon &ndash; Fri, 8:30 AM &ndash; 5:00 PM</p>
         </div>
       </div>
     </div>
@@ -1353,7 +1408,6 @@ body{padding-bottom:70px}
       <div class="footer-links">
         <a href="https://utrockets.com" target="_blank" rel="noopener noreferrer">UTRockets.com</a>
         <a href="https://risetogethertoledo.com" target="_blank" rel="noopener noreferrer">Rise Together</a>
-        <a href="#contact">How to Give</a>
       </div>
       <p class="footer-copy">The University of Toledo Athletics. All rights reserved.</p>
     </div>
@@ -1442,9 +1496,9 @@ body{padding-bottom:70px}
   }
 
   /* ==========================================
-     SCROLL REVEAL ANIMATIONS
+     SCROLL REVEAL ANIMATIONS (ALL TYPES)
      ========================================== */
-  var revealElements = document.querySelectorAll(".reveal");
+  var revealElements = document.querySelectorAll(".reveal,.reveal-left,.reveal-right,.reveal-scale");
 
   function checkReveal(){
     var windowHeight = window.innerHeight;
@@ -1551,25 +1605,6 @@ body{padding-bottom:70px}
   window.addEventListener("scroll", checkBackToTop, {passive:true});
 
   /* ==========================================
-     PROGRESS BAR ANIMATION
-     ========================================== */
-  var progressContainer = document.getElementById("progressContainer");
-  var progressFill = document.getElementById("progressBarFill");
-  var progressDone = false;
-
-  function checkProgressBar(){
-    if(progressDone || !progressContainer) return;
-    var rect = progressContainer.getBoundingClientRect();
-    if(rect.top < window.innerHeight - 60){
-      progressDone = true;
-      progressFill.classList.add("animated");
-    }
-  }
-
-  window.addEventListener("scroll", checkProgressBar, {passive:true});
-  window.addEventListener("load", checkProgressBar);
-
-  /* ==========================================
      CHAMPIONS WALL — BAR ANIMATIONS
      ========================================== */
   var cwBars = document.querySelectorAll(".cw-bar-fill");
@@ -1614,6 +1649,110 @@ body{padding-bottom:70px}
       });
     })(faqItems[fi]);
   }
+
+  /* ==========================================
+     GALLERY LIGHTBOX
+     ========================================== */
+  var galleryItems = document.querySelectorAll(".gallery-item");
+  var lightbox = document.getElementById("lightbox");
+  var lightboxImg = document.getElementById("lightboxImg");
+  var lightboxCaption = document.getElementById("lightboxCaption");
+  var lightboxClose = document.getElementById("lightboxClose");
+  var lightboxPrev = document.getElementById("lightboxPrev");
+  var lightboxNext = document.getElementById("lightboxNext");
+  var lightboxCounter = document.getElementById("lightboxCounter");
+  var currentLightboxIndex = 0;
+
+  var galleryData = [];
+  for(var gi = 0; gi < galleryItems.length; gi++){
+    var gImg = galleryItems[gi].querySelector("img");
+    galleryData.push({
+      src: gImg.getAttribute("src"),
+      alt: gImg.getAttribute("alt"),
+      caption: galleryItems[gi].getAttribute("data-title") || ""
+    });
+    (function(idx){
+      galleryItems[idx].addEventListener("click", function(){
+        currentLightboxIndex = idx;
+        openLightbox(idx);
+      });
+      galleryItems[idx].addEventListener("keydown", function(e){
+        if(e.key === "Enter" || e.key === " "){
+          e.preventDefault();
+          currentLightboxIndex = idx;
+          openLightbox(idx);
+        }
+      });
+    })(gi);
+  }
+
+  function openLightbox(idx){
+    lightboxImg.src = galleryData[idx].src;
+    lightboxImg.alt = galleryData[idx].alt;
+    lightboxCaption.textContent = galleryData[idx].caption;
+    lightboxCounter.textContent = (idx + 1) + " / " + galleryData.length;
+    lightbox.classList.add("open");
+    document.body.style.overflow = "hidden";
+    // Focus the close button for accessibility
+    if(lightboxClose) lightboxClose.focus();
+  }
+
+  function closeLightbox(){
+    lightbox.classList.remove("open");
+    document.body.style.overflow = "";
+    // Return focus to the gallery item that opened the lightbox
+    var opener = galleryItems[currentLightboxIndex];
+    if(opener) opener.focus();
+  }
+
+  if(lightboxClose) lightboxClose.addEventListener("click", closeLightbox);
+
+  lightbox.addEventListener("click", function(e){
+    if(e.target === lightbox) closeLightbox();
+  });
+
+  if(lightboxPrev) lightboxPrev.addEventListener("click", function(e){
+    e.stopPropagation();
+    currentLightboxIndex = (currentLightboxIndex - 1 + galleryData.length) % galleryData.length;
+    openLightbox(currentLightboxIndex);
+  });
+
+  if(lightboxNext) lightboxNext.addEventListener("click", function(e){
+    e.stopPropagation();
+    currentLightboxIndex = (currentLightboxIndex + 1) % galleryData.length;
+    openLightbox(currentLightboxIndex);
+  });
+
+  // Trap focus within lightbox and handle keyboard navigation
+  var lightboxFocusables = [lightboxClose, lightboxPrev, lightboxNext].filter(Boolean);
+
+  lightbox.addEventListener("keydown", function(e){
+    if(e.key === "Tab"){
+      var focusable = lightboxFocusables;
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+      if(e.shiftKey){
+        if(document.activeElement === first){ e.preventDefault(); last.focus(); }
+      } else {
+        if(document.activeElement === last){ e.preventDefault(); first.focus(); }
+      }
+    }
+  });
+
+  document.addEventListener("keydown", function(e){
+    if(!lightbox.classList.contains("open")) return;
+    if(e.key === "Escape") closeLightbox();
+    if(e.key === "ArrowLeft"){
+      e.preventDefault();
+      currentLightboxIndex = (currentLightboxIndex - 1 + galleryData.length) % galleryData.length;
+      openLightbox(currentLightboxIndex);
+    }
+    if(e.key === "ArrowRight"){
+      e.preventDefault();
+      currentLightboxIndex = (currentLightboxIndex + 1) % galleryData.length;
+      openLightbox(currentLightboxIndex);
+    }
+  });
 
 })();
 </script>
