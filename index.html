@@ -625,15 +625,6 @@ body{padding-bottom:70px}
 @media(max-width:480px){.gallery-grid{grid-template-columns:1fr}}
 
 /* ============================================
-   LOADING VIDEO OVERLAY
-   ============================================ */
-.loading-overlay{position:fixed;inset:0;z-index:99999;background:var(--navy-deep);display:flex;align-items:center;justify-content:center;transition:opacity 0.8s ease}
-.loading-overlay video{width:100%;height:100%;object-fit:cover}
-.loading-overlay.fade-out{opacity:0;pointer-events:none}
-.loading-overlay .skip-btn{position:absolute;bottom:40px;right:40px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:var(--white);font-family:var(--font-display);font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;padding:12px 28px;cursor:pointer;transition:all 0.3s ease;z-index:1}
-.loading-overlay .skip-btn:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
-
-/* ============================================
    PERFORMANCE OPTIMIZATIONS
    ============================================ */
 /* Apply will-change only to elements that use CSS transforms on interaction */
@@ -651,14 +642,6 @@ img{max-width:100%;height:auto}
 </style>
 </head>
 <body>
-
-<!-- LOADING VIDEO OVERLAY -->
-<div class="loading-overlay" id="loadingOverlay">
-  <video id="loadingVideo" autoplay muted playsinline>
-    <source src="loading video/ut_vid.mp4" type="video/mp4">
-  </video>
-  <button class="skip-btn" id="skipBtn">Skip Intro</button>
-</div>
 
 <!-- ========================================
      NAVIGATION
@@ -1342,38 +1325,6 @@ img{max-width:100%;height:auto}
 <script>
 (function(){
   "use strict";
-
-  /* ==========================================
-     LOADING VIDEO OVERLAY
-     ========================================== */
-  // Prevent the browser from restoring the previous scroll position so the
-  // page always starts at the top after the loading video finishes or is skipped.
-  if(history.scrollRestoration){ history.scrollRestoration = "manual"; }
-  window.scrollTo(0, 0);
-
-  var loadingOverlay = document.getElementById("loadingOverlay");
-  var loadingVideo = document.getElementById("loadingVideo");
-  var skipBtn = document.getElementById("skipBtn");
-
-  function dismissOverlay(){
-    if(!loadingOverlay) return;
-    loadingOverlay.classList.add("fade-out");
-    // Always return visitors to the top of the page once the intro completes or is skipped
-    window.scrollTo(0, 0);
-    setTimeout(function(){
-      loadingOverlay.style.display = "none";
-    }, 800);
-  }
-
-  if(loadingVideo){
-    loadingVideo.addEventListener("ended", dismissOverlay);
-  }
-  if(skipBtn){
-    skipBtn.addEventListener("click", function(){
-      if(loadingVideo) loadingVideo.pause();
-      dismissOverlay();
-    });
-  }
 
   /* ==========================================
      NAVIGATION SCROLL BEHAVIOR
