@@ -319,8 +319,8 @@ body{padding-bottom:70px}
 .hero-btn{font-family:var(--font-display);font-size:0.9rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;padding:16px 36px;cursor:pointer;transition:all 0.3s ease;display:inline-block;border:2px solid transparent}
 .hero-btn-primary{background:var(--gold);color:var(--navy);border-color:var(--gold)}
 .hero-btn-primary:hover{background:var(--gold-light);border-color:var(--gold-light);transform:translateY(-2px)}
-.hero-btn-secondary{background:transparent;color:var(--gold);border-color:var(--gold)}
-.hero-btn-secondary:hover{border-color:var(--gold-light);color:var(--gold-light);background:rgba(255,184,28,0.1);transform:translateY(-2px)}
+.hero-btn-secondary{background:rgba(0,21,39,0.58);color:var(--white);border-color:var(--gold)}
+.hero-btn-secondary:hover{border-color:var(--gold-light);color:var(--gold-light);background:rgba(0,21,39,0.8);transform:translateY(-2px)}
 
 /* ============================================
    URGENCY BANNER
@@ -466,6 +466,12 @@ body{padding-bottom:70px}
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .hero-btn,.support-donate-btn,.contact-form-submit,.persistent-bar-btn,.back-to-top{min-height:44px}
 
+/* SIDEARM can apply broad anchor/button styles, so keep hero CTAs scoped and explicit. */
+#cc-page-root .hero-btn,#cc-page-root .hero-btn:link,#cc-page-root .hero-btn:visited{text-decoration:none!important}
+#cc-page-root .hero-btn.hero-btn-primary,#cc-page-root .hero-btn.hero-btn-primary:link,#cc-page-root .hero-btn.hero-btn-primary:visited{background:var(--gold)!important;border-color:var(--gold)!important;color:var(--navy)!important}
+#cc-page-root .hero-btn.hero-btn-secondary,#cc-page-root .hero-btn.hero-btn-secondary:link,#cc-page-root .hero-btn.hero-btn-secondary:visited{background:rgba(0,21,39,0.58)!important;border-color:var(--gold)!important;color:var(--white)!important}
+#cc-page-root .urgency-cta,#cc-page-root .urgency-cta:link,#cc-page-root .urgency-cta:visited{color:var(--gold)!important;border-bottom-color:var(--gold)!important}
+
 /* ============================================
    GIVING LEVELS — PULL QUOTE CALLOUT
    ============================================ */
@@ -598,9 +604,7 @@ body{padding-bottom:70px}
 /* Apply will-change only to elements that use CSS transforms on interaction */
 .feature-card,.testimonial-card{will-change:transform}
 .vision-image img{will-change:transform}
-/* Allow the browser to skip rendering/layout for off-screen sections.
-   No contain-intrinsic-size is set to avoid layout-shift estimation errors. */
-.testimonials,.day-in-life,.project-timeline,.giving-levels,.champions-wall,.faq-section{content-visibility:auto}
+/* Disabled content-visibility for SIDEARM embed stability. */
 /* Ensure images never overflow their containers regardless of device */
 img{max-width:100%;height:auto}
 /* Improve tap target size on touch devices */
@@ -1234,16 +1238,8 @@ img{max-width:100%;height:auto}
   (function(){
     var root = document.getElementById("cc-page-root");
     if(!root) return;
-    var el = root.parentElement;
-    while(el){
-      el.style.paddingLeft = "0";
-      el.style.paddingRight = "0";
-      el.style.paddingTop = "0";
-      el.style.paddingBottom = "0";
-      el.style.maxWidth = "none";
-      el.style.width = "100%";
-      el = el.parentElement;
-    }
+    /* Intentionally no parent-style rewrites: SIDEARM wrapper styles can break
+       when ancestor layout is mutated at runtime. */
   })();
 
   /* ==========================================
