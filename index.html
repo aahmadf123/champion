@@ -96,7 +96,7 @@ a{text-decoration:none;color:inherit}
 .vision{padding:0;background:var(--white);overflow:hidden}
 .vision-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch}
 .vision-image{position:relative;overflow:hidden}
-.vision-image img{width:100%;height:100%;object-fit:cover;min-height:520px;transition:transform 0.6s ease}
+.vision-image img{width:100%;height:100%;object-fit:contain;min-height:520px;transition:transform 0.6s ease;background:#f8f8f8}
 .vision-image:hover img{transform:scale(1.03)}
 .vision-image-accent{display:none}
 .vision-content{display:flex;flex-direction:column;justify-content:center;padding:80px 48px 80px 60px}
@@ -324,6 +324,15 @@ body{padding-bottom:70px}
 .contact-method{flex-direction:column;align-items:flex-start;gap:12px}
 .persistent-bar-inner{gap:10px}
 .persistent-bar-btn{padding:10px 12px;font-size:0.75rem}
+.urgency-text{font-size:0.82rem;text-align:center}
+.hero-title{font-size:clamp(1.9rem,7vw,3rem)}
+.hero-subtitle{font-size:0.9rem}
+.hero-stats{grid-template-columns:1fr 1fr}
+.section-title{font-size:clamp(1.6rem,5vw,2rem)}
+.giving-card{padding:24px 18px}
+.giving-amount{font-size:1.5rem}
+.vision-image img{min-height:240px}
+.faq-question{font-size:0.85rem}
 }
 
 /* ============================================
@@ -415,7 +424,7 @@ body{padding-bottom:70px}
 .giving-header{text-align:center;margin-bottom:56px}
 .giving-header .section-title{color:var(--navy)}
 .giving-header .section-text{margin:0 auto}
-.giving-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.giving-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
 .giving-card{border:2px solid var(--gray-100);padding:32px 28px 28px;text-align:center;position:relative;transition:all 0.3s ease}
 .giving-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,34,68,0.08)}
 .giving-card.featured{border-color:var(--gold);background:var(--navy);color:var(--white)}
@@ -696,7 +705,7 @@ img{max-width:100%;height:auto}
       </div>
     </div>
     <div class="hero-cta">
-      <a href="#support" class="hero-btn hero-btn-primary">Support the Complex</a>
+      <a href="#support" class="hero-btn hero-btn-primary">Support the Champions Complex</a>
       <a href="tel:4195304183" class="hero-btn hero-btn-secondary">Call the Rocket Fund</a>
     </div>
   </div>
@@ -712,8 +721,7 @@ img{max-width:100%;height:auto}
 <div class="urgency-banner">
   <div class="container">
     <div class="urgency-inner">
-      <span class="urgency-badge">Fundraising Now Open</span>
-      <p class="urgency-text">Fundraising is actively underway — groundbreaking depends on reaching our <strong>$11M goal</strong>. Every gift brings us closer.</p>
+      <p class="urgency-text">Invest in the Champions Complex today and support Toledo Athletics as we strive to graduate champions who will change the world.</p>
       <a href="#support" class="urgency-cta">Contact Us to Give &rarr;</a>
     </div>
   </div>
@@ -765,7 +773,7 @@ img{max-width:100%;height:auto}
   <div class="container">
     <div class="features-header reveal">
       <p class="section-label">What Is Inside</p>
-      <h2 class="section-title">World-Class Spaces for World-Class Athletes</h2>
+      <h2 class="section-title">Championship Spaces for Championship Athletes</h2>
       <p class="section-text">From training grounds to study halls, every space within the Champions Complex is purpose-built to support the complete student-athlete experience. Click any image to view in full detail.</p>
     </div>
     <div class="features-grid">
@@ -1045,11 +1053,11 @@ img{max-width:100%;height:auto}
         <p class="section-text">The Champions Complex will single-handedly improve the lives of all 450+ Rocket student-athletes while returning baseball and softball programs to the main campus from Scott Park.</p>
         <ul class="impact-list">
           <li>Centralized academics, nutrition, health, wellness, and training under one roof</li>
-          <li>Returns baseball and softball to main campus, fostering greater team unity</li>
-          <li>Modern team meeting spaces with film review and presentation capabilities</li>
-          <li>Year-round indoor training facility for multi-sport use</li>
           <li>State-of-the-art nutrition center supporting peak athletic performance</li>
           <li>Dedicated academic support spaces with tutoring resources</li>
+          <li>Year-round indoor training facility for multi-sport use</li>
+          <li>Modern team meeting spaces with film review and presentation capabilities</li>
+          <li>Returns baseball and softball to main campus, fostering greater team unity</li>
         </ul>
       </div>
       <div class="impact-image reveal-right reveal-delay-1">
@@ -1126,38 +1134,26 @@ img{max-width:100%;height:auto}
     </div>
     <div class="giving-grid">
       <div class="giving-card reveal reveal-delay-1">
-        <p class="giving-amount">$500</p>
-        <p class="giving-label">Rocket Supporter</p>
-        <p class="giving-impact">Equip a student-athlete with training gear and nutrition support for an entire season of competition.</p>
+        <p class="giving-amount">$50,000</p>
+        <p class="giving-label">Rocket Investor</p>
+        <p class="giving-impact">Support a dedicated space within the Champions Complex and help elevate the daily experience of Rocket student-athletes.</p>
         <div class="giving-cta"><a href="tel:4195304183">Call to Give &rarr;</a></div>
       </div>
-      <div class="giving-card reveal reveal-delay-2">
-        <p class="giving-amount">$1,000</p>
-        <p class="giving-label">Bronze Rocket</p>
-        <p class="giving-impact">Sponsor a full month of academic tutoring sessions and study resources for our student-athletes.</p>
-        <div class="giving-cta"><a href="mailto:rocketsathleticdevelopment@utoledo.edu">Email to Give &rarr;</a></div>
-      </div>
-      <div class="giving-card featured reveal reveal-delay-3">
+      <div class="giving-card featured reveal reveal-delay-2">
         <span class="giving-badge">Most Impactful</span>
-        <p class="giving-amount">$5,000</p>
-        <p class="giving-label">Silver Rocket</p>
-        <p class="giving-impact">Fund an entire month of chef-prepared training table meals for the full team — fueling champions daily.</p>
+        <p class="giving-amount">$100,000</p>
+        <p class="giving-label">Champions Sponsor</p>
+        <p class="giving-impact">Fund a key amenity or student-athlete resource and earn prominent recognition within the Champions Complex.</p>
         <div class="giving-cta"><a href="tel:4195304183">Call to Give &rarr;</a></div>
       </div>
       <div class="giving-card reveal reveal-delay-1">
-        <p class="giving-amount">$10,000</p>
-        <p class="giving-label">Gold Rocket</p>
-        <p class="giving-impact">Secure recognition on a named locker or dedicated space, leaving your legacy inside the Champions Complex.</p>
-        <div class="giving-cta"><a href="mailto:rocketsathleticdevelopment@utoledo.edu">Email to Give &rarr;</a></div>
-      </div>
-      <div class="giving-card reveal reveal-delay-2">
-        <p class="giving-amount">$25,000+</p>
+        <p class="giving-amount">$250,000</p>
         <p class="giving-label">Champions Circle</p>
-        <p class="giving-impact">Named space opportunity with premium recognition. Contact us to discuss your personalized giving opportunity.</p>
+        <p class="giving-impact">Secure a premier naming recognition opportunity and leave a lasting legacy that will inspire Rocket athletes for generations.</p>
         <div class="giving-cta"><a href="tel:4195304183">Call to Discuss &rarr;</a></div>
       </div>
-      <div class="giving-card reveal reveal-delay-3">
-        <p class="giving-amount">$1M+</p>
+      <div class="giving-card reveal reveal-delay-2">
+        <p class="giving-amount">$1,000,000+</p>
         <p class="giving-label">Legacy Gift</p>
         <p class="giving-impact">Naming rights to a major facility area — join the Armes family in leaving an enduring legacy at Toledo Athletics.</p>
         <div class="giving-cta"><a href="tel:4195304183">Call to Discuss &rarr;</a></div>
@@ -1221,7 +1217,7 @@ img{max-width:100%;height:auto}
           <span class="faq-icon" aria-hidden="true"></span>
         </button>
         <div class="faq-answer" role="region">
-          <p>Simply call us at <a href="tel:4195304183">419.530.4183</a> or email <a href="mailto:rocketsathleticdevelopment@utoledo.edu">rocketsathleticdevelopment@utoledo.edu</a> — our team will personally walk you through every option.</p>
+          <p>Call us at <a href="tel:4195304183">419.530.4183</a> or email <a href="mailto:rocketsathleticdevelopment@utoledo.edu">rocketsathleticdevelopment@utoledo.edu</a> — our team will personally walk you through every option.</p>
         </div>
       </div>
 
@@ -1251,7 +1247,7 @@ img{max-width:100%;height:auto}
           <span class="faq-icon" aria-hidden="true"></span>
         </button>
         <div class="faq-answer" role="region">
-          <p>Several spaces within the Champions Complex are available for naming. Gifts starting at $25,000 qualify. <a href="tel:4195304183">Call</a> or <a href="mailto:rocketsathleticdevelopment@utoledo.edu">email us</a> to learn more.</p>
+          <p>Contact the Athletic Development Office at <a href="mailto:rocketsathleticdevelopment@utoledo.edu">rocketsathleticdevelopment@utoledo.edu</a> or <a href="tel:4195304183">419.530.4183</a> to learn about available opportunities for naming in the Champions Complex.</p>
         </div>
       </div>
 
@@ -1261,7 +1257,7 @@ img{max-width:100%;height:auto}
           <span class="faq-icon" aria-hidden="true"></span>
         </button>
         <div class="faq-answer" role="region">
-          <p>Construction begins once we reach our $11M fundraising goal. Every gift moves us closer to groundbreaking.</p>
+          <p>We are hoping to begin construction of the Champions Complex in the coming months.</p>
         </div>
       </div>
 
