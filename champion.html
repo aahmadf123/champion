@@ -46,7 +46,7 @@ a{text-decoration:none;color:inherit}
 /* ============================================
    FULL-BLEED (SIDEARM EMBED)
    ============================================ */
-#cc-page-root{width:100vw;position:relative;left:50%;margin-left:-50vw}
+#cc-page-root{width:100%;position:relative;left:0;margin-left:0;display:block;visibility:visible;opacity:1}
 
 /* ============================================
    HERO SECTION
@@ -1232,25 +1232,24 @@ img{max-width:100%;height:auto}
 (function(){
   "use strict";
 
+  var root = document.getElementById("cc-page-root");
+  if(!root) return;
+
   /* ==========================================
     FULL-BLEED (SIDEARM EMBED) — REMOVE CONTAINERS
      ========================================== */
-  (function(){
-    var root = document.getElementById("cc-page-root");
-    if(!root) return;
-    /* Intentionally no parent-style rewrites: SIDEARM wrapper styles can break
-       when ancestor layout is mutated at runtime. */
-  })();
+  /* Intentionally no parent-style rewrites: SIDEARM wrapper styles can break
+     when ancestor layout is mutated at runtime. */
 
   /* ==========================================
      SMOOTH SCROLL FOR NAV LINKS
      ========================================== */
-  var allNavLinks = document.querySelectorAll('a[href^="#"]');
+  var allNavLinks = root.querySelectorAll('a[href^="#"]');
   for(var j = 0; j < allNavLinks.length; j++){
     allNavLinks[j].addEventListener("click", function(e){
       var targetId = this.getAttribute("href");
       if(targetId && targetId !== "#"){
-        var targetEl = document.querySelector(targetId);
+        var targetEl = root.querySelector(targetId);
         if(targetEl){
           e.preventDefault();
           var navHeight = 0;
@@ -1264,7 +1263,7 @@ img{max-width:100%;height:auto}
   /* ==========================================
      SCROLL REVEAL ANIMATIONS (ALL TYPES)
      ========================================== */
-  var revealElements = document.querySelectorAll(".reveal,.reveal-left,.reveal-right,.reveal-scale");
+  var revealElements = root.querySelectorAll(".reveal,.reveal-left,.reveal-right,.reveal-scale");
 
   function checkReveal(){
     var windowHeight = window.innerHeight;
@@ -1282,7 +1281,7 @@ img{max-width:100%;height:auto}
   /* ==========================================
      NUMBER COUNTER ANIMATION
      ========================================== */
-  var counters = document.querySelectorAll(".counter");
+  var counters = root.querySelectorAll(".counter");
   var countersDone = [];
 
   for(var m = 0; m < counters.length; m++){
@@ -1327,9 +1326,10 @@ img{max-width:100%;height:auto}
   /* ==========================================
      PERSISTENT BAR VISIBILITY (MOBILE)
      ========================================== */
-  var persistentBar = document.getElementById("persistentBar");
+  var persistentBar = root.querySelector("#persistentBar");
 
   function checkPersistentBar(){
+    if(!persistentBar) return;
     if(window.innerWidth > 768) return;
     var scrollY = window.scrollY || window.pageYOffset;
     if(scrollY > 400){
@@ -1340,6 +1340,7 @@ img{max-width:100%;height:auto}
   }
 
   window.addEventListener("resize", function(){
+    if(!persistentBar) return;
     if(window.innerWidth > 768){
       persistentBar.classList.remove("visible");
     }else{
@@ -1350,9 +1351,10 @@ img{max-width:100%;height:auto}
   /* ==========================================
      BACK TO TOP
      ========================================== */
-  var backToTop = document.getElementById("backToTop");
+  var backToTop = root.querySelector("#backToTop");
 
   function checkBackToTop(){
+    if(!backToTop) return;
     var scrollY = window.scrollY || window.pageYOffset;
     if(scrollY > 600){
       backToTop.classList.add("visible");
@@ -1361,14 +1363,16 @@ img{max-width:100%;height:auto}
     }
   }
 
-  backToTop.addEventListener("click", function(){
-    window.scrollTo({top: 0, behavior: "smooth"});
-  });
+  if(backToTop){
+    backToTop.addEventListener("click", function(){
+      window.scrollTo({top: 0, behavior: "smooth"});
+    });
+  }
 
   /* ==========================================
      CHAMPIONS WALL — BAR ANIMATIONS
      ========================================== */
-  var cwBars = document.querySelectorAll(".cw-bar-fill");
+  var cwBars = root.querySelectorAll(".cw-bar-fill");
   var cwBarsDone = [];
   for(let cb = 0; cb < cwBars.length; cb++){ cwBarsDone.push(false); }
 
@@ -1409,10 +1413,11 @@ img{max-width:100%;height:auto}
   /* ==========================================
      FAQ ACCORDION
      ========================================== */
-  var faqItems = document.querySelectorAll(".faq-item");
+  var faqItems = root.querySelectorAll(".faq-item");
   for(let fi = 0; fi < faqItems.length; fi++){
     (function(item){
       var btn = item.querySelector(".faq-question");
+      if(!btn) return;
       btn.addEventListener("click", function(){
         var isOpen = item.classList.contains("open");
         // Close all items
@@ -1432,19 +1437,20 @@ img{max-width:100%;height:auto}
   /* ==========================================
      GALLERY LIGHTBOX (FEATURE CARDS)
      ========================================== */
-  var galleryItems = document.querySelectorAll(".features .gallery-item");
-  var lightbox = document.getElementById("lightbox");
-  var lightboxImg = document.getElementById("lightboxImg");
-  var lightboxCaption = document.getElementById("lightboxCaption");
-  var lightboxClose = document.getElementById("lightboxClose");
-  var lightboxPrev = document.getElementById("lightboxPrev");
-  var lightboxNext = document.getElementById("lightboxNext");
-  var lightboxCounter = document.getElementById("lightboxCounter");
+  var galleryItems = root.querySelectorAll(".features .gallery-item");
+  var lightbox = root.querySelector("#lightbox");
+  var lightboxImg = root.querySelector("#lightboxImg");
+  var lightboxCaption = root.querySelector("#lightboxCaption");
+  var lightboxClose = root.querySelector("#lightboxClose");
+  var lightboxPrev = root.querySelector("#lightboxPrev");
+  var lightboxNext = root.querySelector("#lightboxNext");
+  var lightboxCounter = root.querySelector("#lightboxCounter");
   var currentLightboxIndex = 0;
 
   var galleryData = [];
   for(var gi = 0; gi < galleryItems.length; gi++){
     var gImg = galleryItems[gi].querySelector(".feature-card-image img");
+    if(!gImg) continue;
     galleryData.push({
       src: gImg.getAttribute("src"),
       alt: gImg.getAttribute("alt"),
@@ -1466,6 +1472,7 @@ img{max-width:100%;height:auto}
   }
 
   function openLightbox(idx){
+    if(!lightbox || !lightboxImg || !lightboxCaption || !lightboxCounter || !galleryData.length) return;
     lightboxImg.src = galleryData[idx].src;
     lightboxImg.alt = galleryData[idx].alt;
     lightboxCaption.textContent = galleryData[idx].caption;
@@ -1477,6 +1484,7 @@ img{max-width:100%;height:auto}
   }
 
   function closeLightbox(){
+    if(!lightbox) return;
     lightbox.classList.remove("open");
     document.body.style.overflow = "";
     // Return focus to the gallery item that opened the lightbox
@@ -1486,9 +1494,11 @@ img{max-width:100%;height:auto}
 
   if(lightboxClose) lightboxClose.addEventListener("click", closeLightbox);
 
-  lightbox.addEventListener("click", function(e){
-    if(e.target === lightbox) closeLightbox();
-  });
+  if(lightbox){
+    lightbox.addEventListener("click", function(e){
+      if(e.target === lightbox) closeLightbox();
+    });
+  }
 
   if(lightboxPrev) lightboxPrev.addEventListener("click", function(e){
     e.stopPropagation();
@@ -1505,21 +1515,24 @@ img{max-width:100%;height:auto}
   // Trap focus within lightbox and handle keyboard navigation
   var lightboxFocusables = [lightboxClose, lightboxPrev, lightboxNext].filter(Boolean);
 
-  lightbox.addEventListener("keydown", function(e){
-    if(e.key === "Tab"){
-      var focusable = lightboxFocusables;
-      var first = focusable[0];
-      var last = focusable[focusable.length - 1];
-      if(e.shiftKey){
-        if(document.activeElement === first){ e.preventDefault(); last.focus(); }
-      } else {
-        if(document.activeElement === last){ e.preventDefault(); first.focus(); }
+  if(lightbox){
+    lightbox.addEventListener("keydown", function(e){
+      if(e.key === "Tab"){
+        var focusable = lightboxFocusables;
+        var first = focusable[0];
+        var last = focusable[focusable.length - 1];
+        if(!first || !last) return;
+        if(e.shiftKey){
+          if(document.activeElement === first){ e.preventDefault(); last.focus(); }
+        } else {
+          if(document.activeElement === last){ e.preventDefault(); first.focus(); }
+        }
       }
-    }
-  });
+    });
+  }
 
   document.addEventListener("keydown", function(e){
-    if(!lightbox.classList.contains("open")) return;
+    if(!lightbox || !lightbox.classList.contains("open")) return;
     if(e.key === "Escape") closeLightbox();
     if(e.key === "ArrowLeft"){
       e.preventDefault();
