@@ -175,6 +175,15 @@ a{text-decoration:none;color:inherit}
 .staff-contact-item svg{width:14px;height:14px;fill:var(--gold);flex-shrink:0;margin-top:2px}
 @media(max-width:900px){.staff-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:480px){.staff-grid{grid-template-columns:1fr 1fr;gap:16px}}
+.support-office-bar{display:flex;flex-wrap:wrap;gap:0;margin-top:40px;border:1px solid rgba(255,255,255,0.12);position:relative;z-index:1}
+.support-office-item{display:flex;align-items:center;gap:14px;padding:20px 28px;flex:1;min-width:260px;border-right:1px solid rgba(255,255,255,0.12)}
+.support-office-item:last-child{border-right:none}
+.support-office-item .soi-icon{width:40px;height:40px;background:var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.support-office-item .soi-icon svg{width:18px;height:18px;fill:var(--navy)}
+.support-office-item .soi-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,0.45);margin-bottom:3px}
+.support-office-item .soi-value{font-family:var(--font-display);font-size:0.95rem;font-weight:600;color:var(--white);line-height:1.4}
+.support-office-item .soi-value a{color:var(--white);transition:color 0.3s ease}.support-office-item .soi-value a:hover{color:var(--gold)}
+@media(max-width:640px){.support-office-bar{flex-direction:column}.support-office-item{border-right:none;border-bottom:1px solid rgba(255,255,255,0.12)}.support-office-item:last-child{border-bottom:none}}
 .support-donor{margin-bottom:48px}
 .support-donor-label{font-size:0.75rem;text-transform:uppercase;letter-spacing:3px;color:var(--gold);margin-bottom:8px}
 .support-donor-name{font-family:var(--font-display);font-size:1.6rem;font-weight:600;color:var(--white)}
@@ -1137,9 +1146,25 @@ img{max-width:100%;height:auto}
       <p class="section-text">We are just getting started — and we need your help. The Champions Complex represents a once-in-a-generation opportunity to transform the lives of 450+ Rocket student-athletes. Every gift, at every level, brings us closer to groundbreaking.</p>
       <p class="section-text" style="color:rgba(255,255,255,0.65);margin:0 auto 40px">For information on how you can help bring this once-in-a-generation project to life, reach out to the Rocket Fund team.</p>
     </div>
+    <div class="support-office-bar reveal">
+      <div class="support-office-item">
+        <div class="soi-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+        <div>
+          <p class="soi-label">General Email</p>
+          <p class="soi-value"><a href="mailto:rocketsathleticdevelopment@utoledo.edu">rocketsathleticdevelopment@utoledo.edu</a></p>
+        </div>
+      </div>
+      <div class="support-office-item">
+        <div class="soi-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+        <div>
+          <p class="soi-label">Athletic Development Office</p>
+          <p class="soi-value">2801 W. Bancroft St. MS 302, Toledo, OH 43606</p>
+        </div>
+      </div>
+    </div>
     <div class="staff-grid reveal">
       <div class="staff-card">
-        <div class="staff-photo"><span class="staff-initials">CW</span></div>
+        <div class="staff-photo"><img src="https://dbukjj6eu5tsf.cloudfront.net/sidearm.sites/supportutrockets.sidearmsports.com/images/2025/7/8/Connor_Whelan_-_2025.PNG" alt="Connor Whelan"></div>
         <div class="staff-name-bar"><p class="staff-name">Connor Whelan</p></div>
         <div class="staff-contact">
           <a href="mailto:connor.whelan@utoledo.edu" class="staff-contact-item">
@@ -1153,7 +1178,7 @@ img{max-width:100%;height:auto}
         </div>
       </div>
       <div class="staff-card">
-        <div class="staff-photo"><span class="staff-initials">JD</span></div>
+        <div class="staff-photo"><img src="https://dbukjj6eu5tsf.cloudfront.net/sidearm.sites/supportutrockets.sidearmsports.com/images/2024/5/31/Josh_Dittman_8sP4L.jpeg" alt="Josh Dittman"></div>
         <div class="staff-name-bar"><p class="staff-name">Josh Dittman</p></div>
         <div class="staff-contact">
           <a href="mailto:joshua.dittman@utoledo.edu" class="staff-contact-item">
@@ -1167,7 +1192,7 @@ img{max-width:100%;height:auto}
         </div>
       </div>
       <div class="staff-card">
-        <div class="staff-photo"><span class="staff-initials">RG</span></div>
+        <div class="staff-photo"><img src="https://dbukjj6eu5tsf.cloudfront.net/sidearm.sites/supportutrockets.sidearmsports.com/images/2024/5/31/Ryleigh_Gordon_lZHnC.jpeg" alt="Ryleigh Gordon"></div>
         <div class="staff-name-bar"><p class="staff-name">Ryleigh Gordon</p></div>
         <div class="staff-contact">
           <a href="mailto:ryleigh.gordon@utoledo.edu" class="staff-contact-item">
@@ -1181,7 +1206,7 @@ img{max-width:100%;height:auto}
         </div>
       </div>
       <div class="staff-card">
-        <div class="staff-photo"><span class="staff-initials">DH</span></div>
+        <div class="staff-photo"><img src="https://dbukjj6eu5tsf.cloudfront.net/sidearm.sites/supportutrockets.sidearmsports.com/images/2024/5/31/Dillon_Horter_evaYx.jpeg" alt="Dillon Horter"></div>
         <div class="staff-name-bar"><p class="staff-name">Dillon Horter</p></div>
         <div class="staff-contact">
           <a href="mailto:dillon.horter@utoledo.edu" class="staff-contact-item">
