@@ -98,7 +98,7 @@ a{text-decoration:none;color:inherit}
 .features::before{content:'';position:absolute;top:-200px;right:-200px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(255,184,28,0.06) 0%,transparent 70%);pointer-events:none}
 .features-header{text-align:center;margin-bottom:64px}
 .features-header .section-title{color:var(--white)}
-.features-header .section-text{margin:0 auto;color:rgba(255,255,255,0.8)}
+.features-header .section-text{margin:0 auto;color:rgba(255,255,255,0.6)}
 .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
 .feature-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:0;overflow:hidden;transition:all var(--transition-smooth);position:relative;cursor:pointer}
 .feature-card:hover{transform:translateY(-4px);border-color:rgba(255,184,28,0.3);background:rgba(255,255,255,0.06)}
@@ -110,7 +110,7 @@ a{text-decoration:none;color:inherit}
 .feature-card:hover .gallery-zoom-hint{opacity:1}
 .feature-card-body{padding:28px 24px}
 .feature-card-title{font-family:var(--font-display);font-size:1.2rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;color:var(--white)}
-.feature-card-desc{font-size:1rem;line-height:1.65;color:rgba(255,255,255,0.8)}
+.feature-card-desc{font-size:1rem;line-height:1.65;color:rgba(255,255,255,0.55)}
 
 /* ============================================
    GALLERY SECTION
@@ -152,7 +152,7 @@ a{text-decoration:none;color:inherit}
 .support::before{content:'';position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><rect fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1" width="60" height="60"/></svg>');pointer-events:none}
 .support-content{position:relative;z-index:1;max-width:700px;margin:0 auto}
 .support .section-title{color:var(--white);margin-bottom:20px}
-.support .section-text{color:rgba(255,255,255,0.8);margin:0 auto 40px}
+.support .section-text{color:rgba(255,255,255,0.65);margin:0 auto 40px}
 .support-contact-methods{display:flex;flex-direction:column;gap:16px;max-width:500px;margin:32px auto 0}
 .support-contact-method{display:flex;align-items:center;gap:16px;padding:20px 24px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);transition:all 0.3s ease}
 .support-contact-method:hover{border-color:var(--gold);background:rgba(255,255,255,0.1)}
@@ -342,8 +342,8 @@ body{padding-bottom:70px}
 .hero-btn{font-family:var(--font-display);font-size:0.9rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;padding:16px 36px;cursor:pointer;transition:all 0.3s ease;display:inline-block;border:2px solid transparent}
 .hero-btn-primary{background:var(--gold);color:var(--navy);border-color:var(--gold)}
 .hero-btn-primary:hover{background:var(--gold-light);border-color:var(--gold-light);transform:translateY(-2px)}
-.hero-btn-secondary{background:rgba(0,21,39,0.58);color:var(--white);border-color:var(--gold)}
-.hero-btn-secondary:hover{border-color:var(--gold-light);color:var(--gold-light);background:rgba(0,21,39,0.8);transform:translateY(-2px)}
+.hero-btn-secondary{background:transparent;color:var(--white);border-color:rgba(255,255,255,0.5)}
+.hero-btn-secondary:hover{border-color:var(--white);background:rgba(255,255,255,0.1);transform:translateY(-2px)}
 .hero-btn-group{display:flex;flex-direction:column;align-items:flex-start;gap:6px;align-self:flex-start}
 .hero-btn-label{font-family:var(--font-display);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:3px;color:rgba(255,255,255,0.55)}
 @media(max-width:768px){.hero-btn-group{align-items:center;width:100%}.hero-btn-label{text-align:center}}
@@ -356,8 +356,8 @@ body{padding-bottom:70px}
 .urgency-badge{background:var(--gold);color:var(--navy);font-family:var(--font-display);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:4px 12px}
 .urgency-text{font-size:0.9rem;color:rgba(255,255,255,0.8)}
 .urgency-text strong{color:var(--gold)}
-.urgency-cta{font-family:var(--font-display);font-size:0.8rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--gold);transition:color 0.3s ease,border-color 0.3s ease}
-.urgency-cta:hover{color:var(--gold-light);border-color:var(--gold-light)}
+.urgency-cta{font-family:var(--font-display);font-size:0.8rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid rgba(255,184,28,0.4);transition:border-color 0.3s ease}
+.urgency-cta:hover{border-color:var(--gold)}
 
 /* ============================================
    TESTIMONIALS SECTION
@@ -495,8 +495,8 @@ body{padding-bottom:70px}
 /* SIDEARM can apply broad anchor/button styles, so keep hero CTAs scoped and explicit. */
 #cc-page-root .hero-btn,#cc-page-root .hero-btn:link,#cc-page-root .hero-btn:visited{text-decoration:none!important}
 #cc-page-root .hero-btn.hero-btn-primary,#cc-page-root .hero-btn.hero-btn-primary:link,#cc-page-root .hero-btn.hero-btn-primary:visited{background:var(--gold)!important;border-color:var(--gold)!important;color:var(--navy)!important}
-#cc-page-root .hero-btn.hero-btn-secondary,#cc-page-root .hero-btn.hero-btn-secondary:link,#cc-page-root .hero-btn.hero-btn-secondary:visited{background:rgba(0,21,39,0.58)!important;border-color:var(--gold)!important;color:var(--white)!important}
-#cc-page-root .urgency-cta,#cc-page-root .urgency-cta:link,#cc-page-root .urgency-cta:visited{color:var(--gold)!important;border-bottom-color:var(--gold)!important}
+#cc-page-root .hero-btn.hero-btn-secondary,#cc-page-root .hero-btn.hero-btn-secondary:link,#cc-page-root .hero-btn.hero-btn-secondary:visited{background:transparent!important;border-color:rgba(255,255,255,0.5)!important;color:var(--white)!important}
+#cc-page-root .urgency-cta,#cc-page-root .urgency-cta:link,#cc-page-root .urgency-cta:visited{color:var(--gold)!important;border-bottom-color:rgba(255,184,28,0.4)!important}
 
 /* ============================================
    GIVING LEVELS — PULL QUOTE CALLOUT
@@ -671,7 +671,7 @@ img{max-width:100%;height:auto}
     <div class="hero-cta">
       <div class="hero-btn-group">
         <p class="hero-btn-label">Help Us Break Ground</p>
-        <a href="#support" class="hero-btn hero-btn-primary">Give Now</a>
+        <a href="javascript:void(0)" data-scroll-to="support" class="hero-btn hero-btn-primary">Give Now</a>
       </div>
       <div class="hero-btn-group">
         <p class="hero-btn-label">Start the Conversation</p>
@@ -692,7 +692,7 @@ img{max-width:100%;height:auto}
   <div class="container">
     <div class="urgency-inner">
       <p class="urgency-text">Invest in the Champions Complex today and support Toledo Athletics as we strive to graduate champions who will change the world.</p>
-      <a href="#support" class="urgency-cta">Contact Us to Give &rarr;</a>
+      <a href="javascript:void(0)" data-scroll-to="support" class="urgency-cta">Contact Us to Give &rarr;</a>
     </div>
   </div>
 </div>
@@ -724,12 +724,13 @@ img{max-width:100%;height:auto}
         <img src="https://dbukjj6eu5tsf.cloudfront.net/sidearm.sites/supportutrockets.sidearmsports.com/images/2026/2/27/Exterior_-_Main_Entry.MSA.jpg" alt="Champions Complex Main Entry Rendering" width="800" height="533" loading="lazy" decoding="async">
       </div>
       <div class="vision-content reveal-right reveal-delay-1">
+        <img src="https://dbukjj6eu5tsf.cloudfront.net/sidearm.sites/supportutrockets.sidearmsports.com/images/2026/3/6/Primary_Logo_for_Light_Background.png" alt="University of Toledo Athletics" style="height:52px;width:auto;display:block;margin-bottom:28px">
         <p class="section-label">The Vision</p>
         <h2 class="section-title">Building the Future of Toledo Athletics</h2>
         <p class="section-text">The Champions Complex represents a transformational investment in the future of Toledo student-athletes. This project will renovate and reimagine the existing Health Education Building, creating 74,000 square feet of modern space designed to support the growth, development, and success of our Rockets. Located in the heart of campus, every detail has been thoughtfully planned to enhance the daily experience of the student-athletes who represent Toledo with pride.</p>
         <blockquote class="vision-quote">
-          This facility will elevate the student-athlete experience, strengthen our competitive edge, and reinforce Toledo Athletics as a place where excellence is expected and supported.
-          <cite>Bryan B. Blair, VP and Director of Athletics</cite>
+          The Champions Complex is a vital commitment to our student-athletes. It guarantees they have the elite resources needed to achieve competitive excellence and succeed in every aspect of their lives.
+          <cite>Tom Moreland, VP and Director of Athletics</cite>
         </blockquote>
         <p class="vision-legacy">Gifts to the Champions Complex are among the most visible and lasting investments in Toledo Athletics history. This is your opportunity to leave something behind.</p>
       </div>
@@ -747,14 +748,14 @@ img{max-width:100%;height:auto}
       <p class="section-text">From training and recovery to connection and community, every space within the Champions Complex is purpose-built to support the wholistic student-athlete experience.</p>
     </div>
     <div class="features-grid">
-      <div class="feature-card reveal-scale reveal-delay-1 gallery-item" data-title="East Perspective" tabindex="0" role="button" aria-label="View East Perspective — click to enlarge">
+      <div class="feature-card reveal-scale reveal-delay-1 gallery-item" data-title="Academic Study" tabindex="0" role="button" aria-label="View Academic Study — click to enlarge">
         <div class="feature-card-image">
-          <img src="https://dbukjj6eu5tsf.cloudfront.net/sidearm.sites/supportutrockets.sidearmsports.com/images/2026/2/27/Exterior_-_East_Perspective.MSA.jpg" alt="Champions Complex — East Perspective" width="600" height="400" loading="lazy" decoding="async">
+          <img src="https://dbukjj6eu5tsf.cloudfront.net/sidearm.sites/supportutrockets.sidearmsports.com/images/2026/2/27/Academics-Study.MSA.jpg" alt="Academic Study Rooms" width="600" height="400" loading="lazy" decoding="async">
           <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
         </div>
         <div class="feature-card-body">
-          <h3 class="feature-card-title">East Perspective</h3>
-          <p class="feature-card-desc">A stunning exterior view of the Champions Complex from the east, showcasing the modern design that will anchor the athletic campus.</p>
+          <h3 class="feature-card-title">Academic Study</h3>
+          <p class="feature-card-desc">Private study rooms and collaborative workspaces designed to help student-athletes focus and excel in the classroom alongside their athletic pursuits.</p>
         </div>
       </div>
       <div class="feature-card reveal reveal-delay-2 gallery-item" data-title="Main Entry" tabindex="0" role="button" aria-label="View Main Entry — click to enlarge">
@@ -1130,7 +1131,7 @@ img{max-width:100%;height:auto}
       </div>
     </div>
     <div class="giving-cta-center reveal">
-      <a href="#support">To make a gift, call or email our team — we'll walk you through it.</a>
+      <a href="javascript:void(0)" data-scroll-to="support">To make a gift, call or email our team — we'll walk you through it.</a>
     </div>
   </div>
 </section>
@@ -1342,23 +1343,33 @@ img{max-width:100%;height:auto}
   window.addEventListener("resize", makeFullBleed);
 
   /* ==========================================
-     SMOOTH SCROLL FOR NAV LINKS
+     SMOOTH SCROLL — SIDEARM-SAFE
+     href="#..." links are intercepted by SIDEARM's jQuery before bubble-phase
+     JS can call e.preventDefault(). Two defences:
+     1. [data-scroll-to] on javascript:void(0) hrefs — SIDEARM never matches these.
+     2. capture-phase document listener — fires before SIDEARM's bubble handlers.
      ========================================== */
-  var allNavLinks = root.querySelectorAll('a[href^="#"]');
-  for(var j = 0; j < allNavLinks.length; j++){
-    allNavLinks[j].addEventListener("click", function(e){
-      var targetId = this.getAttribute("href");
-      if(targetId && targetId !== "#"){
-        var targetEl = root.querySelector(targetId);
-        if(targetEl){
-          e.preventDefault();
-          var navHeight = 0;
-          var targetPos = targetEl.getBoundingClientRect().top + window.pageYOffset - navHeight;
-          window.scrollTo({top: targetPos, behavior: "smooth"});
-        }
-      }
+  // 1. Handle [data-scroll-to] links
+  var scrollLinks = root.querySelectorAll('[data-scroll-to]');
+  for(var j = 0; j < scrollLinks.length; j++){
+    scrollLinks[j].addEventListener('click', function(e){
+      e.preventDefault();
+      var tid = this.getAttribute('data-scroll-to');
+      var el = document.getElementById(tid);
+      if(el) el.scrollIntoView({behavior:'smooth'});
     });
   }
+  // 2. Capture-phase fallback for any remaining a[href^="#"] inside root
+  document.addEventListener('click', function(e){
+    var anchor = e.target.closest('a[href^="#"]');
+    if(anchor && root.contains(anchor)){
+      var tid = anchor.getAttribute('href');
+      if(tid && tid !== '#'){
+        var el = root.querySelector(tid);
+        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth'}); }
+      }
+    }
+  }, true); // capture phase: fires before SIDEARM's bubble-phase jQuery delegation
 
   /* ==========================================
      SCROLL REVEAL ANIMATIONS (ALL TYPES)
