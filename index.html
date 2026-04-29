@@ -1627,6 +1627,12 @@ img{max-width:100%;height:auto}
 
   window.addEventListener("scroll", handleGlobalScroll, {passive:true});
 
+  // Run checks immediately so animations fire on initial load
+  checkReveal();
+  checkCounters();
+  checkBackToTop();
+  checkCWBars();
+
   /* ==========================================
      FAQ ACCORDION
      ========================================== */
