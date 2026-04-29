@@ -66,14 +66,14 @@ a{text-decoration:none;color:inherit}
    ============================================ */
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;overflow:hidden;background:var(--navy-deep)}
 .hero-bg{position:absolute;inset:0;z-index:1}
-.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:0.6}
-.hero-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(to right,rgba(0,15,35,0.97) 0%,rgba(0,21,45,0.88) 42%,rgba(0,21,45,0.45) 68%,rgba(0,21,45,0.1) 100%)}
+.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:0.75}
+.hero-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(to right,rgba(0,12,28,0.96) 0%,rgba(0,18,38,0.82) 38%,rgba(0,18,38,0.28) 62%,rgba(0,18,38,0.0) 100%)}
 .hero-wordmark{position:absolute;bottom:-2vw;left:-1vw;z-index:2;font-family:var(--font-display);font-size:22vw;font-weight:700;text-transform:uppercase;color:rgba(255,255,255,0.028);line-height:1;letter-spacing:-2px;pointer-events:none;user-select:none;white-space:nowrap}
-.hero-content{position:relative;z-index:3;max-width:var(--container-width);margin:0 auto;padding:0 24px;width:100%;flex:1;display:flex;flex-direction:column;justify-content:center;padding-top:120px;padding-bottom:100px}
-.hero-tag{font-family:var(--font-display);font-size:0.78rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:5px;margin-bottom:22px;clip-path:inset(0 100% 0 0);animation:heroWipe 0.7s cubic-bezier(0.77,0,0.18,1) 0.2s forwards}
-.hero-title{font-family:var(--font-display);font-size:clamp(3.2rem,7vw,6.2rem);font-weight:700;color:var(--white);line-height:0.95;text-transform:uppercase;margin-bottom:22px;clip-path:inset(0 100% 0 0);animation:heroWipe 0.8s cubic-bezier(0.77,0,0.18,1) 0.38s forwards}
+.hero-content{position:relative;z-index:3;max-width:var(--container-width);margin:0 auto;padding:0 24px;width:100%;flex:1;display:flex;flex-direction:column;justify-content:center;padding-top:160px;padding-bottom:120px;max-width:680px}
+.hero-tag{font-family:var(--font-display);font-size:0.72rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:6px;margin-bottom:28px;clip-path:inset(0 100% 0 0);animation:heroWipe 0.7s cubic-bezier(0.77,0,0.18,1) 0.2s forwards}
+.hero-title{font-family:var(--font-display);font-size:clamp(2.6rem,5.2vw,4.8rem);font-weight:700;color:var(--white);line-height:0.92;text-transform:uppercase;margin-bottom:28px;clip-path:inset(0 100% 0 0);animation:heroWipe 0.8s cubic-bezier(0.77,0,0.18,1) 0.38s forwards}
 .hero-title .gold{color:var(--gold)}
-.hero-subtitle{font-family:var(--font-display);font-size:clamp(0.85rem,1.4vw,1.05rem);font-weight:400;color:rgba(255,255,255,0.55);text-transform:uppercase;letter-spacing:3px;margin-bottom:40px;clip-path:inset(0 100% 0 0);animation:heroWipe 0.7s cubic-bezier(0.77,0,0.18,1) 0.54s forwards}
+.hero-subtitle{font-family:var(--font-display);font-size:clamp(0.75rem,1.1vw,0.9rem);font-weight:400;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:4px;margin-bottom:40px;padding-left:18px;border-left:2px solid var(--gold);clip-path:inset(0 100% 0 0);animation:heroWipe 0.7s cubic-bezier(0.77,0,0.18,1) 0.54s forwards}
 .hero-stat-bar{position:absolute;bottom:0;left:0;right:0;z-index:4;background:rgba(0,10,25,0.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid rgba(255,184,28,0.25);display:flex;justify-content:center}
 .hero-stat-bar-inner{display:flex;max-width:var(--container-width);width:100%;padding:0 24px}
 .hero-stat{flex:1;text-align:center;padding:22px 16px;position:relative;clip-path:inset(0 0 100% 0);animation:heroSlideUp 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards}
@@ -83,12 +83,9 @@ a{text-decoration:none;color:inherit}
 .hero-stat+.hero-stat::before{content:'';position:absolute;left:0;top:20%;bottom:20%;width:1px;background:rgba(255,184,28,0.25)}
 .hero-stat-number{font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;color:var(--gold);line-height:1}
 .hero-stat-label{font-size:0.7rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:2.5px;margin-top:5px}
-.hero-scroll{position:absolute;bottom:96px;right:32px;z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,0.35);font-size:0.65rem;text-transform:uppercase;letter-spacing:3px;writing-mode:vertical-rl;animation:heroFloat 2.5s ease-in-out 1.4s infinite}
-.hero-scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent);writing-mode:horizontal-tb}
 
 @keyframes heroWipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0% 0 0)}}
 @keyframes heroSlideUp{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0% 0)}}
-@keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 
 /* ============================================
    SECTION SHARED STYLES
@@ -378,7 +375,7 @@ body{padding-bottom:70px}
    HERO CTA BUTTONS
    ============================================ */
 .hero-cta{display:flex;align-items:center;gap:28px;clip-path:inset(0 100% 0 0);animation:heroWipe 0.7s cubic-bezier(0.77,0,0.18,1) 0.7s forwards;flex-wrap:wrap}
-.hero-btn{font-family:var(--font-display);font-size:0.9rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:16px 40px;cursor:pointer;transition:all 0.3s ease;display:inline-block;border:2px solid transparent}
+.hero-btn{font-family:var(--font-display);font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:13px 28px;cursor:pointer;transition:all 0.3s ease;display:inline-block;border:2px solid transparent}
 .hero-btn-primary{background:var(--gold);color:var(--navy);border-color:var(--gold)}
 .hero-btn-primary:hover{background:var(--gold-light);border-color:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,184,28,0.35)}
 .hero-btn-phone{font-family:var(--font-display);font-size:0.82rem;font-weight:500;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:2px;display:flex;align-items:center;gap:8px;transition:color 0.3s ease;border:none;background:none;cursor:pointer;padding:0}
@@ -758,10 +755,6 @@ img{max-width:100%;height:auto}
         <div class="hero-stat-label">Varsity Sports</div>
       </div>
     </div>
-  </div>
-  <div class="hero-scroll" aria-hidden="true">
-    <span>Scroll</span>
-    <div class="hero-scroll-line"></div>
   </div>
 </section>
 
