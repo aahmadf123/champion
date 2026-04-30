@@ -326,7 +326,7 @@ a{text-decoration:none;color:inherit}
 .nav-links{display:none}
 .mobile-toggle{display:flex}
 .nav-links.open{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--navy);padding:20px 24px;gap:16px;border-top:1px solid rgba(255,255,255,0.1)}
-.hero-stat-bar{flex-direction:column}.hero-stat-bar-inner{flex-wrap:wrap}.hero-stat{flex:1 1 50%}
+.hero-stat-bar{flex-direction:column}.hero-stat-bar-inner{flex-wrap:wrap}.hero-stat{flex:1 1 50%}.hero-stat+.hero-stat::before{display:none}
 .features-grid{grid-template-columns:1fr}
 .gallery-grid{grid-template-columns:1fr;grid-template-rows:auto}
 .gallery-item:nth-child(1){grid-row:span 1}
@@ -335,7 +335,7 @@ a{text-decoration:none;color:inherit}
 body{padding-bottom:70px}
 .hero-title{font-size:clamp(2.4rem,8vw,3.8rem)}.hero-wordmark{font-size:40vw;bottom:-4vw}
 .section-title{font-size:clamp(1.8rem,5vw,2.5rem)}
-.dil-timeline::before{left:7px;transform:none}
+.dil-timeline::before{left:15px;transform:none}
 .dil-item{flex-wrap:wrap}
 .dil-time-col{display:none}
 .dil-node{order:0;flex:0 0 32px}
@@ -531,8 +531,12 @@ body{padding-bottom:70px}
 .testimonials-grid{grid-template-columns:1fr}
 .testimonial-card--featured{grid-column:auto;grid-row:auto}
 .giving-grid{grid-template-columns:1fr}
-.pt-steps::before{top:0;left:28px;right:auto;width:3px;height:100%}
-.pt-step{flex:1;text-align:center}
+.pt-steps{flex-direction:column;align-items:stretch;max-width:480px}
+.pt-steps::before{top:28px;left:27px;right:auto;width:2px;height:calc(100% - 56px)}
+.pt-step{display:flex;flex-direction:row;align-items:flex-start;gap:20px;text-align:left;padding:0 0 32px 0}
+.pt-step:last-child{padding-bottom:0}
+.pt-dot{margin:0;flex-shrink:0}
+.pt-step-content-inner{text-align:left}
 .hero-cta{flex-direction:column;gap:12px}
 .hero-btn{text-align:center}
 .back-to-top{bottom:88px;right:16px}
@@ -977,7 +981,7 @@ img{max-width:100%;height:auto}
           <span class="testimonial-sport-pill">Softball</span>
         </div>
         <div class="testimonial-card-body">
-          <p class="testimonial-text">The Champions Complex is a game-changer for every student-athlete at Toledo. Having world-class nutrition, academic, and wellness resources all under one roof gives our players everything they need to thrive &mdash; not just as athletes, but as people. This investment in our program is something our entire team is incredibly excited about, and it means the world to know our donors believe in what we&rsquo;re building here.</p>
+          <p class="testimonial-text">Having a home for softball on campus is incredibly meaningful for our program and our Rockets. The Champions Complex will play a huge role in elevating the student&#8209;athlete experience at Toledo and helping our players feel connected, supported, and inspired to represent this university and this city. When you believe in our student&#8209;athletes, it empowers them to accomplish great things make us proud Toledo Rockets.</p>
           <div class="testimonial-author">
             <p class="testimonial-author-name">Jessica Bracamonte</p>
             <p class="testimonial-author-sport">Head Coach &middot; Toledo Softball</p>
