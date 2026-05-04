@@ -366,8 +366,10 @@ body{padding-bottom:70px}
    ============================================ */
 .nav-donate-btn{font-family:var(--font-display);font-size:0.85rem;font-weight:600;color:var(--white);background:transparent;padding:10px 20px;border:2px solid var(--gold);cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:all 0.3s ease;display:inline-block;margin-left:4px}
 .nav-donate-btn:hover{background:var(--gold);color:var(--navy)}
-.nav-back-link{font-size:0.75rem;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:5px;text-transform:uppercase;letter-spacing:0.5px;transition:color 0.3s ease;white-space:nowrap}
-.nav-back-link:hover{color:var(--gold)}
+.nav-left{display:flex;align-items:center;gap:0}
+.nav-home-btn{display:flex;align-items:center;gap:5px;color:rgba(255,255,255,0.4);font-family:var(--font-body);font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;transition:color 0.3s ease;padding-right:16px;margin-right:16px;border-right:1px solid rgba(255,255,255,0.15)}
+.nav-home-btn:hover{color:var(--gold)}
+.nav-home-btn svg{width:14px;height:14px;fill:currentColor;flex-shrink:0}
 .nav-phone-link{font-size:0.8rem;color:rgba(255,255,255,0.7);display:flex;align-items:center;gap:6px;transition:color 0.3s ease}
 .nav-phone-link:hover{color:var(--gold)}
 .nav-phone-link svg{width:14px;height:14px;fill:var(--gold);flex-shrink:0}
@@ -542,6 +544,7 @@ body{padding-bottom:70px}
 .hero-cta{flex-direction:column;gap:12px}
 .hero-btn{text-align:center}
 .back-to-top{bottom:88px;right:16px}
+.nav-home-btn{display:none}
 .nav-phone-link{display:none}
 .urgency-inner{gap:10px;padding:0 16px}
 }
@@ -703,11 +706,16 @@ img{max-width:100%;height:auto}
      ======================================== -->
 <nav class="site-nav" id="siteNav">
   <div class="nav-inner">
-    <a href="#" class="nav-logo">
-      <img src="images/UT_Athletics_Primary_Logo_for_Dark_Background.png" alt="University of Toledo Athletics" class="nav-logo-img">
-    </a>
+    <div class="nav-left">
+      <a href="https://supportutrockets.com/" class="nav-home-btn" title="Go back to Rocket Fund" aria-label="Go back to Rocket Fund">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+        <span>Rocket Fund</span>
+      </a>
+      <a href="#" class="nav-logo">
+        <img src="images/UT_Athletics_Primary_Logo_for_Dark_Background.png" alt="University of Toledo Athletics" class="nav-logo-img">
+      </a>
+    </div>
     <div class="nav-links" id="navLinks">
-      <a href="https://supportutrockets.com/" class="nav-back-link">&#8592; supportutrockets.com</a>
       <a href="#vision">Vision</a>
       <a href="#features">Features</a>
       <a href="#impact">Impact</a>
