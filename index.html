@@ -104,8 +104,9 @@ a{text-decoration:none;color:inherit}
 .vision-image-accent{display:none}
 .vision-content{display:flex;flex-direction:column;justify-content:center;padding:80px 48px 80px 60px}
 .vision-content .section-title{color:var(--navy)}
-.vision-quote{font-family:var(--font-body);font-size:1rem;font-style:italic;color:var(--navy-light);border-left:3px solid var(--gold);padding-left:20px;margin-top:28px;line-height:1.7}
-.vision-quote cite{display:block;font-style:normal;font-weight:600;color:var(--navy);margin-top:8px;font-size:0.85rem}
+.vision-quote{font-family:var(--font-body);font-size:1.05rem;font-style:italic;color:var(--navy-light);margin-top:32px;line-height:1.8;padding-left:0;border:none}
+.vision-quote::before{content:'\201C';font-family:Georgia,serif;font-size:3.5rem;line-height:0.8;color:var(--gold);opacity:0.45;display:block;margin-bottom:10px}
+.vision-quote cite{display:block;font-style:normal;font-weight:600;color:var(--navy);margin-top:12px;font-size:0.85rem}
 
 /* ============================================
    FEATURES SECTION
@@ -121,12 +122,17 @@ a{text-decoration:none;color:inherit}
 .feature-card-image{width:100%;position:relative;overflow:hidden;background:rgba(0,10,25,0.9);aspect-ratio:16/9}
 .feature-card-image img{width:100%;height:100%;object-fit:contain;transition:opacity 0.4s ease}
 .feature-card:hover .feature-card-image img{opacity:0.9}
-.feature-card .gallery-zoom-hint{position:absolute;top:10px;right:10px;background:rgba(0,0,0,0.55);width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:50%;opacity:0;transition:opacity 0.3s ease;z-index:2}
+.feature-card .gallery-zoom-hint{position:absolute;top:10px;right:10px;background:rgba(0,0,0,0.55);width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:50%;opacity:0.35;transition:opacity 0.3s ease;z-index:2}
 .feature-card .gallery-zoom-hint svg{width:16px;height:16px;fill:white}
 .feature-card:hover .gallery-zoom-hint{opacity:1}
 .feature-card-body{padding:28px 24px}
 .feature-card-title{font-family:var(--font-display);font-size:1.2rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;color:var(--white)}
 .feature-card-desc{font-size:1rem;line-height:1.65;color:rgba(255,255,255,0.55)}
+.feature-card--hero{grid-row:span 2;display:flex;flex-direction:column}
+.feature-card--hero .feature-card-image{flex:1;aspect-ratio:unset;min-height:300px}
+.feature-card--hero .feature-card-body{padding:36px 28px}
+.feature-card--hero .feature-card-title{font-size:1.4rem;margin-bottom:14px}
+.feature-card--hero .feature-card-desc{font-size:1.05rem;line-height:1.75}
 
 /* ============================================
    GALLERY SECTION
@@ -407,7 +413,7 @@ body{padding-bottom:70px}
 .testimonials-header .section-title{color:var(--white)}
 .testimonials-header .section-text{color:rgba(255,255,255,0.6);margin:0 auto}
 .testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto;gap:24px;align-items:start}
-.testimonial-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-left:3px solid var(--gold);overflow:visible;display:flex;flex-direction:column;position:relative;transition:all var(--transition-smooth)}
+.testimonial-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);overflow:visible;display:flex;flex-direction:column;position:relative;transition:all var(--transition-smooth)}
 .testimonial-card:hover{border-color:rgba(255,184,28,0.45);background:rgba(255,255,255,0.08);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 0 1px rgba(255,184,28,0.15)}
 .testimonial-card--featured{grid-row:auto}
 .testimonial-avatar-wrap{display:flex;flex-direction:column;align-items:center;padding:32px 24px 0;gap:12px}
@@ -558,14 +564,14 @@ body{padding-bottom:70px}
 /* ============================================
    GIVING LEVELS — PULL QUOTE CALLOUT
    ============================================ */
-.giving-pullquote{border-left:4px solid var(--gold);background:var(--off-white);padding:28px 32px;margin-bottom:48px}
-.giving-pullquote p{font-family:var(--font-body);font-size:clamp(1.05rem,1.8vw,1.2rem);font-style:italic;color:var(--navy);line-height:1.75}
+.giving-pullquote{background:transparent;padding:0 0 40px;margin-bottom:8px;text-align:center;border:none}
+.giving-pullquote p{font-family:var(--font-display);font-size:clamp(1.1rem,2vw,1.3rem);font-weight:500;font-style:normal;color:var(--navy);line-height:1.65;max-width:720px;margin:0 auto}
 
 /* ============================================
    SUPPORT SECTION — ANONYMOUS DONOR CARDS
    ============================================ */
 .anon-donors-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;text-align:left}
-.anon-donor-card{border-left:3px solid var(--gold);background:rgba(255,255,255,0.07);padding:16px 20px}
+.anon-donor-card{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.12);padding:16px 20px}
 .anon-donor-card p{font-size:0.9rem;line-height:1.6;color:rgba(255,255,255,0.75);font-style:italic}
 .support-gap-stat{font-size:1rem;color:rgba(255,255,255,0.7);margin-top:8px;font-style:italic}
 .support-gap-stat strong{color:var(--gold-light)}
@@ -628,7 +634,7 @@ body{padding-bottom:70px}
 /* ============================================
    VISION LEGACY PARAGRAPH
    ============================================ */
-.vision-legacy{font-family:var(--font-body);font-size:1rem;font-style:italic;color:var(--navy-light);border-left:3px solid var(--gold);padding-left:20px;margin-top:20px;line-height:1.7}
+.vision-legacy{font-family:var(--font-body);font-size:0.95rem;font-style:italic;color:var(--navy-light);border:none;border-top:1px solid var(--gray-100);padding:18px 0 0;margin-top:24px;line-height:1.75}
 
 /* ============================================
    ENHANCED REVEAL ANIMATIONS
@@ -833,7 +839,7 @@ img{max-width:100%;height:auto}
       <p class="section-text">From training and recovery to connection and community, every space within the Champions Complex is purpose-built to support the wholistic student-athlete experience.</p>
     </div>
     <div class="features-grid">
-      <div class="feature-card reveal-scale reveal-delay-1 gallery-item" data-title="East Perspective" tabindex="0" role="button" aria-label="View East Perspective — click to enlarge">
+      <div class="feature-card feature-card--hero reveal-scale reveal-delay-1 gallery-item" data-title="East Perspective" tabindex="0" role="button" aria-label="View East Perspective — click to enlarge">
         <div class="feature-card-image">
           <img src="images/Exterior__East_Perspective_MSA.jpg" alt="Champions Complex — East Perspective" width="600" height="400" loading="lazy" decoding="async">
           <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
@@ -1011,7 +1017,7 @@ img{max-width:100%;height:auto}
     <div class="dil-header reveal">
       <p class="section-label">Student-Athlete Experience</p>
       <h2 class="section-title">Champions Complex will be the heartbeat of every Rocket’s day</h2>
-      <p class="section-text">From the weight room at dawn to the study hall at dusk, the Champions Complex is the heartbeat of every Rocket's day.</p>
+      <p class="section-text">From 6am conditioning to evening study hall, every hour of a student-athlete's day flows through this building.</p>
     </div>
     <div class="dil-timeline">
 
