@@ -1,24 +1,19 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "pwa-chrome",
-            "request": "launch",
-            "name": "Open champion.html (recommended)",
-            "url": "file://${workspaceFolder}/champion.html",
-            "webRoot": "${workspaceFolder}",
-            "cwd": "${workspaceFolder}"
-        },
-        {
-            "type": "chrome",
-            "request": "launch",
-            "name": "Open champion.html (legacy)",
-            "url": "file://${workspaceFolder}/champion.html",
-            "webRoot": "${workspaceFolder}",
-            "cwd": "${workspaceFolder}"
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Open the built page (run: npm run all, then npm run serve)",
+      "url": "http://127.0.0.1:8420/index.html",
+      "webRoot": "${workspaceFolder}/dist"
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Open the concept chooser",
+      "url": "http://127.0.0.1:8420/preview/",
+      "webRoot": "${workspaceFolder}/dist"
+    }
+  ]
 }
