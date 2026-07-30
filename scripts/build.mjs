@@ -195,12 +195,41 @@ ${js}
   return html;
 }
 
-async function buildSidearm(concept, fontMode) {
+/**
+ * The Sidearm target as two independent strings.
+ *
+ * Sidearm's feature page keeps styles in a Custom CSS field and markup in an
+ * HTML block, so these have to be pasteable separately. The single-file variant
+ * is just the two of them concatenated.
+ */
+async function sidearmParts(concept, fontMode) {
   const ctx = { concept, target: 'sidearm', derivatives: await derivatives() };
   const { base, own } = await conceptCss(concept);
   const { css: faces } = await fontFaces(concept, fontMode);
   const js = await readFile('src/js/app.js', 'utf8');
   const body = renderBody(ctx);
+
+  const css = `${faces}
+
+${base}
+
+${own}
+
+/* Sidearm sits inside existing chrome, so the hero is capped rather than
+   sized to the viewport, and the jump bar replaces the site nav. */
+.cc[data-target='sidearm']{--cc-hero-h:clamp(26rem,62vh,38rem);--cc-scroll-offset:7rem}`;
+
+  const html = `${body}
+
+<script>
+${js}
+</script>`;
+
+  return { css, html };
+}
+
+async function buildSidearm(concept, fontMode) {
+  const { css, html } = await sidearmParts(concept, fontMode);
 
   const note =
     fontMode === 'inline'
@@ -236,23 +265,120 @@ async function buildSidearm(concept, fontMode) {
   ============================================================================
 -->
 <style>
-${faces}
-
-${base}
-
-${own}
-
-/* Sidearm sits inside existing chrome, so the hero is capped rather than
-   sized to the viewport, and the jump bar replaces the site nav. */
-.cc[data-target='sidearm']{--cc-hero-h:clamp(26rem,62vh,38rem);--cc-scroll-offset:7rem}
+${css}
 </style>
 
-${body}
-
-<script>
-${js}
-</script>
+${html}
 `;
+}
+
+/**
+ * The committed two-file bundle in sidearm/.
+ *
+ * Checked into the repository rather than left in dist/, so the files can be
+ * opened on GitHub and copy-pasted without anyone running a build first.
+ */
+async function writeSidearmBundle(concept) {
+  const { css, html } = await sidearmParts(concept, 'inline');
+
+  const cssFile = `/* ===========================================================================
+   CHAMPIONS COMPLEX  |  Sidearm Custom CSS
+   ===========================================================================
+
+   Generated file. Do not edit by hand. Edit src/ and run: npm run build
+
+   HOW TO USE
+   Paste this entire file into the Custom CSS field of the Sidearm feature page.
+   Paste champions-complex.html into the HTML content block.
+
+   WHY IT IS SAFE
+   Every selector is scoped under .cc, so nothing here can restyle Sidearm's own
+   header, nav or footer. Nothing in this file starts with html, body, * or a
+   bare element selector, and the build fails if that ever changes.
+
+   The typefaces are embedded as base64, so this file makes no external requests
+   and renders identically to the preview link.
+   =========================================================================== */
+
+${css}
+`;
+
+  const htmlFile = `<!--
+  ============================================================================
+  CHAMPIONS COMPLEX  |  Sidearm HTML block
+  ============================================================================
+
+  Generated file. Do not edit by hand. Edit src/ and run: npm run build
+
+  HOW TO USE
+  1. Paste champions-complex.css into the Sidearm Custom CSS field.
+  2. Paste everything below this comment into the HTML content block.
+
+  NO CUSTOM CSS FIELD? A Sport File in Standard mode often has no separate CSS
+  field. In that case ignore both of these files and paste
+  champions-complex-single-paste.html into the content block instead.
+
+  Do not wrap it in anything, and do not add <html>, <head> or <body>. The
+  <script> at the bottom is part of the paste; the page is fully readable
+  without it, but the lightbox, the accordion and the jump-bar highlighting
+  need it.
+
+  There is no site navigation and no <h1> here, because Sidearm provides both.
+
+  Images resolve to Sidearm's own CloudFront library. Assets that have never
+  been uploaded there degrade to a monogram rather than a broken image. See
+  README.md for the upload checklist.
+  ============================================================================
+-->
+
+${html}
+`;
+
+  // Third file for the case where the page is a Sport File in Standard mode
+  // rather than a Feature page. Standard mode does not reliably expose a
+  // separate Custom CSS field, so everything goes into the one content block:
+  // style at the top, markup, script at the bottom.
+  const singleFile = `<!--
+  ============================================================================
+  CHAMPIONS COMPLEX  |  Sidearm single paste
+  ============================================================================
+
+  Generated file. Do not edit by hand. Edit src/ and run: npm run build
+
+  USE THIS ONE if the page has no separate Custom CSS field, which is the usual
+  case for a Sport File in Standard mode. Otherwise use the two-file pair:
+  champions-complex.css and champions-complex.html.
+
+  HOW TO USE
+  Paste everything below this comment into the HTML content block, from the
+  opening <style> tag through the closing </script> tag. That single selection
+  is the CSS, the markup and the JavaScript.
+
+  Leave out <!DOCTYPE html>, <html>, <head>, <title>, the meta tags and <body>.
+  Sidearm generates all of those, and pasting them nests document tags.
+
+  NO HEAD FIELD IS NEEDED. The typefaces are embedded in the style block as
+  base64, so there are no font link tags and no @import to place, and no flash
+  of fallback type on first load.
+  ============================================================================
+-->
+<style>
+${css}
+</style>
+
+${html}
+`;
+
+  await mkdir('sidearm', { recursive: true });
+  await writeFile('sidearm/champions-complex.css', cssFile);
+  await writeFile('sidearm/champions-complex.html', htmlFile);
+  await writeFile('sidearm/champions-complex-single-paste.html', singleFile);
+
+  return {
+    css: Buffer.byteLength(cssFile),
+    html: Buffer.byteLength(htmlFile),
+    single: Buffer.byteLength(singleFile),
+  };
 }
 
 /* --- preview chooser ------------------------------------------------------ */
@@ -388,10 +514,22 @@ async function main() {
   await writeFile(`${OUT}/sidearm.html`, prodSidearm);
   await writeFile(`${OUT}/sidearm-systemfonts.html`, prodSidearmSys);
 
+  const bundle = await writeSidearmBundle(PRODUCTION_CONCEPT);
+
   console.log(`  production (${PRODUCTION_CONCEPT})`);
   console.log(`    index.html                  ${kb(prodPage)}`);
   console.log(`    sidearm.html                ${kb(prodSidearm)}  fonts inlined`);
   console.log(`    sidearm-systemfonts.html    ${kb(prodSidearmSys)}  system stack`);
+  console.log('\n  committed Sidearm files (pick the route that matches your page)');
+  console.log(
+    `    sidearm/champions-complex.css   ${(bundle.css / 1024).toFixed(0)} KB  -> Custom CSS field`
+  );
+  console.log(
+    `    sidearm/champions-complex.html  ${(bundle.html / 1024).toFixed(0)} KB  -> HTML content block`
+  );
+  console.log(
+    `    sidearm/champions-complex-single-paste.html  ${(bundle.single / 1024).toFixed(0)} KB  -> one block, no CSS field needed`
+  );
 
   console.log('\n  preview');
   for (const c of CONCEPTS) {

@@ -17,6 +17,7 @@
  */
 import { chromium } from 'playwright-core';
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import path from 'node:path';
 
 const frags = process.argv.slice(2).length
@@ -46,10 +47,12 @@ const HOST_CSS = `
   a:focus-visible { outline: 3px solid #c00; outline-offset: 1px; }
 `;
 
-const HOST_SHELL = (body) => `<!DOCTYPE html>
+const HOST_SHELL = (body, extraCss = '') => `<!DOCTYPE html>
 <html lang="en">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sidearm host stand-in</title><style>${HOST_CSS}</style></head>
+<title>Sidearm host stand-in</title><style>${HOST_CSS}</style>${
+  extraCss ? `\n<style>${extraCss}</style>` : ''
+}</head>
 <body>
 <header class="site">
   <img class="host-logo" alt="host logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40'%3E%3Crect width='120' height='40' fill='%23fff'/%3E%3C/svg%3E">
@@ -112,15 +115,36 @@ async function main() {
   // all; everything after it obviously shifts down.
   const ABOVE_BLOCK = new Set(['header', 'headerLink', 'h1', 'lede', 'list', 'listItem', 'logo']);
 
+  // The committed two-file bundle, loaded the way Sidearm loads it: CSS in a
+  // Custom CSS field (so, in <head>) and markup in the content block.
+  const BUNDLE = 'sidearm/champions-complex.css';
+  const SINGLE = 'sidearm/champions-complex-single-paste.html';
+  if (existsSync(BUNDLE)) frags.push('bundle');
+  // The single-paste route carries its own <style>, so it goes through the same
+  // path as the dist fragments.
+  if (existsSync(SINGLE)) frags.push(SINGLE);
+
   for (const frag of frags) {
     const problems = [];
-    const raw = await readFile(frag, 'utf8');
-    // Strip the instruction comment, exactly as a human copying "everything
-    // below the comment" would.
-    const body = raw.replace(/^<!--[\s\S]*?-->\s*/, '');
+    let body;
+    let extraCss = '';
 
-    const file = path.join(tmpDir, path.basename(path.dirname(frag)) + '-' + path.basename(frag));
-    await writeFile(file, HOST_SHELL(body));
+    if (frag === 'bundle') {
+      extraCss = await readFile(BUNDLE, 'utf8');
+      const raw = await readFile('sidearm/champions-complex.html', 'utf8');
+      body = raw.replace(/^<!--[\s\S]*?-->\s*/, '');
+    } else {
+      const raw = await readFile(frag, 'utf8');
+      // Strip the instruction comment, exactly as a human copying "everything
+      // below the comment" would.
+      body = raw.replace(/^<!--[\s\S]*?-->\s*/, '');
+    }
+
+    const file = path.join(
+      tmpDir,
+      frag === 'bundle' ? 'bundle.html' : path.basename(path.dirname(frag)) + '-' + path.basename(frag)
+    );
+    await writeFile(file, HOST_SHELL(body, extraCss));
 
     const page = await ctx.newPage();
     const errors = [];
@@ -157,6 +181,39 @@ async function main() {
           problems.push(`host ${key}.${prop} changed: ${a[prop]} -> ${b[prop]}`);
         }
       }
+    }
+
+    // The jump bar is the only wayfinding on this target, so it has to carry a
+    // Give link and it has to track the current section. Both were broken:
+    // Give was filtered out of the shared nav data, and the scrollspy was gated
+    // on the standalone bar's class, which Sidearm never renders.
+    const jump = await page.evaluate(async () => {
+      const bar = document.querySelector('.cc-jump-inner');
+      if (!bar) return { absent: true };
+      const links = [...bar.querySelectorAll('.cc-jump-link')];
+      const give = links.find((a) => a.getAttribute('href') === '#cc-give');
+      const target = document.querySelector('#cc-progress');
+      if (target) target.scrollIntoView();
+      await new Promise((r) => setTimeout(r, 700));
+      return {
+        absent: false,
+        count: links.length,
+        hasGive: !!give,
+        current: [...bar.querySelectorAll('[aria-current="true"]')].map((a) =>
+          a.getAttribute('href')
+        ),
+      };
+    });
+
+    if (!jump.absent) {
+      if (!jump.hasGive) problems.push('jump bar has no Give link');
+      if (jump.count < 6) problems.push(`jump bar has only ${jump.count} links`);
+      if (jump.current.length !== 1) {
+        problems.push(
+          `jump bar current-section state is ${jump.current.length} links, expected 1`
+        );
+      }
+      await page.evaluate(() => window.scrollTo(0, 0));
     }
 
     // The host header must stay on top of the injected content.

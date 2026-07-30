@@ -51,9 +51,16 @@
   --cc-gold-ink: #7f5700; /* 6.43:1 white, 5.42:1 paper, 4.75:1 paper-deep */
   --cc-gold-quiet: rgba(127, 87, 0, 0.3);
 
+  /* Cards, buttons and media soften; the annotation layer stays square, because
+     dimension rules and sheet tags are the drawing language and rounding them
+     would take the concept with it. */
+  --cc-r-sm: 4px;
+  --cc-r-md: 8px;
+  --cc-r-lg: 12px;
+
   --cc-on-navy: rgba(255, 255, 255, 0.92);
   --cc-on-navy-soft: rgba(255, 255, 255, 0.66); /* 6.6:1 on navy-deep */
-  --cc-on-navy-faint: rgba(255, 255, 255, 0.52); /* 5.5:1, the floor */
+  --cc-on-navy-faint: rgba(255, 255, 255, 0.62); /* 6.6:1 on navy-deep */
   --cc-rule-navy: rgba(255, 255, 255, 0.14);
 
   --cc-skip-bg: var(--cc-gold);
@@ -301,10 +308,85 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(0, 21, 39, 0.95);
-  border-bottom: 1px solid var(--cc-rule-navy);
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition:
+    background 0.3s var(--cc-ease),
+    border-color 0.3s var(--cc-ease),
+    backdrop-filter 0.3s var(--cc-ease);
+}
+
+/* On load the bar sits over the rendering rather than on a fill, because the
+   first thing anyone should see is the building.
+
+   The legibility comes from a backdrop filter rather than a heavy overlay: it
+   drops the luminance of whatever is behind the glyphs while keeping the
+   image's shapes and colour readable through it. A flat scrim dark enough to
+   pass measured almost opaque, which defeated the point.
+
+   Measured, not assumed: `npm run a11y` hides the text, screenshots, and reads
+   the pixels behind it. This started at 1.52:1. */
+.cc-nav:not(.is-stuck) {
+  backdrop-filter: blur(6px) saturate(0.85) brightness(0.34);
+  -webkit-backdrop-filter: blur(6px) saturate(0.85) brightness(0.34);
+}
+
+.cc-nav::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 -3rem 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 10, 20, 0.55) 0%,
+    rgba(0, 10, 20, 0.4) 58%,
+    rgba(0, 10, 20, 0) 100%
+  );
+  transition: opacity 0.3s var(--cc-ease);
+}
+
+/* Where the backdrop filter is unsupported the gradient is the only ground, so
+   it carries the full weight there. */
+@supports not (backdrop-filter: blur(1px)) {
+  .cc-nav::before {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 10, 20, 0.94) 0%,
+      rgba(0, 10, 20, 0.88) 45%,
+      rgba(0, 10, 20, 0.62) 62%,
+      rgba(0, 10, 20, 0) 100%
+    );
+  }
+}
+
+/* Over the hero the links carry more weight than they need against the solid
+   bar, because a photograph is a noisier ground than flat navy. */
+.cc-nav:not(.is-stuck) .cc-nav-link,
+.cc-nav:not(.is-stuck) .cc-nav-tel {
+  color: rgba(255, 255, 255, 0.96);
+}
+
+.cc-nav.is-stuck {
+  background: rgba(0, 21, 39, 0.96);
+  border-bottom-color: var(--cc-rule-navy);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+}
+
+.cc-nav.is-stuck::before {
+  opacity: 0;
+}
+
+/* The sentinel is geometry only. It marks the top of the hero so the observer
+   knows when the bar has left it. */
+.cc-nav-sentinel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 5rem;
+  pointer-events: none;
 }
 
 .cc-nav-inner {
@@ -434,6 +516,58 @@
     margin-top: 1rem;
     justify-content: center;
   }
+}
+
+/* ==========================================================================
+   JUMP BAR (Sidearm target)
+   ==========================================================================
+   Sidearm supplies the site header, so that target gets in-page jump links
+   instead of a second navigation bar. This had no styles at all until now and
+   rendered as a row of unstyled inline links.
+*/
+
+.cc-jump {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--cc-navy-deep);
+  border-bottom: 1px solid rgba(255, 184, 28, 0.28);
+}
+
+.cc-jump-inner {
+  display: flex;
+  gap: 0.25rem;
+  align-items: stretch;
+  max-width: var(--cc-measure-wide);
+  margin-inline: auto;
+  padding-inline: var(--cc-gutter);
+  scrollbar-width: thin;
+}
+
+.cc-jump-link {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 0.75rem 0.875rem;
+  min-height: 2.75rem;
+  font-family: var(--cc-font-ui);
+  font-size: var(--cc-t-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  color: var(--cc-on-navy-soft);
+  border-bottom: 2px solid transparent;
+  transition:
+    color 0.2s var(--cc-ease),
+    border-color 0.2s var(--cc-ease);
+}
+
+.cc-jump-link:hover,
+.cc-jump-link[aria-current='true'] {
+  color: #fff;
+  border-bottom-color: var(--cc-gold);
 }
 
 /* ==========================================================================
@@ -980,7 +1114,7 @@
 
 .cc-list-item {
   display: grid;
-  grid-template-columns: 1.5rem 1fr;
+  grid-template-columns: 1rem 1fr;
   gap: 0.75rem;
   align-items: start;
   font-size: var(--cc-t-sm);
@@ -990,9 +1124,11 @@
 
 .cc-list-item::before {
   content: '';
-  margin-top: 0.55rem;
-  width: 1.25rem;
-  height: 1px;
+  justify-self: center;
+  margin-top: 0.5rem;
+  width: 0.4375rem;
+  height: 0.4375rem;
+  border-radius: 50%;
   background: var(--cc-gold-ink);
 }
 
@@ -1006,32 +1142,25 @@
   grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr));
 }
 
-/* A six-column field, with spans chosen so all four rows fill exactly and the
-   establishing view gets the width it deserves:
-     row 1  4 + 2   east perspective, main entry
-     row 2  3 + 3   champions entry, champions corridor
-     row 3  2 + 2 + 2   turf, training table, academic center
-     row 4  3 + 3   baseball suite, softball suite
-   Getting this wrong leaves a hole in the last row, which reads as a mistake
-   rather than a composition. */
-@media (min-width: 56rem) {
+/* One wide establishing view, then eight identical tiles.
+   The previous version used unequal spans (4+2 / 3+3 / 2+2+2 / 3+3) which
+   filled every row but left the 4-span and 2-span images sharing row one at the
+   same 16:9 ratio, so one was twice the height of the other and the shorter
+   card carried the difference as dead space.
+   Eight divides evenly by both 4 and 2, so no row is ever short. */
+@media (min-width: 40rem) {
   .cc-plates {
-    grid-template-columns: repeat(6, 1fr);
-  }
-
-  .cc-plate {
-    grid-column: span 2;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .cc-plate:nth-child(1) {
-    grid-column: span 4;
+    grid-column: 1 / -1;
   }
+}
 
-  .cc-plate:nth-child(3),
-  .cc-plate:nth-child(4),
-  .cc-plate:nth-child(8),
-  .cc-plate:nth-child(9) {
-    grid-column: span 3;
+@media (min-width: 68rem) {
+  .cc-plates {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -1063,6 +1192,15 @@
   aspect-ratio: 16 / 9;
   overflow: hidden;
   background: var(--cc-navy);
+  border-radius: var(--cc-r-md) var(--cc-r-md) 0 0;
+}
+
+/* The establishing view has a row to itself, so it takes a wider crop rather
+   than a taller one. */
+@media (min-width: 40rem) {
+  .cc-plate:nth-child(1) .cc-plate-media {
+    aspect-ratio: 2.4 / 1;
+  }
 }
 
 .cc-plate-media picture,
@@ -1164,15 +1302,24 @@
   display: grid;
   gap: clamp(1.25rem, 2.5vw, 1.75rem);
   grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr));
-  align-items: start;
+  /* `start` was leaving three cards of three different heights and a ragged
+     bottom edge. Stretch equalizes the boxes; the quote below flexes so the
+     attribution still pins to the bottom of each one. */
+  align-items: stretch;
 }
 
 .cc-story {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 1.25rem;
   padding: clamp(1.5rem, 3vw, 2rem);
   background: var(--cc-paper-deep);
   border-left: 2px solid var(--cc-gold-ink);
+  border-radius: 0 var(--cc-r-md) var(--cc-r-md) 0;
+}
+
+.cc-story-quote {
+  flex: 1;
 }
 
 .cc-story-head {
@@ -1705,6 +1852,10 @@
   display: grid;
   gap: clamp(1rem, 2vw, 1.5rem);
   grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr));
+  /* Capped, because with three cards instead of four an uncapped row makes the
+     portraits far larger than the content around them. */
+  max-width: 54rem;
+  margin-inline: auto;
 }
 
 .cc-member {
@@ -1950,4 +2101,94 @@
   background: var(--cc-gold);
   border-color: var(--cc-gold);
   color: var(--cc-navy-deep);
+}
+
+/* ==========================================================================
+   CORNER SOFTENING
+   ==========================================================================
+   The concept is a drawing set, so the annotation layer stays square: dimension
+   rules, sheet tags, crop marks and the hero title block are the things that
+   make it read as a drawing. Everything a hand would touch, or that holds a
+   photograph, gets a radius.
+
+   Collected here rather than scattered through the file so the choice stays
+   reviewable in one place.
+   ========================================================================== */
+
+/* Cards and containers */
+.cc-plate,
+.cc-tier,
+.cc-member,
+.cc-acc-item,
+.cc-note,
+.cc-office-item {
+  border-radius: var(--cc-r-md);
+}
+
+.cc-tiers,
+.cc-office,
+.cc-acc {
+  border-radius: var(--cc-r-md);
+  overflow: hidden;
+}
+
+/* Media. The split panels are full-bleed, so they stay square; rounding them
+   only cuts a notch out against the page background. */
+.cc-lightbox-img {
+  border-radius: var(--cc-r-md);
+}
+
+/* Clip children to the card instead of rounding each one, so the gold name bar
+   and the photo both follow the card's corners. */
+.cc-member,
+.cc-plate {
+  overflow: hidden;
+}
+
+/* Controls */
+.cc-cta,
+.cc-nav-toggle,
+.cc-dock-btn,
+.cc-top,
+.cc-lightbox-btn,
+.cc-ticker-pause,
+.cc-skip {
+  border-radius: var(--cc-r-md);
+}
+
+.cc-cta--ghost {
+  border-radius: 0;
+}
+
+.cc-acc-trigger {
+  border-radius: var(--cc-r-md) var(--cc-r-md) 0 0;
+}
+
+/* Pills and badges */
+.cc-kicker,
+.cc-badge,
+.cc-banner-label,
+.cc-tier-badge,
+.cc-plate-zoom,
+.cc-office-icon,
+.cc-footer-social a {
+  border-radius: var(--cc-r-sm);
+}
+
+/* Round, because these were the two components that read as bugs rather than
+   as a choice: both are circles in the other two concepts. */
+.cc-story-portrait,
+.cc-story-mono,
+.cc-step-mark {
+  border-radius: 50%;
+}
+
+/* Deliberately square: the drawing language. */
+.cc-dim,
+.cc-dim-rule,
+.cc-plate-sheet,
+.cc-hero-crop span,
+.cc-hero-meta,
+.cc-ticker-item::after {
+  border-radius: 0;
 }

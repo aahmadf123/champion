@@ -12,6 +12,7 @@
  * Usage: node scripts/a11y.mjs [concept ...]
  */
 import { chromium } from 'playwright-core';
+import sharp from 'sharp';
 
 const BASE = process.env.BASE || 'http://127.0.0.1:8420';
 const concepts = process.argv.slice(2).length
@@ -80,9 +81,11 @@ async function run() {
         if(el.closest('.cc-visually-hidden')) continue;
         if(rect.width<=2||rect.height<=2) continue;
         // Text sitting over a photo cannot be measured from computed styles.
+        // Anything painted over a photograph is handled by the pixel pass
+        // below, because computed styles cannot describe an image.
         var overImage=false, node=el;
         while(node && node.nodeType===1){
-          if(node.classList && (node.classList.contains('cc-hero')||node.classList.contains('cc-split-media'))){overImage=true;break;}
+          if(node.classList && (node.classList.contains('cc-hero')||node.classList.contains('cc-split-media')||node.classList.contains('cc-nav'))){overImage=true;break;}
           node=node.parentElement;
         }
         if(overImage) continue;
@@ -140,6 +143,97 @@ async function run() {
           `focus ring only ${focus.best}:1 against the button it sits on (needs 3:1)`
         );
       }
+    }
+
+    /* --- 2b. Text over imagery, measured from real pixels ------------------ */
+    /*
+       Computed styles cannot describe a photograph. The nav is transparent over
+       the hero on load, and the hero labels sit directly on the rendering, so
+       `getComputedStyle` reports the page background rather than what is
+       actually behind the glyphs.
+
+       So: hide the text, screenshot, and read the pixels it would have covered.
+       The worst case is the lightest pixel under light text, so that is what the
+       ratio is computed against. This replaces an assumption with a measurement.
+    */
+    const overImage = [
+      { sel: '.cc-nav-link', label: 'nav link' },
+      { sel: '.cc-nav-tel', label: 'nav phone' },
+      { sel: '.cc-hero-standfirst', label: 'hero standfirst' },
+      { sel: '.cc-hero-meta', label: 'hero title block' },
+      { sel: '.cc-stat-label', label: 'hero stat label' },
+    ];
+
+    const targets = await page.evaluate((defs) => {
+      const out = [];
+      for (const d of defs) {
+        const el = document.querySelector(d.sel);
+        if (!el) continue;
+        const r = el.getBoundingClientRect();
+        if (r.width < 2 || r.height < 2 || r.top < 0 || r.bottom > window.innerHeight) continue;
+        const cs = getComputedStyle(el);
+        out.push({
+          label: d.label,
+          color: cs.color,
+          size: parseFloat(cs.fontSize),
+          weight: parseInt(cs.fontWeight, 10) || 400,
+          box: [Math.round(r.left), Math.round(r.top), Math.round(r.width), Math.round(r.height)],
+        });
+      }
+      return out;
+    }, overImage);
+
+    if (targets.length) {
+      // Hide the glyphs so the crop is pure background.
+      await page.addStyleTag({
+        content: overImage.map((d) => `${d.sel}{color:transparent !important}`).join('\n') +
+          '\n.cc-nav-link svg,.cc-nav-tel svg{opacity:0 !important}',
+      });
+      await page.evaluate(() => new Promise((r) => setTimeout(r, 150)));
+      const shot = await page.screenshot({ type: 'png' });
+
+      for (const t of targets) {
+        const [left, top, width, height] = t.box;
+        const { data } = await sharp(shot)
+          .extract({ left, top, width, height })
+          .raw()
+          .toBuffer({ resolveWithObject: true });
+
+        const lin = (c) => {
+          c /= 255;
+          return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+        };
+        const lum = (r, g, b) => 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
+
+        // Worst case for light text is the brightest pixel behind it. Use the
+        // 98th percentile rather than the single max so one stray highlight
+        // does not dominate.
+        const lums = [];
+        for (let i = 0; i < data.length; i += 3) lums.push(lum(data[i], data[i + 1], data[i + 2]));
+        lums.sort((a, b) => a - b);
+        const bgLum = lums[Math.floor(lums.length * 0.98)];
+
+        const m = t.color.match(/rgba?\(([^)]+)\)/);
+        const parts = m[1].split(/[,\s\/]+/).filter(Boolean).map(Number);
+        const alpha = parts.length > 3 ? parts[3] : 1;
+        // Blend the text color onto that background before comparing.
+        const bg255 = lums.length ? 255 * Math.pow(bgLum, 1 / 2.2) : 255;
+        const eff = [0, 1, 2].map((i) => alpha * parts[i] + (1 - alpha) * bg255);
+        const fgLum = lum(eff[0], eff[1], eff[2]);
+        const hi = Math.max(fgLum, bgLum);
+        const lo = Math.min(fgLum, bgLum);
+        const ratio = (hi + 0.05) / (lo + 0.05);
+
+        const large = t.size >= 24 || (t.size >= 18.66 && t.weight >= 700);
+        const need = large ? 3 : 4.5;
+        if (ratio < need) {
+          problems.push(
+            `over-image contrast ${ratio.toFixed(2)}:1 (needs ${need}) ${t.label}, measured from rendered pixels`
+          );
+        }
+      }
+      await page.reload({ waitUntil: 'load' });
+      await page.evaluate(() => new Promise((r) => setTimeout(r, 250)));
     }
 
     /* --- 3. Collapsed panels leave the tab order --------------------------- */

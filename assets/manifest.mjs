@@ -36,7 +36,7 @@ export const ASSETS = {
     sheet: 'A-101',
     label: 'East Perspective',
     caption:
-      'The exterior view from the east, showing the modern facade that will anchor the athletic campus.',
+      'The building from the east, anchoring the athletic campus.',
   },
   exteriorEntry: {
     kind: 'rendering',
@@ -46,7 +46,7 @@ export const ASSETS = {
     sheet: 'A-102',
     label: 'Main Entry',
     caption:
-      'The main entry, designed to make a first impression on recruits, student-athletes, and visitors.',
+      'Where recruits, athletes and visitors come in.',
   },
   indoorTurf: {
     kind: 'rendering',
@@ -56,7 +56,7 @@ export const ASSETS = {
     sheet: 'A-201',
     label: 'Indoor Turf',
     caption:
-      'A dedicated indoor training surface for year-round practice, whatever the Toledo weather is doing.',
+      'Full-scale turf, so February practice happens anyway.',
   },
   trainingTable: {
     kind: 'rendering',
@@ -66,7 +66,7 @@ export const ASSETS = {
     sheet: 'A-202',
     label: 'Training Table',
     caption:
-      'A dining hall built for performance nutrition, and for the team culture that forms over a shared meal.',
+      'Chef-prepared meals, and the table teams eat them at.',
   },
   academicLounge: {
     kind: 'rendering',
@@ -76,7 +76,7 @@ export const ASSETS = {
     sheet: 'A-203',
     label: 'Academic Center',
     caption:
-      'Lounge and study space with tutoring and advising support, steps from the practice field.',
+      'Study, tutoring and advising, ninety seconds from practice.',
   },
   championsEntry: {
     kind: 'rendering',
@@ -86,7 +86,7 @@ export const ASSETS = {
     sheet: 'A-103',
     label: 'Champions Entry',
     caption:
-      "An entry hall that celebrates Toledo's athletic history on the way to everything else in the building.",
+      "Toledo's athletic history, on the way to everything else.",
   },
   baseballSuite: {
     kind: 'rendering',
@@ -96,7 +96,7 @@ export const ASSETS = {
     sheet: 'A-301',
     label: 'Baseball Team Suite',
     caption:
-      'Locker room, meeting space, and lounge that bring Rocket baseball back to the main campus.',
+      'Locker room, meeting space, lounge. Baseball comes home.',
   },
   softballSuite: {
     kind: 'rendering',
@@ -106,7 +106,7 @@ export const ASSETS = {
     sheet: 'A-302',
     label: 'Softball Team Suite',
     caption:
-      'A dedicated home on campus for Rocket softball, with its own locker room and player lounge.',
+      'Softball’s own room on campus, at last.',
   },
   championsCorridor: {
     kind: 'rendering',
@@ -116,7 +116,7 @@ export const ASSETS = {
     sheet: 'A-104',
     label: 'Champions Corridor',
     caption:
-      'The spine of the building. Every space connects to it, and every athlete walks it daily.',
+      'The spine. Every space connects here, every day.',
   },
 
   // ---- Portraits ----------------------------------------------------------
@@ -157,12 +157,6 @@ export const ASSETS = {
     local: 'Ryleigh_Gordon_lZHnC.jpeg',
     sidearm: '2024/5/31/Ryleigh_Gordon_lZHnC.jpeg',
     alt: 'Ryleigh Gordon',
-  },
-  dillonHorter: {
-    kind: 'portrait',
-    local: 'Dillon_Horter_evaYx.jpeg',
-    sidearm: '2024/5/31/Dillon_Horter_evaYx.jpeg',
-    alt: 'Dillon Horter',
   },
 
   // ---- Marks -------------------------------------------------------------

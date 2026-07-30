@@ -48,7 +48,7 @@ export const hero = {
   kicker: 'Champions Complex',
   headlineLines: ['Drawn for', 'Champions.'],
   standfirst:
-    'A 74,000 square foot renovation of the Health Education Building, in the middle of campus, built around what a student-athlete actually does all day.',
+    '74,000 square feet in the middle of campus, built around the day a student-athlete actually keeps.',
   sheet: 'DWG · CC-001',
   view: 'East Perspective',
   primaryCta: { label: 'Talk to the Rocket Fund team', href: '#give' },
@@ -70,7 +70,7 @@ export const ticker = [
 
 export const banner = {
   label: 'Where the project stands',
-  text: 'Design is complete and the drawings on this page are final. What remains is the funding to break ground.',
+  text: 'The design is finished. The drawings on this page are final. Only the funding is left.',
   cta: { label: 'See how to help', href: '#give' },
 };
 
@@ -78,8 +78,8 @@ export const vision = {
   label: 'The vision',
   title: 'One building for every Rocket',
   body: [
-    'Toledo student-athletes currently cross campus for the things that make up an ordinary day. Academic support sits in one building, nutrition in another, training in a third. Baseball and softball travel to Scott Park to reach their own locker rooms.',
-    'The Champions Complex renovates and reimagines the Health Education Building to put all of it in one place, in the middle of campus. 74,000 square feet, planned around the hours a student-athlete keeps rather than around the departments that serve them.',
+    'A Rocket crosses campus four times before dinner. Academic support in one building, nutrition in another, training in a third. Baseball and softball drive to Scott Park to reach their own locker rooms.',
+    'The Champions Complex ends that. One building, middle of campus, planned around the hours athletes keep rather than the departments that serve them.',
   ],
   quote: {
     text: 'The Champions Complex is a vital commitment to our student-athletes. It guarantees they have the elite resources needed to achieve competitive excellence and succeed in every aspect of their lives.',
@@ -87,21 +87,20 @@ export const vision = {
     role: 'Vice President and Director of Athletics',
   },
   legacy:
-    'Gifts to the Champions Complex are among the most visible and lasting investments in Toledo Athletics history.',
+    'Among the most visible and lasting investments in Toledo Athletics history.',
 };
 
 export const spaces = {
   label: 'The drawing set',
   title: 'Championship spaces for championship athletes',
   intro:
-    'Every space in the building is purpose-built to support the holistic student-athlete experience, from training and recovery to study and shared meals. Select any drawing to see it full size.',
+    'Nine spaces, and ninety seconds from the front door to the far end of them.',
 };
 
 export const stories = {
   label: 'Voices of Toledo Athletics',
   title: 'Built for every Rocket',
-  intro:
-    'From the people whose daily routine this building changes.',
+  intro: 'From the people whose day this changes.',
   items: [
     {
       image: 'johnRichter',
@@ -119,7 +118,7 @@ export const stories = {
       team: 'Toledo Baseball',
       sport: 'Baseball',
       quote:
-        'The Champions Complex will positively impact every Rocket student-athlete, and it is especially exciting to bring baseball back home to campus. Having our own locker room and practice space creates a daily environment our players can take pride in. Being surrounded by academic support, mental health resources, and nutrition services makes a real difference in development.',
+        'The Champions Complex will impact every Rocket student-athlete, and it is especially exciting to bring baseball back home to campus. Having our own locker room and practice space creates a daily environment our players can take pride in, with academic support and nutrition right there.',
     },
     {
       image: 'jessicaBracamonte',
@@ -128,7 +127,7 @@ export const stories = {
       team: 'Toledo Softball',
       sport: 'Softball',
       quote:
-        'Having a home for softball on campus is incredibly meaningful for our program and our Rockets. The Champions Complex will play a huge role in elevating the student-athlete experience at Toledo, and in helping our players feel connected, supported, and inspired to represent this university and this city. When you believe in our student-athletes, it empowers them to accomplish great things and make us proud.',
+        'Having a home for softball on campus is incredibly meaningful for our program. The Champions Complex will play a huge role in elevating the student-athlete experience at Toledo, and in helping our players feel connected and supported. When you believe in them, it empowers them to accomplish great things.',
     },
   ],
 };
@@ -137,7 +136,7 @@ export const day = {
   label: 'Student-athlete experience',
   title: 'A day inside the building',
   intro:
-    'Seventeen hours between the first lift and the last film session. Today those hours are spread across campus. Here they are under one roof.',
+    'Six in the morning to half past seven at night. Today it crosses campus four times.',
   items: [
     {
       time: '6:00',
@@ -195,7 +194,7 @@ export const impact = {
   label: 'The impact',
   title: 'What changes on day one',
   intro:
-    'The Champions Complex improves the daily experience of all 450+ Rocket student-athletes, and returns baseball and softball to the main campus from Scott Park.',
+    'Six changes, and two programs finally coming home from Scott Park.',
   items: [
     'Academics, nutrition, health, wellness, and training centralized under one roof',
     'A nutrition center and training table built for performance, not convenience',
@@ -211,7 +210,7 @@ export const progress = {
   label: 'Where the project stands',
   title: 'Design is done. Funding is the gate.',
   intro:
-    'The renderings on this page are the completed design. The remaining work is philanthropic, which is the one part of this timeline donors control.',
+    'The drawings are done. What is left is the funding, the one part donors control.',
   steps: [
     {
       state: 'done',
@@ -242,9 +241,9 @@ export const give = {
   label: 'Your gift matters',
   title: 'How to be part of it',
   intro:
-    'Gifts at this level are arranged personally, not through a form. Call or email the Rocket Fund team and we will walk you through what is available and what it means for the building.',
+    'Gifts at this level happen in conversation, not through a form.',
   pullquote:
-    'Your name, or the name of someone you love, permanently in a building that 450 athletes walk through every day.',
+    'Your name, or the name of someone you love, on a building 450 athletes walk through every day.',
   tiers: [
     {
       amount: '$50,000',
@@ -316,12 +315,11 @@ export const team = {
   label: 'Get involved',
   title: 'Talk to the Rocket Fund team',
   intro:
-    'The Champions Complex is a once-in-a-generation opportunity to change the daily experience of 450+ Rocket student-athletes. Any of the four of us can help you find your place in it.',
+    'Any of the three of us can help you find your place in it.',
   members: [
     { image: 'connorWhelan', name: 'Connor Whelan', email: 'connor.whelan@utoledo.edu', phone: '419.530.2127' },
     { image: 'joshDittman', name: 'Josh Dittman', email: 'joshua.dittman@utoledo.edu', phone: '419.530.4183' },
     { image: 'ryleighGordon', name: 'Ryleigh Gordon', email: 'ryleigh.gordon@utoledo.edu', phone: '419.530.5316' },
-    { image: 'dillonHorter', name: 'Dillon Horter', email: 'dillon.horter@utoledo.edu', phone: '419.530.5347' },
   ],
 };
 
