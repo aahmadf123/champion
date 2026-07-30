@@ -514,6 +514,13 @@
   color: var(--cc-warm-soft);
 }
 
+/* Over the rendering rather than the flat ground, so this carries more weight
+   than --cc-warm-soft gives it. Measured from rendered pixels by
+   `npm run a11y`; at --cc-warm-soft it came in at 3.23:1. */
+.cc-hero .cc-stat-label {
+  color: rgba(247, 245, 242, 0.86);
+}
+
 .cc-hero-meta {
   display: flex;
   flex-wrap: wrap;
@@ -525,7 +532,7 @@
   font-size: var(--cc-t-2xs);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--cc-warm-soft);
+  color: rgba(247, 245, 242, 0.86);
 }
 
 .cc-hero-meta b {

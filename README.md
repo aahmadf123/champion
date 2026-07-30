@@ -9,7 +9,7 @@ One source builds two things:
 | Output | What it is |
 |---|---|
 | `dist/index.html` | Standalone page for GitHub Pages, used as a shareable feedback link |
-| `dist/sidearm.html` | Fragment to paste into a Sidearm CMS feature page |
+| `sidearm/` | Committed files to paste into Sidearm. See below for which one |
 | `dist/preview/` | Three design concepts side by side, plus a chooser page |
 
 Before this existed, the two targets were hand-maintained copies (`index.html`
@@ -42,16 +42,33 @@ repository root. That file is now generated, and the 43 MB of source images in
 
 ## Publishing to Sidearm
 
-1. Run `npm run all`.
-2. Open `dist/sidearm.html` and copy everything **below** the comment block at
-   the top.
-3. Paste it into the Sidearm feature page HTML block. Do not wrap it in
-   anything, and do not add `<html>`, `<head>` or `<body>`.
+The files are committed, so nothing needs building first. Open them on GitHub,
+copy, paste.
 
-`dist/sidearm-systemfonts.html` is the same page with the typefaces left to the
-system stack. It is about half the size. Use it only if the Sidearm field
-rejects the larger paste, and expect the typography to differ from the preview
-link.
+**Which route depends on what your page offers.** A Feature page usually has a
+separate Custom CSS field. A Sport File in Standard mode usually does not.
+
+| Your page has | Paste this |
+|---|---|
+| A Custom CSS field | `sidearm/champions-complex.css` into it, then `sidearm/champions-complex.html` into the HTML content block |
+| No Custom CSS field | `sidearm/champions-complex-single-paste.html` into the HTML content block, on its own |
+
+The single-paste file is the same content with the styles at the top and the
+script at the bottom of one block, which is the selection that runs from the
+opening `<style>` tag through the closing `</script>` tag.
+
+Either way, leave out `<!DOCTYPE html>`, `<html>`, `<head>`, `<title>`, the meta
+tags and `<body>`. Sidearm generates those, and pasting them nests document tags.
+
+**No head field is needed, and no font tags.** The typefaces are embedded in the
+CSS as base64. There are no Google Fonts `<link>` tags to place, no `@import` to
+put first in the stylesheet, and no flash of fallback type on first load. Older
+instructions for this page referenced Oswald and Source Sans 3 loaded from
+Google; that build is gone, and the current one loads nothing externally except
+the images.
+
+Images resolve to Sidearm's own CloudFront library, so they keep working
+wherever the markup is pasted.
 
 ### Why the Sidearm build is shaped the way it is
 
@@ -75,9 +92,12 @@ plus the size of the host's own header links. Its `a{text-decoration:none}` also
 removes underlines from any host link that is not styled by a more specific
 selector.
 
-`npm run check` now fails the build if any unscoped selector, stray `<h1>`, or
-relative asset path reappears in the Sidearm output, and `npm run sidearm-host`
-asserts the host page is byte-for-byte unchanged in every property it measures.
+`npm run check` fails the build if any unscoped selector, stray `<h1>`, or
+relative asset path reaches the Sidearm output. `npm run sidearm-host` loads
+each variant into a host stand-in, including the two-file bundle with the CSS in
+`<head>` exactly as a Custom CSS field delivers it, and asserts the host is
+unchanged in every property it measures. CI additionally fails if `sidearm/` is
+stale relative to `src/`.
 
 ### Images that still need uploading to Sidearm
 
@@ -118,10 +138,12 @@ scripts/sidearm-host.mjs    proves the fragment cannot damage a host page
 scripts/shots.mjs           screenshots plus no-JS and overflow checks
 scripts/sections.mjs        per-section crops for design review
 scripts/serve.mjs           concurrent static server for dist/
+sidearm/                    generated AND committed, for copy-paste
 images/                     3840x2160 masters, never published
 ```
 
-`assets/img/` and `dist/` are generated and git-ignored.
+`assets/img/` and `dist/` are generated and git-ignored. `sidearm/` is generated
+too, but committed on purpose so it can be pasted straight from GitHub.
 
 ## The three concepts
 
@@ -150,6 +172,13 @@ contrast against the actually-painted background, focus-ring visibility, ARIA
 wiring, the real Tab order, touch target sizes, and behavior under
 `prefers-reduced-motion`. It exits non-zero on failure.
 
+Text painted over a photograph cannot be measured from computed styles, so that
+text is checked a second way: the harness hides the glyphs, screenshots the
+page, and reads the pixels they would have covered, comparing against the 98th
+percentile luminance so one stray highlight does not dominate. This is what the
+transparent navigation over the hero is validated against, and it caught three
+failures the computed-styles pass had always skipped.
+
 Measured failures on the previous page, all now fixed:
 
 | Was | Selector |
@@ -169,10 +198,11 @@ which flattened them out of the outline, and a mobile breakpoint that removed
 the phone number and Contact button from the navigation without putting them
 anywhere else.
 
-Text sitting over the hero rendering is skipped by the contrast checker, because
-computed styles cannot describe a photograph. Those labels get a scrim with a
-floor under the whole frame rather than the previous gradient, which dropped to
-15% opacity partway down and left annotation text on bare sky.
+The navigation is transparent over the hero on load and turns solid once the
+hero scrolls away, so the rendering is the first thing anyone sees. Legibility
+there comes from a backdrop filter rather than a heavy overlay: it drops the
+luminance behind the glyphs while the image still reads through. A flat scrim
+dark enough to pass measured almost opaque, which defeated the point.
 
 ### The no-JavaScript guarantee
 

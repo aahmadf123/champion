@@ -48,6 +48,16 @@ jobs:
       - name: Check output
         run: npm run check
 
+      # The Sidearm bundle is committed so it can be copy-pasted from GitHub
+      # without a local build. If someone edits src/ and does not regenerate it,
+      # the committed files go stale and this fails.
+      - name: Sidearm bundle is up to date
+        run: |
+          if ! git diff --exit-code --stat -- sidearm/; then
+            echo "::error::sidearm/ is stale. Run 'npm run build' and commit the result."
+            exit 1
+          fi
+
       - uses: actions/configure-pages@v5
         if: github.event_name != 'pull_request'
 

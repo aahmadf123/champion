@@ -157,13 +157,22 @@ const enter = (variant, delay) => {
 const dim = (label) =>
   `<p class="cc-dim"><span>${esc(label)}</span><span class="cc-dim-rule"></span></p>`;
 
-function sectionHead(ctx, { sheet, label, title, intro, center = false, dark = false }) {
+/**
+ * The one place a section header is built.
+ *
+ * Alignment follows a single rule rather than per-section taste: a full-width
+ * section centers its header, a two-column split section keeps it left, because
+ * a centered header above a half-width column floats away from its own content.
+ * Vision and Impact are the splits and write their headers inline into
+ * `.cc-split-body`; everything else comes through here and is centered.
+ */
+function sectionHead({ id, sheet, label, title, intro, center = true }) {
   const e = enter(null, 0);
   return `
       <header class="cc-sec-head${center ? ' cc-sec-head--center' : ''} ${e.cls}">
         ${sheet ? dim(sheet) : ''}
         <p class="cc-eyebrow">${esc(label)}</p>
-        <h2 class="cc-sec-title">${esc(title)}</h2>
+        <h2 class="cc-sec-title" id="${id}">${esc(title)}</h2>
         ${intro ? `<p class="cc-sec-intro">${esc(intro)}</p>` : ''}
       </header>`;
 }
@@ -243,6 +252,9 @@ function renderHero(ctx) {
 
   return `
   <section class="cc-hero" id="cc-hero">
+    <!-- Drives the nav's transparent-to-solid state. Sits at the top of the
+         hero so the nav goes solid once the hero starts scrolling away. -->
+    <div class="cc-nav-sentinel" aria-hidden="true"></div>
     <div class="cc-hero-media">${media}</div>
     <div class="cc-hero-grid cc-grid-paper" aria-hidden="true"></div>
     <div class="cc-hero-crop" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
@@ -359,12 +371,13 @@ function renderSpaces(ctx) {
   return `
   <section class="cc-sec cc-sec--dark" id="cc-spaces" aria-labelledby="cc-spaces-title">
     <div class="cc-shell">
-      <header class="cc-sec-head cc-sec-head--center cc-enter">
-        ${dim('Drawing set A-101 to A-302')}
-        <p class="cc-eyebrow">${esc(C.spaces.label)}</p>
-        <h2 class="cc-sec-title" id="cc-spaces-title">${esc(C.spaces.title)}</h2>
-        <p class="cc-sec-intro">${esc(C.spaces.intro)}</p>
-      </header>
+      ${sectionHead({
+        id: 'cc-spaces-title',
+        sheet: 'Drawing set A-101 to A-302',
+        label: C.spaces.label,
+        title: C.spaces.title,
+        intro: C.spaces.intro,
+      })}
       <div class="cc-plates">
 ${plates}
       </div>
@@ -401,12 +414,13 @@ function renderStories(ctx) {
   return `
   <section class="cc-sec" id="cc-stories" aria-labelledby="cc-stories-title">
     <div class="cc-shell">
-      <header class="cc-sec-head cc-sec-head--center cc-enter">
-        ${dim('Voices')}
-        <p class="cc-eyebrow">${esc(C.stories.label)}</p>
-        <h2 class="cc-sec-title" id="cc-stories-title">${esc(C.stories.title)}</h2>
-        <p class="cc-sec-intro">${esc(C.stories.intro)}</p>
-      </header>
+      ${sectionHead({
+        id: 'cc-stories-title',
+        sheet: 'Voices',
+        label: C.stories.label,
+        title: C.stories.title,
+        intro: C.stories.intro,
+      })}
       <div class="cc-stories">
 ${cards}
       </div>
@@ -428,12 +442,13 @@ function renderDay() {
   return `
   <section class="cc-sec cc-sec--paper-deep" id="cc-day" aria-labelledby="cc-day-title">
     <div class="cc-shell">
-      <header class="cc-sec-head cc-enter">
-        ${dim('Daily schedule')}
-        <p class="cc-eyebrow">${esc(C.day.label)}</p>
-        <h2 class="cc-sec-title" id="cc-day-title">${esc(C.day.title)}</h2>
-        <p class="cc-sec-intro">${esc(C.day.intro)}</p>
-      </header>
+      ${sectionHead({
+        id: 'cc-day-title',
+        sheet: 'Daily schedule',
+        label: C.day.label,
+        title: C.day.title,
+        intro: C.day.intro,
+      })}
       <div class="cc-sched">
 ${rows}
       </div>
@@ -484,12 +499,13 @@ function renderProgress() {
   return `
   <section class="cc-sec" id="cc-progress" aria-labelledby="cc-progress-title">
     <div class="cc-shell">
-      <header class="cc-sec-head cc-enter">
-        ${dim('Project status')}
-        <p class="cc-eyebrow">${esc(C.progress.label)}</p>
-        <h2 class="cc-sec-title" id="cc-progress-title">${esc(C.progress.title)}</h2>
-        <p class="cc-sec-intro">${esc(C.progress.intro)}</p>
-      </header>
+      ${sectionHead({
+        id: 'cc-progress-title',
+        sheet: 'Project status',
+        label: C.progress.label,
+        title: C.progress.title,
+        intro: C.progress.intro,
+      })}
       <ol class="cc-steps cc-enter">
 ${steps}
       </ol>
@@ -514,12 +530,13 @@ function renderGive() {
   return `
   <section class="cc-sec cc-sec--paper-deep" id="cc-give" aria-labelledby="cc-give-title">
     <div class="cc-shell">
-      <header class="cc-sec-head cc-sec-head--center cc-enter">
-        ${dim('Naming and recognition')}
-        <p class="cc-eyebrow">${esc(C.give.label)}</p>
-        <h2 class="cc-sec-title" id="cc-give-title">${esc(C.give.title)}</h2>
-        <p class="cc-sec-intro">${esc(C.give.intro)}</p>
-      </header>
+      ${sectionHead({
+        id: 'cc-give-title',
+        sheet: 'Naming and recognition',
+        label: C.give.label,
+        title: C.give.title,
+        intro: C.give.intro,
+      })}
       <p class="cc-pullquote cc-enter">${esc(C.give.pullquote)}</p>
       <div class="cc-tiers">
 ${tiers}
@@ -555,11 +572,12 @@ function renderFaq() {
   return `
   <section class="cc-sec" id="cc-faq" aria-labelledby="cc-faq-title">
     <div class="cc-shell">
-      <header class="cc-sec-head cc-sec-head--center cc-enter">
-        ${dim('Questions')}
-        <p class="cc-eyebrow">${esc(C.faq.label)}</p>
-        <h2 class="cc-sec-title" id="cc-faq-title">${esc(C.faq.title)}</h2>
-      </header>
+      ${sectionHead({
+        id: 'cc-faq-title',
+        sheet: 'Questions',
+        label: C.faq.label,
+        title: C.faq.title,
+      })}
       <div class="cc-acc cc-enter">
 ${items}
       </div>
@@ -592,12 +610,13 @@ function renderTeam(ctx) {
   return `
   <section class="cc-sec cc-sec--dark" id="cc-team" aria-labelledby="cc-team-title">
     <div class="cc-shell">
-      <header class="cc-sec-head cc-enter">
-        ${dim('Contact')}
-        <p class="cc-eyebrow">${esc(C.team.label)}</p>
-        <h2 class="cc-sec-title" id="cc-team-title">${esc(C.team.title)}</h2>
-        <p class="cc-sec-intro">${esc(C.team.intro)}</p>
-      </header>
+      ${sectionHead({
+        id: 'cc-team-title',
+        sheet: 'Contact',
+        label: C.team.label,
+        title: C.team.title,
+        intro: C.team.intro,
+      })}
       <div class="cc-office cc-enter">
         <div class="cc-office-item">
           <span class="cc-office-icon">${svg('mail')}</span>

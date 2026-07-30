@@ -174,7 +174,9 @@ async function main() {
       }
     }
 
-    const styles = [...html.matchAll(/<style>([\s\S]*?)<\/style>/g)].map((m) => m[1]);
+    // From `markup`, not `html`: the instruction comment can mention <style>,
+    // and matching the raw file lets the regex swallow that prose as CSS.
+    const styles = [...markup.matchAll(/<style>([\s\S]*?)<\/style>/g)].map((m) => m[1]);
     if (!styles.length) fail(`${p} has no <style> block`);
     styles.forEach((css, i) => {
       checkCssSyntax(`${p} <style>[${i}]`, css);
@@ -244,6 +246,82 @@ async function main() {
     if (missing.length) {
       fail(`${p} references ${missing.length} missing asset(s), e.g. ${missing[0]}`);
     }
+  }
+
+  // 5. The committed Sidearm bundle must exist and be scope-clean. CI also runs
+  //    `git diff --exit-code sidearm/` so a source edit without a rebuild fails.
+  const bundleCss = 'sidearm/champions-complex.css';
+  const bundleHtml = 'sidearm/champions-complex.html';
+
+  if (!existsSync(bundleCss) || !existsSync(bundleHtml)) {
+    fail('sidearm/ bundle missing. Run: npm run build');
+  } else {
+    const css = await readFile(bundleCss, 'utf8');
+    checkCssSyntax(bundleCss, css);
+    checkScoping(bundleCss, css);
+    if (/<style|<\/style/.test(css)) {
+      fail(`${bundleCss} contains a <style> tag. It goes in a CSS field, not HTML.`);
+    }
+
+    const html = await readFile(bundleHtml, 'utf8');
+    const markup = html.replace(/<!--[\s\S]*?-->/g, '');
+    if (/<style[\s>]/i.test(markup)) {
+      fail(`${bundleHtml} still carries a <style> block; it belongs in the CSS file.`);
+    }
+    if (!/<script[\s>]/i.test(markup)) {
+      fail(`${bundleHtml} has no <script>; the enhancement JS goes at the bottom.`);
+    }
+    if (/<h1[\s>]/.test(markup)) {
+      fail(`${bundleHtml} contains an <h1>. Sidearm renders the page heading.`);
+    }
+    for (const [re, label] of [
+      [/<!doctype\b/i, '<!DOCTYPE>'],
+      [/<html[\s>]/i, '<html>'],
+      [/<body[\s>]/i, '<body>'],
+    ]) {
+      if (re.test(markup)) fail(`${bundleHtml} contains ${label}.`);
+    }
+    const rel = [...markup.matchAll(/(?:src|srcset)="((?!https?:|data:)[^"]+)"/g)]
+      .map((m) => m[1])
+      .filter((u) => u !== '');
+    if (rel.length) {
+      fail(`${bundleHtml} has ${rel.length} relative asset path(s), e.g. ${rel[0]}`);
+    }
+    notes.push(
+      `sidearm bundle  ${(Buffer.byteLength(css) / 1024).toFixed(0)} KB css + ` +
+        `${(Buffer.byteLength(html) / 1024).toFixed(0)} KB html`
+    );
+  }
+
+  // The single-paste route for pages with no Custom CSS field. Unlike the
+  // two-file HTML this one MUST carry its own <style>.
+  const single = 'sidearm/champions-complex-single-paste.html';
+  if (!existsSync(single)) {
+    fail('sidearm/champions-complex-single-paste.html missing. Run: npm run build');
+  } else {
+    const raw = await readFile(single, 'utf8');
+    const markup = raw.replace(/<!--[\s\S]*?-->/g, '');
+    if (!/<style[\s>]/i.test(markup)) {
+      fail(`${single} has no <style>; the whole point is that it is self-contained.`);
+    }
+    if (!/<script[\s>]/i.test(markup)) fail(`${single} has no <script>.`);
+    if (/<h1[\s>]/.test(markup)) fail(`${single} contains an <h1>.`);
+    for (const [re, label] of [
+      [/<!doctype\b/i, '<!DOCTYPE>'],
+      [/<html[\s>]/i, '<html>'],
+      [/<head[\s>]/i, '<head>'],
+      [/<body[\s>]/i, '<body>'],
+    ]) {
+      if (re.test(markup)) fail(`${single} contains ${label}.`);
+    }
+    // Extract from the comment-stripped markup: the instruction comment itself
+    // mentions <style> and </script>, and matching against the raw file makes
+    // the regex swallow that prose as if it were CSS.
+    for (const css2 of [...markup.matchAll(/<style>([\s\S]*?)<\/style>/g)].map((m) => m[1])) {
+      checkCssSyntax(single, css2);
+      checkScoping(single, css2);
+    }
+    notes.push(`sidearm single paste  ${(Buffer.byteLength(raw) / 1024).toFixed(0)} KB`);
   }
 
   /* --- report ------------------------------------------------------------ */

@@ -17,6 +17,7 @@
  */
 import { chromium } from 'playwright-core';
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import path from 'node:path';
 
 const frags = process.argv.slice(2).length
@@ -46,10 +47,12 @@ const HOST_CSS = `
   a:focus-visible { outline: 3px solid #c00; outline-offset: 1px; }
 `;
 
-const HOST_SHELL = (body) => `<!DOCTYPE html>
+const HOST_SHELL = (body, extraCss = '') => `<!DOCTYPE html>
 <html lang="en">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sidearm host stand-in</title><style>${HOST_CSS}</style></head>
+<title>Sidearm host stand-in</title><style>${HOST_CSS}</style>${
+  extraCss ? `\n<style>${extraCss}</style>` : ''
+}</head>
 <body>
 <header class="site">
   <img class="host-logo" alt="host logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40'%3E%3Crect width='120' height='40' fill='%23fff'/%3E%3C/svg%3E">
@@ -112,15 +115,36 @@ async function main() {
   // all; everything after it obviously shifts down.
   const ABOVE_BLOCK = new Set(['header', 'headerLink', 'h1', 'lede', 'list', 'listItem', 'logo']);
 
+  // The committed two-file bundle, loaded the way Sidearm loads it: CSS in a
+  // Custom CSS field (so, in <head>) and markup in the content block.
+  const BUNDLE = 'sidearm/champions-complex.css';
+  const SINGLE = 'sidearm/champions-complex-single-paste.html';
+  if (existsSync(BUNDLE)) frags.push('bundle');
+  // The single-paste route carries its own <style>, so it goes through the same
+  // path as the dist fragments.
+  if (existsSync(SINGLE)) frags.push(SINGLE);
+
   for (const frag of frags) {
     const problems = [];
-    const raw = await readFile(frag, 'utf8');
-    // Strip the instruction comment, exactly as a human copying "everything
-    // below the comment" would.
-    const body = raw.replace(/^<!--[\s\S]*?-->\s*/, '');
+    let body;
+    let extraCss = '';
 
-    const file = path.join(tmpDir, path.basename(path.dirname(frag)) + '-' + path.basename(frag));
-    await writeFile(file, HOST_SHELL(body));
+    if (frag === 'bundle') {
+      extraCss = await readFile(BUNDLE, 'utf8');
+      const raw = await readFile('sidearm/champions-complex.html', 'utf8');
+      body = raw.replace(/^<!--[\s\S]*?-->\s*/, '');
+    } else {
+      const raw = await readFile(frag, 'utf8');
+      // Strip the instruction comment, exactly as a human copying "everything
+      // below the comment" would.
+      body = raw.replace(/^<!--[\s\S]*?-->\s*/, '');
+    }
+
+    const file = path.join(
+      tmpDir,
+      frag === 'bundle' ? 'bundle.html' : path.basename(path.dirname(frag)) + '-' + path.basename(frag)
+    );
+    await writeFile(file, HOST_SHELL(body, extraCss));
 
     const page = await ctx.newPage();
     const errors = [];
