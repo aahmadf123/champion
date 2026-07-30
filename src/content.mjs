@@ -40,6 +40,7 @@ export const nav = [
   { id: 'day', label: 'A Day Here' },
   { id: 'impact', label: 'Impact' },
   { id: 'progress', label: 'Progress' },
+  { id: 'give', label: 'Give' },
   { id: 'faq', label: 'FAQ' },
 ];
 

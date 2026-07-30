@@ -213,6 +213,12 @@ function renderNav(ctx) {
     eager: true,
   });
 
+  // The standalone bar also carries the gold Give button, so the Give jump link
+  // would be a second control pointing at the same anchor. That duplicate broke
+  // the scrollspy, which keys links by href fragment. The Sidearm jump bar has
+  // no such button, so it keeps its Give link.
+  const navLinks = C.nav.filter((n) => n.id !== 'give');
+
   return `
   <nav class="cc-nav" aria-label="Champions Complex">
     <div class="cc-nav-inner">
@@ -224,7 +230,7 @@ function renderNav(ctx) {
         ${svg('menu')}<span class="cc-nav-toggle-label">Menu</span>
       </button>
       <div class="cc-nav-links" id="cc-nav-links">
-        ${C.nav
+        ${navLinks
           .map(
             (n) =>
               `<a class="cc-nav-link" href="#cc-${n.id}">${esc(n.label)}</a>`

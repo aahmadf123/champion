@@ -226,6 +226,15 @@ async function main() {
     if (html.includes('cc-ticker') && !html.includes('cc-ticker-pause')) {
       fail(`${p} has an auto-scrolling ticker with no pause control`);
     }
+    // Exactly one control in the bar may point at the Give section. Two of them
+    // collide in the scrollspy, which keys links by href fragment.
+    const navBar = html.match(/<div class="cc-nav-links"[\s\S]*?<\/div>/);
+    if (navBar) {
+      const gives = (navBar[0].match(/href="#cc-give"/g) || []).length;
+      if (gives !== 1) {
+        fail(`${p} nav bar has ${gives} controls pointing at #cc-give, expected 1`);
+      }
+    }
   }
 
   // 4. Referenced local assets exist.
@@ -287,6 +296,13 @@ async function main() {
     if (rel.length) {
       fail(`${bundleHtml} has ${rel.length} relative asset path(s), e.g. ${rel[0]}`);
     }
+    if (!/class="cc-jump-link" href="#cc-give"/.test(html)) {
+      fail(
+        `${bundleHtml} has no Give link in the jump bar. It is the only ` +
+          'wayfinding on this target and there is no gold CTA here to cover it.'
+      );
+    }
+
     notes.push(
       `sidearm bundle  ${(Buffer.byteLength(css) / 1024).toFixed(0)} KB css + ` +
         `${(Buffer.byteLength(html) / 1024).toFixed(0)} KB html`

@@ -119,14 +119,22 @@
   }
 
   /* --- Current section in the nav --------------------------------------- */
+  /*
+     Whichever bar this target rendered. The standalone page has `.cc-nav-links`;
+     Sidearm has `.cc-jump-inner`, because it gets in-page jump links instead of
+     a second site navigation. Gating on `.cc-nav-links` alone left the Sidearm
+     jump bar with no current-section state at all, visual or announced.
+  */
+
+  var currentBar = navLinks || $('.cc-jump-inner');
 
   var sections = $$('main [id]').filter(function (el) {
     return el.tagName === 'SECTION';
   });
 
-  if (hasIO && navLinks && sections.length) {
+  if (hasIO && currentBar && sections.length) {
     var linkFor = {};
-    $$('a[href^="#"]', navLinks).forEach(function (a) {
+    $$('a[href^="#"]', currentBar).forEach(function (a) {
       linkFor[a.getAttribute('href').slice(1)] = a;
     });
 

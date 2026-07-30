@@ -183,6 +183,39 @@ async function main() {
       }
     }
 
+    // The jump bar is the only wayfinding on this target, so it has to carry a
+    // Give link and it has to track the current section. Both were broken:
+    // Give was filtered out of the shared nav data, and the scrollspy was gated
+    // on the standalone bar's class, which Sidearm never renders.
+    const jump = await page.evaluate(async () => {
+      const bar = document.querySelector('.cc-jump-inner');
+      if (!bar) return { absent: true };
+      const links = [...bar.querySelectorAll('.cc-jump-link')];
+      const give = links.find((a) => a.getAttribute('href') === '#cc-give');
+      const target = document.querySelector('#cc-progress');
+      if (target) target.scrollIntoView();
+      await new Promise((r) => setTimeout(r, 700));
+      return {
+        absent: false,
+        count: links.length,
+        hasGive: !!give,
+        current: [...bar.querySelectorAll('[aria-current="true"]')].map((a) =>
+          a.getAttribute('href')
+        ),
+      };
+    });
+
+    if (!jump.absent) {
+      if (!jump.hasGive) problems.push('jump bar has no Give link');
+      if (jump.count < 6) problems.push(`jump bar has only ${jump.count} links`);
+      if (jump.current.length !== 1) {
+        problems.push(
+          `jump bar current-section state is ${jump.current.length} links, expected 1`
+        );
+      }
+      await page.evaluate(() => window.scrollTo(0, 0));
+    }
+
     // The host header must stay on top of the injected content.
     const stacking = await page.evaluate(() => {
       const hdr = document.querySelector('header.site');
