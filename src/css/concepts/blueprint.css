@@ -1,0 +1,1953 @@
+/* ==========================================================================
+   CONCEPT: BLUEPRINT
+   ==========================================================================
+
+   Design plan
+   -----------
+   Subject: a 74,000 sq ft building that does not exist yet. The only artifacts
+   anyone can show a donor are architectural drawings. The old hero already
+   reached for that language (dimension lines with tick ends, corner crop marks,
+   a coordinate readout, a "DWG CC-001" sheet tag) and then abandoned it for
+   nine identical cards. This concept commits to it for the whole page.
+
+   Color   paper #E8ECF1 (cool blue-grey stock, deliberately not cream)
+           paper-deep #D8DEE6 for inset plates
+           ink #0A1826 (near-black carrying a navy bias)
+           navy #002244 (brand, the dark grounds)
+           graphite #495969 (dimension lines, annotation, secondary text)
+           gold #FFB81C (brand, dark grounds only) / gold-ink #7F5700 (on paper)
+
+   Type    Display: Chakra Petch 700, uppercase, tracking in em not px.
+                    A squared face, which is what drawing titles look like.
+           Body:    Inter 400/500.
+           Utility: system monospace, carrying the whole annotation layer:
+                    sheet refs, dimensions, coordinates, clock times. This is
+                    the third role the page previously faked with letter-spaced
+                    sans, and it is the one that makes the concept read.
+
+   Layout  The page is a drawing set. Each section is a plate that opens with a
+           mono sheet reference and a dimension rule. Sheet numbers are real:
+           they come from the manifest and map to zones of the building, so the
+           numbering encodes something true instead of decorating. Stats sit on
+           dimension lines with tick ends. The schedule is a table with hour
+           rules, replacing the center-line zigzag. Grid paper appears twice,
+           faintly, and nowhere else.
+
+   Risk taken: gold stops being a fill and becomes ink. Total gold area drops by
+   an order of magnitude versus the current page, which is the whole point.
+   ========================================================================== */
+
+.cc {
+  /* --- Palette ----------------------------------------------------------- */
+  --cc-paper: #e8ecf1;
+  --cc-paper-deep: #d8dee6;
+  --cc-paper-edge: #c4ccd6;
+  --cc-ink: #0a1826;
+  --cc-navy: #002244;
+  --cc-navy-deep: #001527;
+  --cc-graphite: #495969; /* 6.07:1 on paper, 5.32:1 on paper-deep */
+  --cc-graphite-soft: #7c8b9c;
+  --cc-gold: #ffb81c;
+  --cc-gold-ink: #7f5700; /* 6.43:1 white, 5.42:1 paper, 4.75:1 paper-deep */
+  --cc-gold-quiet: rgba(127, 87, 0, 0.3);
+
+  --cc-on-navy: rgba(255, 255, 255, 0.92);
+  --cc-on-navy-soft: rgba(255, 255, 255, 0.66); /* 6.6:1 on navy-deep */
+  --cc-on-navy-faint: rgba(255, 255, 255, 0.52); /* 5.5:1, the floor */
+  --cc-rule-navy: rgba(255, 255, 255, 0.14);
+
+  --cc-skip-bg: var(--cc-gold);
+  --cc-skip-fg: var(--cc-navy-deep);
+  --cc-focus-inner: var(--cc-navy-deep);
+  --cc-focus-outer: var(--cc-gold);
+  --cc-lightbox-bg: rgba(4, 12, 22, 0.97);
+
+  /* --- Type -------------------------------------------------------------- */
+  --cc-font-display: 'Chakra Petch', 'Arial Narrow', system-ui, sans-serif;
+  --cc-font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --cc-font-ui: 'Chakra Petch', system-ui, sans-serif;
+  --cc-font-mono: ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace;
+
+  /* 1.25 ratio, held throughout. The old page used ad hoc clamp() per element. */
+  --cc-t-2xs: 0.6875rem;
+  --cc-t-xs: 0.75rem;
+  --cc-t-sm: 0.875rem;
+  --cc-t-base: 1rem;
+  --cc-t-md: 1.125rem;
+  --cc-t-lg: clamp(1.25rem, 0.6vw + 1.1rem, 1.375rem);
+  --cc-t-xl: clamp(1.5rem, 1.2vw + 1.2rem, 1.875rem);
+  --cc-t-2xl: clamp(1.875rem, 2.2vw + 1.3rem, 2.625rem);
+  --cc-t-3xl: clamp(2.25rem, 3.4vw + 1.4rem, 3.5rem);
+  --cc-t-hero: clamp(2.75rem, 8.2vw, 8.5rem);
+
+  /* --- Space ------------------------------------------------------------- */
+  --cc-gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --cc-measure-wide: 82rem;
+  --cc-measure: 54rem;
+  --cc-sec-y: clamp(3.5rem, 7vw, 6.5rem);
+  --cc-scroll-offset: 5.5rem;
+  --cc-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --cc-ticker-duration: 48s;
+
+  font-family: var(--cc-font-body);
+  font-size: var(--cc-t-base);
+  line-height: 1.65;
+  color: var(--cc-ink);
+  background: var(--cc-paper);
+}
+
+/* Grid paper, used exactly twice: behind the hero edges and behind the
+   schedule. Any more and it becomes wallpaper. */
+.cc-grid-paper {
+  --cc-grid-line: rgba(85, 103, 122, 0.16);
+  background-image:
+    linear-gradient(var(--cc-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--cc-grid-line) 1px, transparent 1px);
+  background-size: 2.5rem 2.5rem;
+}
+
+/* ==========================================================================
+   SHARED PIECES
+   ========================================================================== */
+
+.cc-eyebrow {
+  font-family: var(--cc-font-mono);
+  font-size: var(--cc-t-2xs);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cc-gold-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.cc-sec--dark .cc-eyebrow {
+  color: var(--cc-gold);
+}
+
+.cc-sec-title {
+  font-family: var(--cc-font-display);
+  font-size: var(--cc-t-2xl);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: var(--cc-navy);
+}
+
+.cc-sec--dark .cc-sec-title {
+  color: #fff;
+}
+
+.cc-sec-intro {
+  font-size: var(--cc-t-md);
+  line-height: 1.7;
+  color: var(--cc-graphite);
+  max-width: 58ch;
+}
+
+.cc-sec--dark .cc-sec-intro {
+  color: var(--cc-on-navy-soft);
+}
+
+/* The plate header: sheet ref, then a dimension rule, then the title block. */
+.cc-sec-head {
+  display: grid;
+  gap: 0.875rem;
+  margin-bottom: clamp(2rem, 4vw, 3.25rem);
+}
+
+.cc-sec-head--center {
+  justify-items: center;
+  text-align: center;
+}
+
+.cc-sec-head--center .cc-sec-intro {
+  text-align: center;
+}
+
+/* A dimension line: hairline with tick ends, carrying a mono label. */
+.cc-dim {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  font-family: var(--cc-font-mono);
+  font-size: var(--cc-t-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cc-graphite);
+  font-variant-numeric: tabular-nums;
+}
+
+.cc-dim-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--cc-gold-quiet);
+  position: relative;
+}
+
+.cc-dim-rule::before,
+.cc-dim-rule::after {
+  content: '';
+  position: absolute;
+  top: -0.25rem;
+  width: 1px;
+  height: 0.5rem;
+  background: var(--cc-gold-ink);
+}
+
+.cc-dim-rule::before {
+  left: 0;
+}
+
+.cc-dim-rule::after {
+  right: 0;
+}
+
+.cc-sec--dark .cc-dim {
+  color: var(--cc-on-navy-faint);
+}
+
+.cc-sec--dark .cc-dim-rule {
+  background: rgba(255, 184, 28, 0.32);
+}
+
+.cc-sec--dark .cc-dim-rule::before,
+.cc-sec--dark .cc-dim-rule::after {
+  background: var(--cc-gold);
+}
+
+/* Sections */
+.cc-sec {
+  padding-block: var(--cc-sec-y);
+  position: relative;
+}
+
+.cc-sec--dark {
+  background: var(--cc-navy-deep);
+  color: var(--cc-on-navy);
+}
+
+.cc-sec--paper-deep {
+  background: var(--cc-paper-deep);
+}
+
+.cc-sec--flush {
+  padding-block: 0;
+}
+
+/* Buttons */
+.cc-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-height: 2.875rem;
+  padding: 0.875rem 1.5rem;
+  font-family: var(--cc-font-ui);
+  font-size: var(--cc-t-sm);
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: var(--cc-gold);
+  color: var(--cc-navy-deep);
+  transition: background 0.2s var(--cc-ease);
+}
+
+.cc-cta::after {
+  content: '';
+  width: 1.125rem;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.2s var(--cc-ease);
+}
+
+.cc-cta:hover {
+  background: #ffd166;
+}
+
+.cc-cta:hover::after {
+  width: 1.75rem;
+}
+
+.cc-cta--ghost {
+  background: none;
+  color: var(--cc-on-navy);
+  border-bottom: 1px solid rgba(255, 184, 28, 0.5);
+  padding-inline: 0;
+  font-size: var(--cc-t-xs);
+}
+
+.cc-cta--ghost:hover {
+  background: none;
+  color: var(--cc-gold);
+}
+
+.cc-cta--ink {
+  background: var(--cc-navy);
+  color: #fff;
+}
+
+.cc-cta--ink:hover {
+  background: var(--cc-ink);
+}
+
+/* ==========================================================================
+   NAV (standalone target only)
+   ========================================================================== */
+
+.cc-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(0, 21, 39, 0.95);
+  border-bottom: 1px solid var(--cc-rule-navy);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.cc-nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-inline: var(--cc-gutter);
+  min-height: 4rem;
+}
+
+.cc-nav-mark {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.cc-nav-mark img {
+  height: 2.25rem;
+  width: auto;
+}
+
+.cc-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-left: auto;
+}
+
+.cc-nav-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  font-family: var(--cc-font-ui);
+  font-size: var(--cc-t-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--cc-on-navy-soft);
+  border-bottom: 2px solid transparent;
+  transition:
+    color 0.2s var(--cc-ease),
+    border-color 0.2s var(--cc-ease);
+}
+
+.cc-nav-link:hover,
+.cc-nav-link[aria-current='true'] {
+  color: #fff;
+  border-bottom-color: var(--cc-gold);
+}
+
+.cc-nav-tel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--cc-font-mono);
+  font-size: var(--cc-t-xs);
+  color: var(--cc-on-navy-soft);
+  text-decoration: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.cc-nav-tel svg {
+  width: 0.8rem;
+  height: 0.8rem;
+  fill: var(--cc-gold);
+  flex-shrink: 0;
+}
+
+.cc-nav-tel:hover {
+  color: var(--cc-gold);
+}
+
+.cc-nav-toggle {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+  padding: 0.5rem 0.75rem;
+  min-height: 2.75rem;
+  font-family: var(--cc-font-ui);
+  font-size: var(--cc-t-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cc-on-navy);
+}
+
+.cc-nav-toggle svg {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+}
+
+@media (max-width: 60rem) {
+  .cc-js .cc-nav-toggle {
+    display: inline-flex;
+  }
+
+  .cc-js .cc-nav-links {
+    display: none;
+    position: absolute;
+    inset: 100% 0 auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    margin: 0;
+    padding: 0.5rem var(--cc-gutter) 1.25rem;
+    background: var(--cc-navy-deep);
+    border-bottom: 1px solid var(--cc-rule-navy);
+  }
+
+  .cc-js .cc-nav-links[data-open='true'] {
+    display: flex;
+  }
+
+  .cc-nav-link {
+    padding-block: 0.75rem;
+    border-bottom: 1px solid var(--cc-rule-navy);
+  }
+
+  /* The old page hid the phone number and Contact button at this width and
+     never put them back, so both vanished on mobile. They stay. */
+  .cc-nav-links .cc-nav-tel,
+  .cc-nav-links .cc-cta {
+    margin-top: 1rem;
+    justify-content: center;
+  }
+}
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+
+.cc-hero {
+  position: relative;
+  display: grid;
+  align-content: end;
+  min-height: var(--cc-hero-h, min(88vh, 52rem));
+  padding: clamp(4rem, 10vw, 7rem) 0 clamp(1.5rem, 3vw, 2.5rem);
+  overflow: hidden;
+  background: var(--cc-navy-deep);
+  color: #fff;
+  isolation: isolate;
+}
+
+.cc-hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.cc-hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.92) contrast(1.04) brightness(0.82);
+}
+
+/* The scrim. The old gradient dropped to 15% opacity at 35% height, which left
+   the annotation labels sitting on bare sky with indeterminate contrast. This
+   one keeps a floor under the whole frame and adds a directional wash where the
+   text actually sits. */
+.cc-hero-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      177deg,
+      rgba(0, 14, 26, 0.72) 0%,
+      rgba(0, 14, 26, 0.42) 34%,
+      rgba(0, 14, 26, 0.6) 62%,
+      rgba(0, 14, 26, 0.94) 100%
+    ),
+    linear-gradient(95deg, rgba(0, 14, 26, 0.66) 0%, rgba(0, 14, 26, 0.06) 62%);
+}
+
+/* Crop marks. Corner ticks in gold ink, one per corner, drawn not decorated. */
+.cc-hero-crop {
+  position: absolute;
+  inset: clamp(1rem, 3vw, 2.25rem);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.cc-hero-crop span {
+  position: absolute;
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.cc-hero-crop span::before,
+.cc-hero-crop span::after {
+  content: '';
+  position: absolute;
+  background: rgba(255, 184, 28, 0.85);
+}
+
+.cc-hero-crop span::before {
+  width: 100%;
+  height: 1px;
+}
+
+.cc-hero-crop span::after {
+  width: 1px;
+  height: 100%;
+}
+
+.cc-hero-crop span:nth-child(1) {
+  top: 0;
+  left: 0;
+}
+.cc-hero-crop span:nth-child(2) {
+  top: 0;
+  right: 0;
+}
+.cc-hero-crop span:nth-child(2)::before {
+  right: 0;
+}
+.cc-hero-crop span:nth-child(2)::after {
+  right: 0;
+}
+.cc-hero-crop span:nth-child(3) {
+  bottom: 0;
+  left: 0;
+}
+.cc-hero-crop span:nth-child(3)::before {
+  bottom: 0;
+}
+.cc-hero-crop span:nth-child(4) {
+  bottom: 0;
+  right: 0;
+}
+.cc-hero-crop span:nth-child(4)::before {
+  bottom: 0;
+  right: 0;
+}
+.cc-hero-crop span:nth-child(4)::after {
+  right: 0;
+}
+
+.cc-hero-grid {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 9rem;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.5;
+  -webkit-mask-image: linear-gradient(to bottom, #000, transparent);
+  mask-image: linear-gradient(to bottom, #000, transparent);
+  --cc-grid-line: rgba(255, 184, 28, 0.16);
+}
+
+.cc-hero-inner {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3rem);
+  align-items: end;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 62rem) {
+  .cc-hero-inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}
+
+.cc-hero-body {
+  max-width: 46rem;
+}
+
+.cc-kicker {
+  display: inline-block;
+  padding: 0.4rem 0.75rem;
+  margin-bottom: 1.25rem;
+  font-family: var(--cc-font-mono);
+  font-size: var(--cc-t-2xs);
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  background: var(--cc-gold);
+  color: var(--cc-navy-deep);
+}
+
+.cc-hero-title {
+  font-family: var(--cc-font-display);
+  font-size: var(--cc-t-hero);
+  font-weight: 700;
+  line-height: 0.86;
+  /* em, not the old fixed -2px, which crowded badly at small sizes. */
+  letter-spacing: -0.028em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.cc-hero-title span {
+  display: block;
+}
+
+.cc-hero-title .cc-hero-title-accent {
+  color: var(--cc-gold);
+}
+
+.cc-hero-standfirst {
+  margin-top: 1.5rem;
+  max-width: 40ch;
+  font-size: var(--cc-t-md);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.cc-hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem 1.75rem;
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+/* Stats sit on a dimension line, which is the whole conceit. */
+.cc-hero-stats {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid rgba(255, 184, 28, 0.4);
+  padding-top: 1rem;
+  min-width: min(22rem, 100%);
+}
+
+@media (min-width: 40rem) {
+  .cc-hero-stats {
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+  }
+}
+
+.cc-stat {
+  position: relative;
+  padding: 0.5rem 1.25rem 0.25rem 0;
+}
+
+.cc-stat::before {
+  content: '';
+  position: absolute;
+  top: -1rem;
+  left: 0;
+  width: 1px;
+  height: 0.5rem;
+  background: var(--cc-gold);
+}
+
+.cc-stat-value {
+  display: flex;
+  align-items: baseline;
+  gap: 0.2rem;
+  font-family: var(--cc-font-display);
+  font-size: var(--cc-t-xl);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--cc-gold);
+  font-variant-numeric: tabular-nums;
+}
+
+.cc-stat-value small {
+  font-family: var(--cc-font-mono);
+  font-size: var(--cc-t-2xs);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: rgba(255, 184, 28, 0.8);
+}
+
+.cc-stat-label {
+  margin-top: 0.35rem;
+  font-family: var(--cc-font-mono);
+  font-size: var(--cc-t-2xs);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--cc-on-navy-faint);
+}
+
+/* Title block along the bottom edge: view name, sheet number, coordinates. */
+.cc-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.5rem;
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding-top: 0.875rem;
+  border-top: 1px solid var(--cc-rule-navy);
+  font-family: var(--cc-font-mono);
+  font-size: var(--cc-t-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cc-on-navy-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.cc-hero-meta b {
+  color: rgba(255, 184, 28, 0.9);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   STATUS BANNER
+   ========================================================================== */
+
+.cc-banner {
+  background: var(--cc-navy);
+  color: #fff;
+  border-top: 2px solid var(--cc-gold);
+}
+
+.cc-banner-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+  padding-block: 1rem;
+}
+
+.cc-banner-label {
+  flex-shrink: 0;
+  padding: 0.25rem 0.625rem;
+  font-family: var(--cc-font-mono);
+  font-size: var(--cc-t-2xs);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: var(--cc-gold);
+  color: var(--cc-navy-deep);
+}
+
+.cc-banner-text {
+  flex: 1 1 20rem;
+  font-size: var(--cc-t-sm);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.cc-banner-cta {
+  font-family: var(--cc-font-ui);
+  font-size: var(--cc-t-xs);
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--cc-gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 184, 28, 0.45);
+  white-space: nowrap;
+}
+
+.cc-banner-cta:hover {
+  border-bottom-color: var(--cc-gold);
+}
+
+/* ==========================================================================
+   TICKER
+   ========================================================================== */
+
+.cc-ticker {
+  background: var(--cc-gold);
+  color: var(--cc-navy-deep);
+  border-block: 1px solid rgba(0, 21, 39, 0.16);
+}
+
+.cc-ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.75rem;
+  padding: 0.75rem 1.75rem;
+  font-family: var(--cc-font-mono);
+  font-size: var(--cc-t-2xs);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.cc-ticker-item::after {
+  content: '';
+  width: 0.3rem;
+  height: 0.3rem;
+  background: currentColor;
+  rotate: 45deg;
+  flex-shrink: 0;
+}
+
+.cc-ticker-pause {
+  color: var(--cc-navy-deep);
+  background: var(--cc-gold);
+  box-shadow: -0.75rem 0 0.75rem 0.25rem var(--cc-gold);
+}
+
+/* ==========================================================================
+   SPLIT SECTIONS (vision, impact)
+   ========================================================================== */
+
+.cc-split {
+  display: grid;
+  gap: 0;
+  align-items: stretch;
+}
+
+@media (min-width: 56rem) {
+  .cc-split {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cc-split--flip .cc-split-media {
+    order: 2;
+  }
+}
+
+.cc-split-media {
+  position: relative;
+  overflow: hidden;
+  min-height: 18rem;
+  background: var(--cc-navy-deep);
+}
+
+.cc-split-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cc-split-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: clamp(2.5rem, 5vw, 4.5rem) var(--cc-gutter);
+}
+
+@media (min-width: 56rem) {
+  .cc-split--right .cc-split-body {
+    max-width: calc(var(--cc-measure-wide) / 2);
+    margin-left: auto;
+  }
+
+  .cc-split--left .cc-split-body {
+    max-width: calc(var(--cc-measure-wide) / 2);
+    margin-right: auto;
+  }
+}
+
+.cc-split-body p {
+  max-width: 56ch;
+  color: var(--cc-graphite);
+  line-height: 1.72;
+}
+
+/* A framed corner mark on the media, tying it to the hero crop marks. */
+.cc-split-media::after {
+  content: '';
+  position: absolute;
+  inset: 1.25rem;
+  border: 1px solid rgba(255, 184, 28, 0.28);
+  border-image: none;
+  clip-path: polygon(
+    0 0,
+    2.5rem 0,
+    2.5rem 1px,
+    1px 1px,
+    1px 2.5rem,
+    0 2.5rem,
+    0 100%,
+    2.5rem 100%,
+    2.5rem calc(100% - 1px),
+    1px calc(100% - 1px),
+    1px calc(100% - 2.5rem),
+    0 calc(100% - 2.5rem)
+  );
+  pointer-events: none;
+}
+
+.cc-badge {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 1;
+  padding: 0.75rem 1rem;
+  background: var(--cc-gold);
+  color: var(--cc-navy-deep);
+  text-align: left;
+}
+
+.cc-badge-value {
+  font-family: var(--cc-font-display);
+  font-size: var(--cc-t-lg);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.cc-badge-label {
+  margin-top: 0.2rem;
+  font-family: var(--cc-font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Quote */
+.cc-quote {
+  margin-top: 0.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--cc-paper-edge);
+  max-width: 52ch;
+}
+
+.cc-quote-text {
+  font-size: var(--cc-t-md);
+  line-height: 1.66;
+  color: var(--cc-navy);
+}
+
+.cc-quote-text::before {
+  content: '\201C';
+  color: var(--cc-gold-ink);
+  opacity: 0.5;
+}
+
+.cc-quote-text::after {
+  content: '\201D';
+  color: var(--cc-gold-ink);
+  opacity: 0.5;
+}
+
+.cc-quote-attr {
+  display: block;
+  margin-top: 0.875rem;
+  font-style: normal;
+}
+
+.cc-quote-who {
+  display: block;
+  font-family: var(--cc-font-ui);
+  font-size: var(--cc-t-sm);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--cc-navy);
+}
+
+.cc-quote-role {
+  display: block;
+  margin-top: 0.15rem;
+  font-family: var(--cc-font-mono);
+  font-size: var(--cc-t-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cc-gold-ink);
+}
+
+.cc-legacy {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--cc-paper-edge);
+  font-size: var(--cc-t-sm);
+  color: var(--cc-graphite);
+  max-width: 52ch;
+}
+
+/* Impact list: tick marks, not bullets. */
+.cc-list {
+  display: grid;
+  gap: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.cc-list-item {
+  display: grid;
+  grid-template-columns: 1.5rem 1fr;
+  gap: 0.75rem;
+  align-items: start;
+  font-size: var(--cc-t-sm);
+  line-height: 1.62;
+  color: var(--cc-graphite);
+}
+
+.cc-list-item::before {
+  content: '';
+  margin-top: 0.55rem;
+  width: 1.25rem;
+  height: 1px;
+  background: var(--cc-gold-ink);
+}
+
+/* ==========================================================================
+   DRAWING SET
+   ========================================================================== */
+
+.cc-plates {
+  display: grid;
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr));
+}
+
+/* A six-column field, with spans chosen so all four rows fill exactly and the
+   establishing view gets the width it deserves:
+     row 1  4 + 2   east perspective, main entry
+     row 2  3 + 3   champions entry, champions corridor
+     row 3  2 + 2 + 2   turf, training table, academic center
+     row 4  3 + 3   baseball suite, softball suite
+   Getting this wrong leaves a hole in the last row, which reads as a mistake
+   rather than a composition. */
+@media (min-width: 56rem) {
+  .cc-plates {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .cc-plate {
+    grid-column: span 2;
+  }
+
+  .cc-plate:nth-child(1) {
+    grid-column: span 4;
+  }
+
+  .cc-plate:nth-child(3),
+  .cc-plate:nth-child(4),
+  .cc-plate:nth-child(8),
+  .cc-plate:nth-child(9) {
+    grid-column: span 3;
+  }
+}
+
+.cc-plate {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  text-align: left;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--cc-rule-navy);
+  transition:
+    border-color 0.25s var(--cc-ease),
+    background 0.25s var(--cc-ease),
+    translate 0.25s var(--cc-ease);
+}
+
+.cc-plate:hover {
+  border-color: rgba(255, 184, 28, 0.4);
+  background: rgba(255, 255, 255, 0.08);
+  translate: 0 -2px;
+}
+
+/* These are spans, because the whole plate is a <button> and a button may not
+   contain block-level elements. aspect-ratio and overflow need a block box, so
+   display is set explicitly rather than left at inline. */
+.cc-plate-media {
+  display: block;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--cc-navy);
+}
+
+.cc-plate-media picture,
+.cc-plate-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.cc-plate-media img {
+  object-fit: cover;
+}
+
+.cc-plate-name,
+.cc-plate-caption {
+  display: block;
+}
+
+.cc-plate-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: scale 0.5s var(--cc-ease);
+}
+
+.cc-plate:hover .cc-plate-media img {
+  scale: 1.03;
+}
+
+/* Sheet number burned into the corner of the plate, like a real drawing. */
+.cc-plate-sheet {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  padding: 0.3rem 0.55rem;
+  font-family: var(--cc-font-mono);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  background: rgba(0, 21, 39, 0.86);
+  color: var(--cc-gold);
+  font-variant-numeric: tabular-nums;
+}
+
+.cc-plate-zoom {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  background: rgba(0, 21, 39, 0.7);
+  opacity: 0;
+  transition: opacity 0.25s var(--cc-ease);
+}
+
+.cc-plate:hover .cc-plate-zoom,
+.cc-plate:focus-visible .cc-plate-zoom {
+  opacity: 1;
+}
+
+.cc-plate-zoom svg {
+  width: 0.875rem;
+  height: 0.875rem;
+  fill: var(--cc-gold);
+}
+
+/* The title block under each plate. */
+.cc-plate-block {
+  display: grid;
+  gap: 0.4rem;
+  padding: 1rem 1.125rem 1.25rem;
+  border-top: 1px solid var(--cc-rule-navy);
+}
+
+.cc-plate-name {
+  font-family: var(--cc-font-display);
+  font-size: var(--cc-t-base);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.cc-plate-caption {
+  font-size: var(--cc-t-sm);
+  line-height: 1.6;
+  color: var(--cc-on-navy-soft);
+}
+
+/* ==========================================================================
+   STORIES
+   ========================================================================== */
+
+.cc-stories {
+  display: grid;
+  gap: clamp(1.25rem, 2.5vw, 1.75rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr));
+  align-items: start;
+}
+
+.cc-story {
+  display: grid;
+  gap: 1.25rem;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  background: var(--cc-paper-deep);
+  border-left: 2px solid var(--cc-gold-ink);
+}
+
+.cc-story-head {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.cc-story-portrait,
+.cc-story-mono {
+  flex-shrink: 0;
+  width: 3.5rem;
+  height: 3.5rem;
+  overflow: hidden;
+  background: var(--cc-navy);
+}
+
+.cc-story-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* Monogram stands in where a photo has not been uploaded to Sidearm. */
+.cc-story-mono {
+  display: grid;
+  place-items: center;
+  font-family: var(--cc-font-display);
+  font-size: var(--cc-t-md);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--cc-gold);
+}
+
+.cc-story-id {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.cc-story-name {
+  font-family: var(--cc-font-ui);
+  font-size: var(--cc-t-sm);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--cc-navy);
+}
+
+.cc-story-role {
+  font-family: var(--cc-font-mono);
+  font-size: var(--cc-t-2xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cc-gold-ink);
+}
+
+.cc-story-quote {
+  font-size: var(--cc-t-sm);
+  line-height: 1.75;
+  color: var(--cc-ink);
+}
+
+/* ==========================================================================
+   SCHEDULE
+   ==========================================================================
+   Replaces the old center-line zigzag timeline, which forced alternating text
+   alignment (hard to read) and hid the times entirely on mobile.
+*/
+
+.cc-sched {
+  display: grid;
+  border-top: 1px solid var(--cc-paper-edge);
+}
+
+.cc-sched-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.35rem 1.5rem;
+  padding-block: 1.25rem;
+  border-bottom: 1px solid var(--cc-paper-edge);
+}
+
+@media (min-width: 44rem) {
+  .cc-sched-row {
+    grid-template-columns: 6.5rem 1fr;
+    align-items: baseline;
+    padding-block: 1.5rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .cc-sched-row {
+    grid-template-columns: 6.5rem 14rem 1fr;
+  }
+}
+
+.cc-sched-clock {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  font-family: var(--cc-font-mono);
+  font-size: var(--cc-t-md);
+  font-weight: 600;
+  color: var(--cc-navy);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+.cc-sched-clock small {
+  font-size: var(--cc-t-2xs);
+  letter-spacing: 0.08em;
+  color: var(--cc-graphite);
+}
+
+.cc-sched-title {
+  font-family: var(--cc-font-ui);
+  font-size: var(--cc-t-base);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--cc-navy);
+  text-wrap: balance;
+}
+
+.cc-sched-venue {
+  display: block;
+  margin-top: 0.25rem;
+  font-family: var(--cc-font-mono);
+  font-size: var(--cc-t-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cc-gold-ink);
+}
+
+.cc-sched-desc {
+  font-size: var(--cc-t-sm);
+  line-height: 1.68;
+  color: var(--cc-graphite);
+  max-width: 56ch;
+}
+
+/* ==========================================================================
+   PROGRESS
+   ========================================================================== */
+
+.cc-steps {
+  display: grid;
+  gap: 0;
+  counter-reset: cc-step;
+}
+
+@media (min-width: 52rem) {
+  .cc-steps {
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+  }
+}
+
+.cc-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.75rem 1fr;
+  gap: 0 1rem;
+  padding: 0 0 1.75rem;
+}
+
+@media (min-width: 52rem) {
+  .cc-step {
+    grid-template-columns: 1fr;
+    padding: 0 1.25rem 0 0;
+  }
+}
+
+.cc-step-mark {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex-shrink: 0;
+  font-family: var(--cc-font-mono);
+  font-size: var(--cc-t-sm);
+  font-weight: 600;
+  background: var(--cc-paper);
+  border: 1px solid var(--cc-paper-edge);
+  color: var(--cc-graphite);
+}
+
+.cc-step-mark svg {
+  width: 1.125rem;
+  height: 1.125rem;
+  fill: currentColor;
+}
+
+/* The connector runs behind the marks. */
+.cc-step::before {
+  content: '';
+  position: absolute;
+  top: 2.75rem;
+  left: 1.375rem;
+  width: 1px;
+  height: calc(100% - 2.75rem);
+  background: var(--cc-paper-edge);
+}
+
+.cc-step:last-child::before {
+  display: none;
+}
+
+@media (min-width: 52rem) {
+  .cc-step::before {
+    top: 1.375rem;
+    left: 2.75rem;
+    width: calc(100% - 2.75rem);
+    height: 1px;
+  }
+}
+
+.cc-step[data-state='done'] .cc-step-mark {
+  background: var(--cc-navy);
+  border-color: var(--cc-navy);
+  color: var(--cc-gold);
+}
+
+.cc-step[data-state='active'] .cc-step-mark {
+  background: var(--cc-gold);
+  border-color: var(--cc-gold);
+  color: var(--cc-navy-deep);
+}
+
+.cc-step[data-state='done']::before,
+.cc-step[data-state='active']::before {
+  background: var(--cc-gold-ink);
+}
+
+.cc-step-body {
+  padding-top: 0.35rem;
+}
+
+@media (min-width: 52rem) {
+  .cc-step-body {
+    padding-top: 1.125rem;
+  }
+}
+
+.cc-step-title {
+  font-family: var(--cc-font-ui);
+  font-size: var(--cc-t-sm);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--cc-navy);
+}
+
+.cc-step-state {
+  display: block;
+  margin-top: 0.2rem;
+  font-family: var(--cc-font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cc-gold-ink);
+}
+
+.cc-step-detail {
+  margin-top: 0.5rem;
+  font-size: var(--cc-t-sm);
+  line-height: 1.6;
+  color: var(--cc-graphite);
+  max-width: 34ch;
+}
+
+.cc-note {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding: 1.25rem 1.5rem;
+  background: rgba(127, 87, 0, 0.08);
+  border-left: 2px solid var(--cc-gold-ink);
+  font-size: var(--cc-t-sm);
+  line-height: 1.65;
+  color: var(--cc-ink);
+  max-width: 62ch;
+}
+
+/* ==========================================================================
+   GIVING
+   ========================================================================== */
+
+.cc-pullquote {
+  max-width: 46rem;
+  margin: 0 auto clamp(2.5rem, 5vw, 3.5rem);
+  text-align: center;
+  font-family: var(--cc-font-display);
+  font-size: var(--cc-t-lg);
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: 0.005em;
+  color: var(--cc-navy);
+  text-wrap: balance;
+}
+
+.cc-tiers {
+  display: grid;
+  gap: 1px;
+  background: var(--cc-paper-edge);
+  border: 1px solid var(--cc-paper-edge);
+  grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
+}
+
+.cc-tier {
+  position: relative;
+  display: grid;
+  gap: 0.625rem;
+  align-content: start;
+  padding: clamp(1.5rem, 3vw, 2rem) clamp(1.25rem, 2.5vw, 1.75rem);
+  background: var(--cc-paper);
+}
+
+.cc-tier--featured {
+  background: var(--cc-navy);
+  color: #fff;
+}
+
+.cc-tier-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.25rem 0.625rem;
+  font-family: var(--cc-font-mono);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--cc-gold);
+  color: var(--cc-navy-deep);
+}
+
+.cc-tier-amount {
+  font-family: var(--cc-font-display);
+  font-size: var(--cc-t-xl);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--cc-navy);
+  font-variant-numeric: tabular-nums;
+}
+
+.cc-tier--featured .cc-tier-amount {
+  color: var(--cc-gold);
+}
+
+.cc-tier-name {
+  font-family: var(--cc-font-mono);
+  font-size: var(--cc-t-2xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cc-gold-ink);
+}
+
+.cc-tier--featured .cc-tier-name {
+  color: var(--cc-gold);
+}
+
+.cc-tier-impact {
+  font-size: var(--cc-t-sm);
+  line-height: 1.65;
+  color: var(--cc-graphite);
+}
+
+.cc-tier--featured .cc-tier-impact {
+  color: var(--cc-on-navy-soft);
+}
+
+.cc-tier-cta {
+  margin-top: 0.5rem;
+  justify-self: start;
+  font-family: var(--cc-font-ui);
+  font-size: var(--cc-t-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cc-navy);
+  text-decoration: none;
+  border-bottom: 2px solid var(--cc-gold);
+  padding-bottom: 0.15rem;
+}
+
+.cc-tier--featured .cc-tier-cta {
+  color: var(--cc-gold);
+}
+
+.cc-tier-cta:hover {
+  color: var(--cc-gold-ink);
+}
+
+.cc-tier--featured .cc-tier-cta:hover {
+  color: #fff;
+}
+
+.cc-give-close {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  text-align: center;
+}
+
+.cc-give-close p {
+  margin-bottom: 1.25rem;
+  font-size: var(--cc-t-md);
+  color: var(--cc-graphite);
+}
+
+/* ==========================================================================
+   FAQ
+   ========================================================================== */
+
+.cc-acc {
+  display: grid;
+  gap: 1px;
+  max-width: 52rem;
+  margin-inline: auto;
+  background: var(--cc-paper-edge);
+  border-block: 1px solid var(--cc-paper-edge);
+}
+
+.cc-acc-item {
+  background: var(--cc-paper);
+}
+
+.cc-acc-trigger {
+  padding: 1.125rem 1.25rem;
+  font-family: var(--cc-font-ui);
+  font-size: var(--cc-t-base);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--cc-navy);
+  transition: color 0.2s var(--cc-ease);
+}
+
+.cc-acc-trigger:hover,
+.cc-acc-trigger[aria-expanded='true'] {
+  /* #8F6200, not the old #D4960E, which was 2.57:1 on white. */
+  color: var(--cc-gold-ink);
+}
+
+.cc-acc-panel {
+  padding: 0 1.25rem 1.25rem;
+}
+
+.cc-acc-panel p {
+  font-size: var(--cc-t-sm);
+  line-height: 1.75;
+  color: var(--cc-graphite);
+  max-width: 62ch;
+}
+
+.cc-acc-panel a {
+  color: var(--cc-navy);
+  text-decoration-color: var(--cc-gold-ink);
+  text-underline-offset: 0.15em;
+}
+
+.cc-acc-panel a:hover {
+  color: var(--cc-gold-ink);
+}
+
+/* ==========================================================================
+   TEAM
+   ========================================================================== */
+
+.cc-office {
+  display: grid;
+  gap: 1px;
+  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+  background: var(--cc-rule-navy);
+  border: 1px solid var(--cc-rule-navy);
+  grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+}
+
+.cc-office-item {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 1.125rem 1.25rem;
+  background: var(--cc-navy-deep);
+}
+
+.cc-office-icon {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex-shrink: 0;
+  background: var(--cc-gold);
+}
+
+.cc-office-icon svg {
+  width: 1rem;
+  height: 1rem;
+  fill: var(--cc-navy-deep);
+}
+
+.cc-office-label {
+  font-family: var(--cc-font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cc-on-navy-faint);
+}
+
+.cc-office-value {
+  margin-top: 0.15rem;
+  font-size: var(--cc-t-sm);
+  line-height: 1.45;
+  color: #fff;
+}
+
+.cc-office-value a {
+  color: #fff;
+  text-decoration-color: rgba(255, 184, 28, 0.6);
+  text-underline-offset: 0.15em;
+  /* The old rule was word-break:break-all, which chopped addresses mid-word. */
+  overflow-wrap: anywhere;
+}
+
+.cc-office-value a:hover {
+  color: var(--cc-gold);
+}
+
+.cc-team {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr));
+}
+
+.cc-member {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--cc-rule-navy);
+}
+
+.cc-member-photo {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--cc-navy);
+}
+
+.cc-member-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cc-member-name {
+  padding: 0.625rem 0.875rem;
+  background: var(--cc-gold);
+  font-family: var(--cc-font-ui);
+  font-size: var(--cc-t-sm);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--cc-navy-deep);
+}
+
+.cc-member-links {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.875rem;
+  align-content: start;
+}
+
+.cc-member-link {
+  display: grid;
+  grid-template-columns: 0.875rem 1fr;
+  gap: 0.5rem;
+  align-items: start;
+  font-size: var(--cc-t-xs);
+  line-height: 1.45;
+  color: var(--cc-on-navy-soft);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.cc-member-link svg {
+  width: 0.875rem;
+  height: 0.875rem;
+  margin-top: 0.15rem;
+  fill: var(--cc-gold);
+  flex-shrink: 0;
+}
+
+.cc-member-link:hover {
+  color: var(--cc-gold);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+.cc-footer {
+  padding-block: clamp(2rem, 4vw, 3rem);
+  background: var(--cc-navy-deep);
+  border-top: 1px solid var(--cc-rule-navy);
+  /* 0.66 alpha = 6.6:1. The old footer used 0.40 = 3.80:1. */
+  color: var(--cc-on-navy-soft);
+}
+
+.cc-footer-inner {
+  display: grid;
+  gap: 1.5rem;
+  justify-items: center;
+  text-align: center;
+}
+
+.cc-footer-mark img {
+  height: 2.25rem;
+  width: auto;
+}
+
+.cc-footer-social {
+  display: flex;
+  gap: 0.625rem;
+}
+
+.cc-footer-social a {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--cc-rule-navy);
+  transition:
+    background 0.2s var(--cc-ease),
+    border-color 0.2s var(--cc-ease);
+}
+
+.cc-footer-social a:hover {
+  background: var(--cc-gold);
+  border-color: var(--cc-gold);
+}
+
+.cc-footer-social svg {
+  width: 0.9rem;
+  height: 0.9rem;
+  fill: var(--cc-on-navy-soft);
+}
+
+.cc-footer-social a:hover svg {
+  fill: var(--cc-navy-deep);
+}
+
+.cc-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 1.5rem;
+}
+
+.cc-footer-links a {
+  font-family: var(--cc-font-ui);
+  font-size: var(--cc-t-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cc-on-navy-soft);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.cc-footer-links a:hover {
+  color: var(--cc-gold);
+  border-bottom-color: var(--cc-gold);
+}
+
+.cc-footer-fine {
+  display: grid;
+  gap: 0.35rem;
+  font-family: var(--cc-font-mono);
+  font-size: var(--cc-t-2xs);
+  letter-spacing: 0.04em;
+  color: var(--cc-on-navy-faint);
+  max-width: 46ch;
+}
+
+/* ==========================================================================
+   FIXED CHROME
+   ========================================================================== */
+
+.cc-dock {
+  background: var(--cc-navy);
+  border-top: 2px solid var(--cc-gold);
+}
+
+.cc-dock-btn {
+  font-family: var(--cc-font-ui);
+  font-size: var(--cc-t-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.cc-dock-btn--solid {
+  background: var(--cc-gold);
+  color: var(--cc-navy-deep);
+}
+
+.cc-dock-btn--ghost {
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+}
+
+.cc-dock-btn--ghost:hover {
+  border-color: var(--cc-gold);
+  color: var(--cc-gold);
+}
+
+@media (max-width: 48rem) {
+  .cc-dock {
+    display: block;
+  }
+
+  .cc-has-dock {
+    padding-bottom: 4.5rem;
+  }
+
+  .cc-top {
+    bottom: 5.25rem;
+  }
+}
+
+.cc-top {
+  background: var(--cc-gold);
+  color: var(--cc-navy-deep);
+  box-shadow: 0 0.25rem 1rem rgba(0, 12, 24, 0.25);
+}
+
+.cc-top:hover {
+  background: #ffd166;
+}
+
+.cc-lightbox {
+  color: #fff;
+}
+
+.cc-lightbox-img {
+  border: 1px solid rgba(255, 184, 28, 0.25);
+}
+
+.cc-lightbox-caption {
+  display: grid;
+  gap: 0.25rem;
+  text-align: center;
+  font-family: var(--cc-font-mono);
+  font-size: var(--cc-t-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.cc-lightbox-caption span {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: var(--cc-t-2xs);
+  font-variant-numeric: tabular-nums;
+}
+
+.cc-lightbox-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  color: #fff;
+}
+
+.cc-lightbox-btn:hover {
+  background: var(--cc-gold);
+  border-color: var(--cc-gold);
+  color: var(--cc-navy-deep);
+}
