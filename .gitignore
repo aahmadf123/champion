@@ -1,7 +1,0 @@
-node_modules/
-dist/
-!sidearm/
-.shots/
-assets/img/
-*.log
-.DS_Store
