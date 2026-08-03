@@ -151,11 +151,14 @@ a{text-decoration:none;color:inherit}
    ============================================ */
 .features{padding:var(--section-padding);background:var(--navy-deep);color:var(--white);position:relative;overflow:hidden}
 .features::before{content:'';position:absolute;top:-200px;right:-200px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(255,184,28,0.06) 0%,transparent 70%);pointer-events:none}
-.features-header{text-align:center;margin-bottom:64px}
+.features-header{text-align:center;margin-bottom:52px}
+.features-dim{display:flex;align-items:center;gap:12px;font-family:var(--font-display);font-size:.58rem;letter-spacing:2.2px;text-transform:uppercase;color:rgba(255,255,255,.68);margin:0 0 12px}
+.features-dim::after{content:'';flex:1;height:1px;background:rgba(255,184,28,.45)}
+.features-eyebrow{font-family:var(--font-display);font-size:.58rem;font-weight:600;letter-spacing:2.2px;text-transform:uppercase;color:var(--gold);margin:0 0 10px}
 .features-header .section-title{color:var(--white)}
-.features-header .section-text{margin:0 auto;color:rgba(255,255,255,0.6)}
+.features-header .section-text{margin:0 auto;max-width:48ch;color:rgba(255,255,255,0.72);line-height:1.6}
 .features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.feature-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:0;overflow:hidden;transition:all var(--transition-smooth);position:relative;cursor:pointer}
+.feature-card{display:grid;grid-template-rows:auto 1fr;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.14);padding:0;overflow:hidden;transition:all var(--transition-smooth);position:relative;cursor:pointer}
 .feature-card:hover{transform:translateY(-4px);border-color:rgba(255,184,28,0.3);background:rgba(255,255,255,0.06)}
 .feature-card-image{width:100%;position:relative;overflow:hidden;background:rgba(0,10,25,0.9);aspect-ratio:16/9}
 .feature-card-image img{width:100%;height:100%;object-fit:cover;transition:opacity 0.4s ease}
@@ -164,11 +167,18 @@ a{text-decoration:none;color:inherit}
 .feature-card .gallery-zoom-hint{position:absolute;top:10px;right:10px;background:rgba(0,0,0,0.55);width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:50%;opacity:0.35;transition:opacity 0.3s ease;z-index:2}
 .feature-card .gallery-zoom-hint svg{width:16px;height:16px;fill:white}
 .feature-card:hover .gallery-zoom-hint{opacity:1}
-.feature-card-body{padding:28px 24px}
-.feature-card-title{font-family:var(--font-display);font-size:1.2rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;color:var(--white)}
-.feature-card-desc{font-size:1rem;line-height:1.65;color:rgba(255,255,255,0.55)}
+.feature-card-body{display:grid;align-content:start;gap:8px;padding:14px 14px 16px;background:rgba(255,255,255,.03)}
+.feature-card-title{font-family:var(--font-display);font-size:1.03rem;font-weight:600;text-transform:uppercase;letter-spacing:0.3px;margin:0;color:var(--white)}
+.feature-card-desc{font-size:.93rem;line-height:1.5;color:rgba(255,255,255,0.68);margin:0}
 .feature-card--hero{grid-column:1/-1}
 .feature-card--hero .feature-card-image{aspect-ratio:2.35/1}
+.feature-card--hero .feature-card-body{padding:12px 16px}
+
+/* Keep drawing-set cards isolated from gallery mosaic rules. */
+.features .gallery-item{min-height:0;aspect-ratio:auto;background:rgba(255,255,255,0.04)}
+.features .gallery-item:nth-child(1){grid-row:auto}
+.features .gallery-item:nth-child(4){grid-column:auto}
+.features .gallery-item img{object-fit:cover;filter:none;opacity:1}
 
 /* ============================================
    GALLERY SECTION
@@ -432,8 +442,8 @@ body{padding-bottom:70px}
 .vision-image img,.impact-image img{min-height:240px}
 .vision-content,.impact-content{padding:40px 20px}
 .faq-question{font-size:0.85rem}
-.feature-card-body{padding:20px 16px}
-.feature-card-title{font-size:1.05rem}
+.feature-card-body{padding:14px 12px}
+.feature-card-title{font-size:1rem}
 .gallery-grid{grid-template-columns:1fr}
 .gallery-item:nth-child(4){grid-column:span 1}
 .c2-stat{padding:10px 6px}
@@ -917,9 +927,10 @@ img{max-width:100%;height:auto}
 <section class="features" id="features">
   <div class="container">
     <div class="features-header reveal">
-      <p class="section-label">Drawing set A-101 to A-302</p>
+      <p class="features-dim">Drawing set A-101 to A-302</p>
+      <p class="features-eyebrow">The drawing set</p>
       <h2 class="section-title">Championship Spaces for Championship Athletes</h2>
-      <p class="section-text">From training and recovery to connection and community, every space within the Champions Complex is purpose-built to support the wholistic student-athlete experience.</p>
+      <p class="section-text">Nine spaces, and ninety seconds from the front door to the far end of them.</p>
     </div>
     <div class="features-grid">
       <div class="feature-card feature-card--hero reveal-scale reveal-delay-1 gallery-item" data-title="East Perspective" tabindex="0" role="button" aria-label="View East Perspective — click to enlarge">
@@ -930,7 +941,7 @@ img{max-width:100%;height:auto}
         </div>
         <div class="feature-card-body">
           <h3 class="feature-card-title">East Perspective</h3>
-          <p class="feature-card-desc">A stunning exterior view of the Champions Complex from the east, showcasing the modern design that will anchor the athletic campus.</p>
+          <p class="feature-card-desc">The building from the east, anchoring the athletic campus.</p>
         </div>
       </div>
       <div class="feature-card reveal reveal-delay-2 gallery-item" data-title="Main Entry" tabindex="0" role="button" aria-label="View Main Entry — click to enlarge">
@@ -941,7 +952,7 @@ img{max-width:100%;height:auto}
         </div>
         <div class="feature-card-body">
           <h3 class="feature-card-title">Main Entry</h3>
-          <p class="feature-card-desc">The welcoming main entry of the Champions Complex, designed to make a bold first impression for recruits, student-athletes, and visitors.</p>
+          <p class="feature-card-desc">Where recruits, athletes and visitors come in.</p>
         </div>
       </div>
       <div class="feature-card reveal reveal-delay-3 gallery-item" data-title="Champions Entry" tabindex="0" role="button" aria-label="View Champions Entry — click to enlarge">
