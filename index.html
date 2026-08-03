@@ -174,10 +174,13 @@ a{text-decoration:none;color:inherit}
 .feature-card--hero .feature-card-image{aspect-ratio:2.35/1}
 .feature-card--hero .feature-card-body{padding:12px 16px}
 
-/* Keep drawing-set cards isolated from gallery mosaic rules. */
+/* Keep drawing-set cards isolated from gallery mosaic rules. The mosaic's
+   nth-child span rules are defined later and out-specify .feature-card--hero,
+   so neutralize them here and re-assert the hero span at higher specificity. */
 .features .gallery-item{min-height:0;aspect-ratio:auto;background:rgba(255,255,255,0.04)}
-.features .gallery-item:nth-child(1){grid-row:auto}
-.features .gallery-item:nth-child(4){grid-column:auto}
+.features .gallery-item:nth-child(1),
+.features .gallery-item:nth-child(4){grid-row:auto;grid-column:auto}
+.features .feature-card--hero.gallery-item{grid-column:1/-1}
 .features .gallery-item img{object-fit:cover;filter:none;opacity:1}
 
 /* ============================================
