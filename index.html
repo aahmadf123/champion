@@ -103,7 +103,7 @@ a{text-decoration:none;color:inherit}
 .c2-coords{position:absolute;right:clamp(32px,5.5vw,80px);bottom:clamp(28px,4vh,52px);font-family:var(--font-display);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#FFB81C;display:flex;align-items:center;gap:12px;z-index:13}
 .c2-coords::before{content:'';width:32px;height:1px;background:#FFB81C;flex-shrink:0}
 .c2-kicker{display:inline-flex;align-items:center;font-family:var(--font-display);font-size:clamp(0.9rem,1.35vw,1.18rem);font-weight:700;letter-spacing:0.38em;text-transform:uppercase;color:#001527;background:rgba(255,184,28,0.96);margin-bottom:20px;padding:10px 16px 10px 18px;box-shadow:0 0 0 1px rgba(255,184,28,0.45)}
-.c2-headline{font-family:'Chakra Petch',var(--font-display);font-size:clamp(3.5rem,9.2vw,132px);line-height:.84;letter-spacing:-2px;text-transform:uppercase;color:#fff}
+.c2-headline{font-family:'Chakra Petch',var(--font-display);font-size:clamp(3.5rem,9.2vw,118px);line-height:.84;letter-spacing:-2px;text-transform:uppercase;color:#fff}
 .c2-headline .line{display:block}
 .c2-headline .gold{color:#FFB81C}
 .c2-cta-group{display:flex;gap:20px;margin-top:clamp(20px,3vw,36px);align-items:center;flex-wrap:wrap}
@@ -821,6 +821,48 @@ img{max-width:100%;height:auto}
 @media(hover:none){
 .nav-links a,.faq-question,.feature-card,.gallery-item{min-height:44px;min-width:44px}
 }
+
+/* ========== FOR TOLEDO (GLASS CITY STORY) ========== */
+.for-toledo{position:relative;overflow:hidden;background:var(--navy-deep);color:var(--white);padding:110px 0 100px;isolation:isolate}
+.ft-glass{position:absolute;inset:0;z-index:-2;pointer-events:none;
+  background:
+    linear-gradient(115deg,transparent 0 38%,rgba(143,208,242,0.10) 38% 52%,transparent 52%),
+    linear-gradient(115deg,transparent 0 56%,rgba(143,208,242,0.06) 56% 63%,transparent 63%),
+    linear-gradient(65deg,transparent 0 70%,rgba(143,208,242,0.08) 70% 84%,transparent 84%),
+    linear-gradient(115deg,transparent 0 22%,rgba(255,255,255,0.05) 22% 22.6%,transparent 22.6%),
+    radial-gradient(ellipse at 85% 10%,rgba(143,208,242,0.18),transparent 55%),
+    linear-gradient(180deg,#00182D 0%,var(--navy-deep) 100%)}
+.ft-wordmark{position:absolute;z-index:-1;right:-2vw;bottom:-0.12em;font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:clamp(7rem,22vw,20rem);line-height:1;letter-spacing:-0.02em;color:transparent;-webkit-text-stroke:1.5px rgba(143,208,242,0.22);pointer-events:none;user-select:none;white-space:nowrap}
+.ft-inner{position:relative}
+.for-toledo .section-label{color:var(--glass-blue)}
+.ft-intro{max-width:760px}
+.ft-title{font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:clamp(3.2rem,8vw,7rem);line-height:0.9;letter-spacing:-1px;color:var(--glass-blue);margin:6px 0 28px}
+.ft-lead{font-size:clamp(1.1rem,1.6vw,1.35rem);line-height:1.7;color:rgba(255,255,255,0.88);max-width:62ch}
+.ft-pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:64px}
+.ft-pillar{position:relative;padding:28px 26px 30px;background:linear-gradient(160deg,rgba(143,208,242,0.12),rgba(143,208,242,0.03));border:1px solid rgba(143,208,242,0.28);border-top:3px solid var(--glass-blue);backdrop-filter:blur(2px)}
+.ft-pillar-kicker{font-family:var(--font-display);font-size:0.72rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--glass-blue);margin-bottom:14px}
+.ft-pillar-title{font-family:var(--font-display);font-size:1.7rem;font-weight:700;text-transform:uppercase;color:var(--white);margin-bottom:10px}
+.ft-pillar-text{font-size:1rem;line-height:1.7;color:rgba(255,255,255,0.78)}
+.ft-manifesto{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:32px 48px;margin-top:64px;padding-top:40px;border-top:1px solid rgba(143,208,242,0.25)}
+.ft-lines{list-style:none;display:flex;flex-direction:column;gap:8px}
+.ft-lines li{font-family:var(--font-display);font-size:clamp(1.15rem,2vw,1.6rem);font-weight:600;line-height:1.3;color:var(--white)}
+.ft-lines li:nth-child(odd){color:var(--glass-blue)}
+.ft-sign{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+.ft-hashtag{font-family:var(--font-display);font-size:clamp(2rem,4vw,3.2rem);font-weight:700;line-height:1;color:var(--gold)}
+.ft-cta:focus-visible{outline:3px solid var(--white);outline-offset:3px}
+@media(max-width:900px){.ft-pillars{grid-template-columns:1fr}.ft-manifesto{grid-template-columns:1fr}}
+@media(max-width:768px){.for-toledo{padding:72px 0 64px}.ft-pillars{margin-top:40px}.ft-manifesto{margin-top:44px}}
+
+/* ========== GLASS CITY BLUE AS THE SECOND COLOR ========== */
+.c2-headline .glass{color:var(--glass-blue)}
+.marquee{background:var(--glass-blue)}
+.marquee-item{color:var(--navy-deep)}
+.marquee-item::after{background:var(--navy-deep)}
+.urgency-banner{border-top-color:var(--glass-blue)}
+.dil-header .section-label.chip{display:inline-flex;color:var(--navy-deep);background:var(--glass-blue);padding:5px 12px}
+.dil-header .section-label.chip::after{display:none}
+.site-footer{border-top:3px solid var(--glass-blue)}
+.footer-tagline{font-size:1.05rem;letter-spacing:4px}
 </style>
 </head>
 <body>
@@ -840,6 +882,7 @@ img{max-width:100%;height:auto}
       </a>
     </div>
     <div class="nav-links" id="navLinks">
+      <a href="#for-toledo">For Toledo</a>
       <a href="#vision">Vision</a>
       <a href="#features">Spaces</a>
       <a href="#testimonials">Stories</a>
@@ -880,7 +923,7 @@ img{max-width:100%;height:auto}
     <div class="c2-kicker">Champions Complex<span class="c2-kicker-tag">#ForToledo</span></div>
     <h1 class="c2-headline">
       <span class="line">Built</span>
-      <span class="line gold">For Toledo.</span>
+      <span class="line glass">For Toledo.</span>
     </h1>
     <p class="c2-sub">One building. Every Rocket. In the heart of the Glass City&rsquo;s campus.</p>
     <div class="c2-cta-group">
@@ -945,6 +988,50 @@ img{max-width:100%;height:auto}
     <span class="marquee-item" aria-hidden="true">Made in the Glass City</span>
   </div>
 </div>
+
+<!-- ========================================
+     FOR TOLEDO (GLASS CITY STORY)
+     ======================================== -->
+<section class="for-toledo" id="for-toledo" aria-labelledby="forToledoTitle">
+  <div class="ft-glass" aria-hidden="true"></div>
+  <div class="ft-wordmark" aria-hidden="true">Toledo</div>
+  <div class="container ft-inner">
+    <div class="ft-intro reveal">
+      <p class="section-label">This is the Glass City</p>
+      <h2 class="ft-title" id="forToledoTitle">For Toledo.</h2>
+      <p class="ft-lead">Toledo was built by people who make things. Glass shaped under heat and pressure, then carried around the world with this city&rsquo;s name on it. Our Rockets carry that name too. The Champions Complex is where they will be shaped.</p>
+    </div>
+    <div class="ft-pillars">
+      <article class="ft-pillar reveal reveal-delay-1">
+        <p class="ft-pillar-kicker">Craft</p>
+        <h3 class="ft-pillar-title">Made here.</h3>
+        <p class="ft-pillar-text">Shaped by heat and pressure, like the glass that named the city. Every hour of a Rocket&rsquo;s day, under one roof.</p>
+      </article>
+      <article class="ft-pillar reveal reveal-delay-2">
+        <p class="ft-pillar-kicker">Place</p>
+        <h3 class="ft-pillar-title">Home.</h3>
+        <p class="ft-pillar-text">Baseball and softball come home from Scott Park. All 17 sports together, in the heart of campus.</p>
+      </article>
+      <article class="ft-pillar reveal reveal-delay-3">
+        <p class="ft-pillar-kicker">People</p>
+        <h3 class="ft-pillar-title">Every Rocket.</h3>
+        <p class="ft-pillar-text">450+ student-athletes, one building, and a whole city behind them.</p>
+      </article>
+    </div>
+    <div class="ft-manifesto reveal">
+      <ul class="ft-lines">
+        <li>For the Friday nights at the Glass Bowl.</li>
+        <li>For the fans who know what Bowling Green means.</li>
+        <li>For the alumni who still call it home.</li>
+        <li>For the next Rocket who signs here.</li>
+      </ul>
+      <div class="ft-sign">
+        <p class="ft-hashtag">#ForToledo</p>
+        <a href="#giving" class="c2-primary ft-cta">Make a Gift</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ========================================
      VISION SECTION
@@ -1169,7 +1256,7 @@ img{max-width:100%;height:auto}
 <section class="day-in-life" id="day-in-life">
   <div class="container">
     <div class="dil-header reveal">
-      <p class="section-label">Made in the Glass City</p>
+      <p class="section-label chip">Made in the Glass City</p>
       <h2 class="section-title">Shaped Here, Every Day</h2>
       <p class="section-text">Toledo glass is shaped by heat and pressure. So are Rockets. From 6 a.m. conditioning to evening film, every hour of a student-athlete&rsquo;s day runs through this building.</p>
     </div>
