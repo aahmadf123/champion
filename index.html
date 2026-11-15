@@ -3,35 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="University of Toledo Athletics Champions Complex - A transformative 74,000 sq ft facility elevating the student-athlete experience. Contact the Rocket Fund team to learn how you can support this project.">
-<meta property="og:title" content="Champions Complex | University of Toledo Athletics">
-<meta property="og:description" content="Support a once-in-a-generation facility for 450+ Rocket student-athletes. 74,000 sq ft of world-class spaces for academics, nutrition, training, and more.">
-<meta property="og:image" content="images/Exterior__East_Perspective_MSA.jpg">
+<meta name="description" content="The Champions Complex: one building for every Rocket, in the heart of campus. Academics, nutrition, wellness and training under one roof for 450+ student-athletes in 17 sports. #ForToledo">
+<!-- TODO(prod): when this moves to the SIDEARM featured page, change og:url and og:image to the utrockets.com URLs. -->
+<meta property="og:url" content="https://aahmadf123.github.io/champion/">
+<meta property="og:title" content="Champions Complex | Built For Toledo">
+<meta property="og:description" content="One building. Every Rocket. Help bring academics, nutrition, wellness and training under one roof for 450+ Toledo student-athletes. #ForToledo">
+<meta property="og:image" content="https://aahmadf123.github.io/champion/images/Exterior__East_Perspective_MSA.jpg">
+<meta property="og:image:alt" content="Rendering of the Champions Complex from the east">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Champions Complex | University of Toledo Athletics">
-<meta name="twitter:description" content="Support a once-in-a-generation facility for 450+ Rocket student-athletes.">
+<meta name="twitter:title" content="Champions Complex | Built For Toledo">
+<meta name="twitter:description" content="One building. Every Rocket. Help build the Champions Complex. #ForToledo">
+<meta name="twitter:image" content="https://aahmadf123.github.io/champion/images/Exterior__East_Perspective_MSA.jpg">
 <title>Champions Complex | University of Toledo Athletics</title>
-<link rel="preload" as="image" href="images/Exterior__East_Perspective_MSA.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="images/web/Exterior__East_Perspective_MSA.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+/* TODO(asset): when marketing provides the 1872 web font, upload it and uncomment:
+@font-face{font-family:'1872';src:url('fonts/1872.woff2') format('woff2');font-weight:400 800;font-display:swap}
+*/
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
---navy:#002244;
+--navy:#0B2240;
 --navy-deep:#001527;
 --navy-light:#003366;
---gold:#FFB81C;
---gold-dark:#D4960E;
---gold-light:#FFD166;
+--gold:#FFC000;
+--gold-dark:#D19E00;
+--gold-light:#FFD54D;
+/* Official brand colors: Athletic Gold #FFC000 (PMS 116C), Midnight Blue #0B2240 (PMS 289C),
+   Glass City Blue #9BCBEB (Glass City Edition). Glass City Blue is an accent on Midnight surfaces; gold stays the action color. */
+--glass-blue:#9BCBEB;
 --white:#FFFFFF;
 --off-white:#F5F5F0;
 --gray-100:#E8E8E5;
 --gray-200:#D0D0CC;
 --gray-600:#6B6B6B;
 --gray-800:#2A2A2A;
---font-display:'Chakra Petch',sans-serif;
+--font-display:'1872','Chakra Petch',sans-serif; /* 1872 is the For Toledo typeface; Chakra Petch is the free stand-in until the web font is provided */
 --font-body:'Inter',sans-serif;
 --section-padding:100px 0;
 --container-width:1200px;
@@ -47,8 +57,8 @@ a{text-decoration:none;color:inherit}
    NAVIGATION
    ============================================ */
 .site-nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0;background:transparent;border-bottom:1px solid transparent;transition:all 0.35s ease;backdrop-filter:blur(0px);-webkit-backdrop-filter:blur(0px)}
-.site-nav::before{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--gold),rgba(255,184,28,0.15),var(--gold));opacity:0;transition:opacity 0.35s ease}
-.site-nav.scrolled{background:rgba(0,21,39,0.97);border-bottom-color:rgba(255,184,28,0.28);box-shadow:0 2px 20px rgba(0,0,0,0.3);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.site-nav::before{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--gold),rgba(255,192,0,0.15),var(--gold));opacity:0;transition:opacity 0.35s ease}
+.site-nav.scrolled{background:rgba(0,21,39,0.97);border-bottom-color:rgba(255,192,0,0.28);box-shadow:0 2px 20px rgba(0,0,0,0.3);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 .site-nav.scrolled::before{opacity:0.95}
 .nav-inner{display:flex;align-items:stretch;justify-content:space-between;width:100%;max-width:none;margin:0;padding:0 clamp(20px,4vw,48px);position:relative}
 .nav-logo{display:flex;align-items:center;gap:12px;padding:12px 0}
@@ -70,11 +80,11 @@ a{text-decoration:none;color:inherit}
 .c2-bg{position:absolute;inset:0;z-index:1}
 .c2-bg img{width:100%;height:100%;object-fit:cover;filter:contrast(1.05) saturate(.95) brightness(.85)}
 .c2-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,16,32,.55) 0%,rgba(0,16,32,.15) 35%,rgba(0,16,32,.85) 100%)}
-.c2-grid-edge{position:absolute;left:0;right:0;height:140px;pointer-events:none;background-image:linear-gradient(rgba(255,184,28,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(255,184,28,.12) 1px,transparent 1px);background-size:40px 40px;mix-blend-mode:screen;z-index:3}
+.c2-grid-edge{position:absolute;left:0;right:0;height:140px;pointer-events:none;background-image:linear-gradient(rgba(255,192,0,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(255,192,0,.12) 1px,transparent 1px);background-size:40px 40px;mix-blend-mode:screen;z-index:3}
 .c2-grid-top{top:0;-webkit-mask-image:linear-gradient(to bottom,black,transparent);mask-image:linear-gradient(to bottom,black,transparent)}
 .c2-grid-bot{bottom:0;-webkit-mask-image:linear-gradient(to top,black,transparent);mask-image:linear-gradient(to top,black,transparent)}
 .c2-corner{position:absolute;width:56px;height:56px;pointer-events:none;z-index:4}
-.c2-corner::before,.c2-corner::after{content:'';position:absolute;background:#FFB81C}
+.c2-corner::before,.c2-corner::after{content:'';position:absolute;background:#FFC000}
 .c2-corner.tl{top:88px;left:48px}
 .c2-corner.tl::before{top:0;left:0;width:40px;height:1px}
 .c2-corner.tl::after{top:0;left:0;height:40px;width:1px}
@@ -88,27 +98,27 @@ a{text-decoration:none;color:inherit}
 .c2-corner.br::before{bottom:0;right:0;width:40px;height:1px}
 .c2-corner.br::after{bottom:0;right:0;height:40px;width:1px}
 .c2-dim{position:absolute;top:104px;left:clamp(32px,5.5vw,80px);right:clamp(32px,5.5vw,80px);display:flex;align-items:center;gap:18px;font-family:var(--font-display);font-size:12px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,0.64);z-index:8}
-.c2-dim-line{flex:1;height:1px;background:rgba(255,184,28,.35);position:relative}
-.c2-dim-line::before,.c2-dim-line::after{content:'';position:absolute;top:-4px;width:1px;height:9px;background:#FFB81C}
+.c2-dim-line{flex:1;height:1px;background:rgba(255,192,0,.35);position:relative}
+.c2-dim-line::before,.c2-dim-line::after{content:'';position:absolute;top:-4px;width:1px;height:9px;background:#FFC000}
 .c2-dim-line::before{left:0}
 .c2-dim-line::after{right:0}
 .c2-content{position:absolute;left:clamp(32px,5.5vw,80px);bottom:clamp(90px,12vh,140px);max-width:min(760px,60vw);z-index:12}
-.c2-coords{position:absolute;right:clamp(32px,5.5vw,80px);bottom:clamp(28px,4vh,52px);font-family:var(--font-display);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#FFB81C;display:flex;align-items:center;gap:12px;z-index:13}
-.c2-coords::before{content:'';width:32px;height:1px;background:#FFB81C;flex-shrink:0}
-.c2-kicker{display:inline-flex;align-items:center;font-family:var(--font-display);font-size:clamp(0.9rem,1.35vw,1.18rem);font-weight:700;letter-spacing:0.38em;text-transform:uppercase;color:#001527;background:rgba(255,184,28,0.96);margin-bottom:20px;padding:10px 16px 10px 18px;box-shadow:0 0 0 1px rgba(255,184,28,0.45)}
-.c2-headline{font-family:'Chakra Petch',var(--font-display);font-size:clamp(3.5rem,9.2vw,132px);line-height:.84;letter-spacing:-2px;text-transform:uppercase;color:#fff}
+.c2-coords{position:absolute;right:clamp(32px,5.5vw,80px);bottom:clamp(28px,4vh,52px);font-family:var(--font-display);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#FFC000;display:flex;align-items:center;gap:12px;z-index:13}
+.c2-coords::before{content:'';width:32px;height:1px;background:#FFC000;flex-shrink:0}
+.c2-kicker{display:inline-flex;align-items:center;font-family:var(--font-display);font-size:clamp(0.9rem,1.35vw,1.18rem);font-weight:700;letter-spacing:0.38em;text-transform:uppercase;color:#001527;background:rgba(255,192,0,0.96);margin-bottom:20px;padding:10px 16px 10px 18px;box-shadow:0 0 0 1px rgba(255,192,0,0.45)}
+.c2-headline{font-family:var(--font-display);font-size:clamp(3.5rem,9.2vw,118px);line-height:.84;letter-spacing:-2px;text-transform:uppercase;color:#fff}
 .c2-headline .line{display:block}
-.c2-headline .gold{color:#FFB81C}
+.c2-headline .gold{color:#FFC000}
 .c2-cta-group{display:flex;gap:20px;margin-top:clamp(20px,3vw,36px);align-items:center;flex-wrap:wrap}
-.c2-primary{font-family:var(--font-display);font-size:14px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;background:#FFB81C;color:#001020;padding:18px 36px;display:inline-flex;align-items:center;gap:10px;text-decoration:none;transition:background .2s;cursor:pointer;min-height:44px}
+.c2-primary{font-family:var(--font-display);font-size:14px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;background:#FFC000;color:#001020;padding:18px 36px;display:inline-flex;align-items:center;gap:10px;text-decoration:none;transition:background .2s;cursor:pointer;min-height:44px}
 .c2-primary::after{content:'→'}
 .c2-primary:hover{background:#fff}
-.c2-secondary-link{font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.85);padding:18px 0;border-bottom:1px solid rgba(255,184,28,.5);text-decoration:none;transition:color .2s;min-height:44px;display:inline-flex;align-items:center}
-.c2-secondary-link:hover{color:#FFB81C}
+.c2-secondary-link{font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.85);padding:18px 0;border-bottom:1px solid rgba(255,192,0,.5);text-decoration:none;transition:color .2s;min-height:44px;display:inline-flex;align-items:center}
+.c2-secondary-link:hover{color:#FFC000}
 .c2-stats{position:absolute;right:clamp(32px,5.5vw,80px);bottom:clamp(90px,12vh,140px);z-index:12;display:flex;gap:0}
-.c2-stat{background:rgba(0,18,36,.82);border:1px solid rgba(255,184,28,.25);padding:18px 28px;min-width:120px;text-align:center}
+.c2-stat{background:rgba(0,18,36,.82);border:1px solid rgba(255,192,0,.25);padding:18px 28px;min-width:120px;text-align:center}
 .c2-stat+.c2-stat{border-left:none}
-.c2-stat-num{font-family:'Chakra Petch',var(--font-display);font-size:clamp(2rem,4vw,52px);color:#FFB81C;line-height:1;letter-spacing:-1px}
+.c2-stat-num{font-family:var(--font-display);font-size:clamp(2rem,4vw,52px);color:#FFC000;line-height:1;letter-spacing:-1px}
 .c2-stat-label{font-family:var(--font-display);font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:6px}
 .c2-tag{position:absolute;bottom:clamp(24px,3vh,36px);left:clamp(32px,5.5vw,80px);right:clamp(32px,5.5vw,80px);display:flex;justify-content:flex-start;align-items:center;font-family:var(--font-display);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.48);z-index:10}
 .c2-tag span:nth-child(2){display:none}
@@ -150,16 +160,16 @@ a{text-decoration:none;color:inherit}
    FEATURES SECTION
    ============================================ */
 .features{padding:var(--section-padding);background:var(--navy-deep);color:var(--white);position:relative;overflow:hidden}
-.features::before{content:'';position:absolute;top:-200px;right:-200px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(255,184,28,0.06) 0%,transparent 70%);pointer-events:none}
+.features::before{content:'';position:absolute;top:-200px;right:-200px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(255,192,0,0.06) 0%,transparent 70%);pointer-events:none}
 .features-header{text-align:center;margin-bottom:52px}
 .features-dim{display:flex;align-items:center;gap:12px;font-family:var(--font-display);font-size:.58rem;letter-spacing:2.2px;text-transform:uppercase;color:rgba(255,255,255,.68);margin:0 0 12px}
-.features-dim::after{content:'';flex:1;height:1px;background:rgba(255,184,28,.45)}
+.features-dim::after{content:'';flex:1;height:1px;background:rgba(255,192,0,.45)}
 .features-eyebrow{font-family:var(--font-display);font-size:.58rem;font-weight:600;letter-spacing:2.2px;text-transform:uppercase;color:var(--gold);margin:0 0 10px}
 .features-header .section-title{color:var(--white)}
 .features-header .section-text{margin:0 auto;max-width:48ch;color:rgba(255,255,255,0.72);line-height:1.6}
 .features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .feature-card{display:grid;grid-template-rows:auto 1fr;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.14);padding:0;overflow:hidden;transition:all var(--transition-smooth);position:relative;cursor:pointer}
-.feature-card:hover{transform:translateY(-4px);border-color:rgba(255,184,28,0.3);background:rgba(255,255,255,0.06)}
+.feature-card:hover{transform:translateY(-4px);border-color:rgba(255,192,0,0.3);background:rgba(255,255,255,0.06)}
 .feature-card-image{width:100%;position:relative;overflow:hidden;background:rgba(0,10,25,0.9);aspect-ratio:16/9}
 .feature-card-image img{width:100%;height:100%;object-fit:cover;transition:opacity 0.4s ease}
 .feature-card:hover .feature-card-image img{opacity:0.9}
@@ -232,10 +242,10 @@ a{text-decoration:none;color:inherit}
 .support-contact-method .contact-method-details{flex:1;text-align:left}
 .support-contact-method .contact-method-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,0.5);margin-bottom:2px}
 .support-contact-method .contact-method-value{font-family:var(--font-display);font-size:1.15rem;font-weight:600;color:var(--white)}
-.staff-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px;position:relative;z-index:1}
+.staff-grid{display:grid;grid-template-columns:repeat(3,minmax(0,280px));justify-content:center;gap:20px;margin-top:40px;position:relative;z-index:1}
 .staff-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);overflow:hidden;transition:all 0.3s ease}
-.staff-card:hover{border-color:rgba(255,184,28,0.4);transform:translateY(-3px)}
-.staff-photo{width:100%;aspect-ratio:3/4;overflow:hidden;background:rgba(0,34,68,0.8);display:flex;align-items:center;justify-content:center}
+.staff-card:hover{border-color:rgba(255,192,0,0.4);transform:translateY(-3px)}
+.staff-photo{width:100%;aspect-ratio:3/4;overflow:hidden;background:rgba(11,34,64,0.8);display:flex;align-items:center;justify-content:center}
 .staff-photo img{width:100%;height:100%;object-fit:cover;display:block}
 .staff-initials{font-family:var(--font-display);font-size:3.5rem;font-weight:700;color:rgba(255,255,255,0.2)}
 .staff-name-bar{background:var(--gold);padding:10px 14px}
@@ -244,8 +254,8 @@ a{text-decoration:none;color:inherit}
 .staff-contact-item{display:flex;align-items:flex-start;gap:8px;font-size:0.8rem;color:rgba(255,255,255,0.75);transition:color 0.3s ease;word-break:break-all;line-height:1.4}
 .staff-contact-item:hover{color:var(--gold)}
 .staff-contact-item svg{width:14px;height:14px;fill:var(--gold);flex-shrink:0;margin-top:2px}
-@media(max-width:900px){.staff-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:480px){.staff-grid{grid-template-columns:1fr 1fr;gap:16px}}
+@media(max-width:900px){.staff-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.staff-grid{grid-template-columns:1fr;max-width:320px;margin-left:auto;margin-right:auto;gap:16px}}
 .support-office-bar{display:flex;flex-wrap:wrap;gap:0;margin-top:40px;border:1px solid rgba(255,255,255,0.12);position:relative;z-index:1}
 .support-office-item{display:flex;align-items:center;gap:14px;padding:20px 28px;flex:1;min-width:260px;border-right:1px solid rgba(255,255,255,0.12)}
 .support-office-item:last-child{border-right:none}
@@ -270,7 +280,7 @@ a{text-decoration:none;color:inherit}
 .contact-info .section-text{margin-bottom:36px}
 .contact-methods{display:flex;flex-direction:column;gap:20px}
 .contact-method{display:flex;align-items:center;gap:16px;padding:20px 24px;background:var(--white);border:1px solid var(--gray-100);transition:all 0.3s ease}
-.contact-method:hover{border-color:var(--gold);box-shadow:0 4px 16px rgba(0,34,68,0.08)}
+.contact-method:hover{border-color:var(--gold);box-shadow:0 4px 16px rgba(11,34,64,0.08)}
 .contact-method-icon{width:48px;height:48px;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .contact-method-icon svg{width:22px;height:22px;fill:var(--gold)}
 .contact-method-details{flex:1}
@@ -293,7 +303,7 @@ a{text-decoration:none;color:inherit}
 .site-footer{background:var(--navy-deep);color:rgba(255,255,255,0.4);padding:40px 0;text-align:center}
 .footer-inner{display:flex;flex-direction:column;align-items:center;gap:16px}
 .footer-logo img{height:40px;width:auto;display:block;opacity:0.85}
-.footer-links{display:flex;gap:24px}
+.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 24px}
 .footer-links a{font-size:0.8rem;color:rgba(255,255,255,0.4);transition:color 0.3s ease}
 .footer-links a:hover{color:var(--gold)}
 .footer-copy{font-size:0.75rem}
@@ -332,11 +342,6 @@ a{text-decoration:none;color:inherit}
 /* ============================================
    MARQUEE
    ============================================ */
-.marquee{background:var(--gold);padding:14px 0;overflow:hidden;white-space:nowrap}
-.marquee-track{display:inline-flex}
-.marquee-item{font-family:var(--font-display);font-size:0.8rem;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:3px;padding:0 40px}
-.marquee-item::after{content:'';display:inline-block;width:6px;height:6px;background:var(--navy);border-radius:50%;margin-left:40px;vertical-align:middle}
-@media(prefers-reduced-motion:no-preference){.marquee-track{animation:marqueeScroll 30s linear infinite}@keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}}
 
 /* ============================================
    DAY IN THE LIFE TIMELINE
@@ -484,26 +489,32 @@ body{padding-bottom:70px}
 /* ============================================
    URGENCY BANNER
    ============================================ */
-.urgency-banner{background:var(--navy-deep);border-top:3px solid var(--gold);border-bottom:1px solid rgba(255,184,28,0.2);padding:14px 0;text-align:center}
+.urgency-banner{background:var(--navy-deep);border-top:3px solid var(--gold);border-bottom:1px solid rgba(255,192,0,0.2);padding:14px 0;text-align:center}
 .urgency-inner{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
 .urgency-badge{background:var(--gold);color:var(--navy);font-family:var(--font-display);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:4px 12px}
 .urgency-text{font-size:0.9rem;color:rgba(255,255,255,0.8)}
 .urgency-text strong{color:var(--gold)}
-.urgency-cta{font-family:var(--font-display);font-size:0.8rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid rgba(255,184,28,0.4);transition:border-color 0.3s ease}
+.urgency-cta{font-family:var(--font-display);font-size:0.8rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid rgba(255,192,0,0.4);transition:border-color 0.3s ease}
 .urgency-cta:hover{border-color:var(--gold)}
+.urgency-quote{color:var(--white);font-weight:600}
+.urgency-cite{color:var(--glass-blue);font-size:0.8em;letter-spacing:0.3px}
+.vision-content .section-text + .section-text{margin-top:14px}
+/* Glass City Blue on navy surfaces */
+.features-eyebrow,.testimonials-header .section-label,.support .section-label{color:var(--glass-blue)}
+.footer-tagline{font-family:var(--font-display);font-size:0.8rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--glass-blue)}
 
 /* ============================================
    TESTIMONIALS SECTION
    ============================================ */
 .testimonials{padding:var(--section-padding);background:var(--navy-deep);color:var(--white);position:relative;overflow:hidden}
-.testimonials::before{content:'';position:absolute;bottom:-150px;left:-150px;width:550px;height:550px;border-radius:50%;background:radial-gradient(circle,rgba(255,184,28,0.07) 0%,transparent 70%);pointer-events:none}
+.testimonials::before{content:'';position:absolute;bottom:-150px;left:-150px;width:550px;height:550px;border-radius:50%;background:radial-gradient(circle,rgba(255,192,0,0.07) 0%,transparent 70%);pointer-events:none}
 .testimonials::after{content:'';position:absolute;top:-100px;right:-100px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(0,51,102,0.35) 0%,transparent 70%);pointer-events:none}
 .testimonials-header{text-align:center;margin-bottom:64px}
 .testimonials-header .section-title{color:var(--white)}
 .testimonials-header .section-text{color:rgba(255,255,255,0.6);margin:0 auto}
 .testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto;gap:24px;align-items:start}
 .testimonial-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);overflow:visible;display:flex;flex-direction:column;position:relative;transition:all var(--transition-smooth)}
-.testimonial-card:hover{border-color:rgba(255,184,28,0.45);background:rgba(255,255,255,0.08);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 0 1px rgba(255,184,28,0.15)}
+.testimonial-card:hover{border-color:rgba(255,192,0,0.45);background:rgba(255,255,255,0.08);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 0 1px rgba(255,192,0,0.15)}
 .testimonial-card--featured{grid-row:auto}
 .testimonial-avatar-wrap{display:flex;flex-direction:column;align-items:center;padding:32px 24px 0;gap:12px}
 .testimonial-avatar{border-radius:50%;overflow:hidden;border:3px solid var(--gold);box-shadow:0 8px 32px rgba(0,0,0,0.5);flex-shrink:0;width:120px;height:120px}
@@ -527,7 +538,7 @@ body{padding-bottom:70px}
 .pt-header{text-align:center;margin-bottom:60px}
 .pt-header .section-title{color:var(--navy)}
 .pt-header .section-text{margin:0 auto}
-.pt-steps{display:flex;justify-content:center;align-items:flex-start;gap:0;max-width:900px;margin:0 auto;position:relative}
+.pt-steps{display:flex;justify-content:center;align-items:flex-start;gap:0;max-width:1040px;margin:0 auto;position:relative}
 .pt-steps::before{content:'';position:absolute;top:28px;left:10%;right:10%;height:3px;background:linear-gradient(to right,var(--gold),var(--gold-dark));z-index:0}
 .pt-step{flex:1;text-align:center;position:relative;z-index:1;padding:0 12px}
 .pt-dot{width:56px;height:56px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--navy);box-shadow:0 0 0 4px var(--off-white),0 0 0 6px var(--gold)}
@@ -535,7 +546,7 @@ body{padding-bottom:70px}
 .pt-dot.completed svg{width:24px;height:24px;fill:var(--gold)}
 .pt-dot.active{background:var(--gold);animation:ptPulse 2s ease-in-out infinite}
 .pt-dot.pending-step{background:rgba(0,0,0,0.08);box-shadow:0 0 0 4px var(--off-white),0 0 0 6px var(--gray-200);color:var(--gray-600)}
-@keyframes ptPulse{0%,100%{box-shadow:0 0 0 4px var(--off-white),0 0 0 6px var(--gold)}50%{box-shadow:0 0 0 4px var(--off-white),0 0 0 12px rgba(255,184,28,0.25)}}
+@keyframes ptPulse{0%,100%{box-shadow:0 0 0 4px var(--off-white),0 0 0 6px var(--gold)}50%{box-shadow:0 0 0 4px var(--off-white),0 0 0 12px rgba(255,192,0,0.25)}}
 .pt-step-title{font-family:var(--font-display);font-size:0.85rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
 .pt-step-date{font-size:0.8rem;color:var(--gold-dark);font-weight:600;margin-bottom:6px}
 .pt-step-desc{font-size:0.78rem;color:var(--gray-600);line-height:1.5}
@@ -552,7 +563,7 @@ body{padding-bottom:70px}
 .progress-bar-fill.animated{transform:scaleX(0.36)}
 .progress-note{font-size:0.8rem;color:rgba(255,255,255,0.45);text-align:right}
 .support-donate-btn{display:inline-block;background:var(--gold);color:var(--navy);font-family:var(--font-display);font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;padding:18px 48px;margin-top:16px;transition:all 0.3s ease;cursor:pointer;border:none}
-.support-donate-btn:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,184,28,0.25)}
+.support-donate-btn:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,192,0,0.25)}
 
 /* ============================================
    GIVING LEVELS SECTION
@@ -563,7 +574,7 @@ body{padding-bottom:70px}
 .giving-header .section-text{margin:0 auto}
 .giving-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
 .giving-card{border:2px solid var(--gray-100);padding:32px 28px 28px;text-align:center;position:relative;transition:all 0.3s ease}
-.giving-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,34,68,0.08)}
+.giving-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 8px 32px rgba(11,34,64,0.08)}
 .giving-card.featured{border-color:var(--gold);background:var(--navy);color:var(--white)}
 .giving-card.featured .giving-amount{color:var(--gold)}
 .giving-card.featured .giving-impact{color:rgba(255,255,255,0.7)}
@@ -576,6 +587,20 @@ body{padding-bottom:70px}
 .giving-cta a:hover{color:var(--gold-dark)}
 .giving-card.featured .giving-cta a{color:var(--gold)}
 .giving-cta-center{text-align:center;margin-top:48px}
+.giving-card.featured .giving-label{color:var(--white)}
+.giving-term{font-size:0.8rem;color:var(--gray-600);margin:-4px 0 12px;font-variant-numeric:tabular-nums}
+.giving-card.featured .giving-term{color:var(--glass-blue)}
+.giving-more{margin-top:48px}
+.giving-more-title{font-family:var(--font-display);font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:3px;color:var(--navy);text-align:center;margin-bottom:20px}
+.giving-more-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.giving-more-item{display:flex;flex-direction:column;gap:6px;padding:24px 28px;background:var(--navy);border-top:3px solid var(--glass-blue);color:var(--white);text-align:left;transition:transform 0.3s ease,box-shadow 0.3s ease}
+.giving-more-item:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(11,34,64,0.18)}
+.giving-more-item:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.giving-more-amount{font-family:var(--font-display);font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--glass-blue)}
+.giving-more-name{font-family:var(--font-display);font-size:1.3rem;font-weight:700;color:var(--white)}
+.giving-more-desc{font-size:0.9rem;line-height:1.6;color:rgba(255,255,255,0.75)}
+.giving-more-link{margin-top:8px;font-family:var(--font-display);font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--gold)}
+@media(max-width:640px){.giving-more-grid{grid-template-columns:1fr}}
 .giving-cta-center a{display:inline-block;background:var(--navy);color:var(--white);font-family:var(--font-display);font-size:0.9rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;padding:16px 40px;transition:all 0.3s ease}
 .giving-cta-center a:hover{background:var(--gold);color:var(--navy)}
 
@@ -669,7 +694,7 @@ body{padding-bottom:70px}
 .social-proof-banner{text-align:center;margin-bottom:40px;font-family:var(--font-display);font-size:clamp(0.95rem,1.5vw,1.1rem);font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px}
 .champions-wall-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 .cw-tier{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:24px 28px;transition:border-color 0.3s ease}
-.cw-tier:hover{border-color:rgba(255,184,28,0.35)}
+.cw-tier:hover{border-color:rgba(255,192,0,0.35)}
 .cw-tier-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .cw-tier-name{font-family:var(--font-display);font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--gold)}
 .cw-tier-amount{font-size:0.8rem;color:rgba(255,255,255,0.5);font-style:italic}
@@ -711,7 +736,7 @@ body{padding-bottom:70px}
 /* ============================================
    CONTACT FORM — INQUIRY NOTE
    ============================================ */
-.contact-inquiry-note{border:1px solid rgba(255,184,28,0.4);background:rgba(255,184,28,0.07);padding:14px 18px;margin-bottom:20px;font-size:0.9rem;line-height:1.6;color:rgba(255,255,255,0.8)}
+.contact-inquiry-note{border:1px solid rgba(255,192,0,0.4);background:rgba(255,192,0,0.07);padding:14px 18px;margin-bottom:20px;font-size:0.9rem;line-height:1.6;color:rgba(255,255,255,0.8)}
 .contact-inquiry-note strong{color:var(--gold);display:block;margin-bottom:4px;font-size:0.75rem;text-transform:uppercase;letter-spacing:1.5px}
 
 /* ============================================
@@ -759,7 +784,7 @@ body{padding-bottom:70px}
 .lightbox{position:fixed;inset:0;z-index:9999;background:rgba(0,5,15,0.96);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.35s ease}
 .lightbox.open{opacity:1;pointer-events:all}
 .lightbox-inner{position:relative;display:flex;flex-direction:column;align-items:center;max-width:92vw}
-.lightbox-img{max-width:88vw;max-height:78vh;object-fit:contain;display:block;border:1px solid rgba(255,184,28,0.2);box-shadow:0 24px 80px rgba(0,0,0,0.7)}
+.lightbox-img{max-width:88vw;max-height:78vh;object-fit:contain;display:block;border:1px solid rgba(255,192,0,0.2);box-shadow:0 24px 80px rgba(0,0,0,0.7)}
 .lightbox-caption{font-family:var(--font-display);font-size:0.8rem;color:rgba(255,255,255,0.65);text-transform:uppercase;letter-spacing:2px;margin-top:14px;text-align:center}
 .lightbox-counter{font-size:0.75rem;color:rgba(255,255,255,0.4);margin-top:5px;text-align:center}
 .lightbox-close{position:absolute;top:-52px;right:0;background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.65);line-height:1;padding:6px;transition:color 0.2s ease;font-size:2rem}
@@ -786,6 +811,46 @@ img{max-width:100%;height:auto}
 @media(hover:none){
 .nav-links a,.faq-question,.feature-card,.gallery-item{min-height:44px;min-width:44px}
 }
+
+/* ========== FOR TOLEDO (GLASS CITY STORY) ========== */
+.for-toledo{position:relative;overflow:hidden;background:var(--navy-deep);color:var(--white);padding:110px 0 100px;isolation:isolate}
+.ft-glass{position:absolute;inset:0;z-index:-2;pointer-events:none;
+  background:
+    linear-gradient(115deg,transparent 0 38%,rgba(155,203,235,0.10) 38% 52%,transparent 52%),
+    linear-gradient(115deg,transparent 0 56%,rgba(155,203,235,0.06) 56% 63%,transparent 63%),
+    linear-gradient(65deg,transparent 0 70%,rgba(155,203,235,0.08) 70% 84%,transparent 84%),
+    linear-gradient(115deg,transparent 0 22%,rgba(255,255,255,0.05) 22% 22.6%,transparent 22.6%),
+    radial-gradient(ellipse at 85% 10%,rgba(155,203,235,0.18),transparent 55%),
+    linear-gradient(180deg,#00182D 0%,var(--navy-deep) 100%)}
+.ft-wordmark{position:absolute;z-index:-1;right:-2vw;bottom:-0.12em;font-family:var(--font-display);font-weight:700;text-transform:uppercase;font-size:clamp(7rem,22vw,20rem);line-height:1;letter-spacing:-0.02em;color:transparent;-webkit-text-stroke:1.5px rgba(155,203,235,0.22);pointer-events:none;user-select:none;white-space:nowrap}
+.ft-inner{position:relative}
+.for-toledo .section-label{color:var(--glass-blue)}
+.ft-intro{max-width:760px}
+.ft-title{margin:18px 0 32px;line-height:0}
+.ft-logo{display:block;width:clamp(240px,30vw,380px);height:auto}
+.ft-brandline{margin-top:18px;font-family:var(--font-display);font-size:clamp(1.05rem,1.5vw,1.25rem);font-weight:600;letter-spacing:0.3px;color:var(--gold)}
+.ft-lead{font-size:clamp(1.1rem,1.6vw,1.35rem);line-height:1.7;color:rgba(255,255,255,0.88);max-width:62ch}
+.ft-pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:64px}
+.ft-pillar{position:relative;padding:28px 26px 30px;background:linear-gradient(160deg,rgba(155,203,235,0.12),rgba(155,203,235,0.03));border:1px solid rgba(155,203,235,0.28);border-top:3px solid var(--glass-blue);backdrop-filter:blur(2px)}
+.ft-pillar-kicker{font-family:var(--font-display);font-size:0.72rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--glass-blue);margin-bottom:14px}
+.ft-pillar-title{font-family:var(--font-display);font-size:1.7rem;font-weight:700;text-transform:uppercase;color:var(--white);margin-bottom:10px}
+.ft-pillar-text{font-size:1rem;line-height:1.7;color:rgba(255,255,255,0.78)}
+.ft-manifesto{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:32px 48px;margin-top:64px;padding-top:40px;border-top:1px solid rgba(155,203,235,0.25)}
+.ft-lines{list-style:none;display:flex;flex-direction:column;gap:8px}
+.ft-lines li{font-family:var(--font-display);font-size:clamp(1.15rem,2vw,1.6rem);font-weight:600;line-height:1.3;color:var(--white)}
+.ft-lines li:nth-child(odd){color:var(--glass-blue)}
+.ft-sign{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+.ft-cta:focus-visible{outline:3px solid var(--white);outline-offset:3px}
+@media(max-width:900px){.ft-pillars{grid-template-columns:1fr}.ft-manifesto{grid-template-columns:1fr}}
+@media(max-width:768px){.for-toledo{padding:72px 0 64px}.ft-pillars{margin-top:40px}.ft-manifesto{margin-top:44px}}
+
+/* ========== GLASS CITY BLUE AS THE SECOND COLOR ========== */
+.urgency-banner{border-top-color:var(--glass-blue)}
+.dil-header .section-label.chip{display:inline-flex;color:var(--navy-deep);background:var(--glass-blue);padding:5px 12px}
+.dil-header .section-label.chip::after{display:none}
+.site-footer{border-top:3px solid var(--glass-blue)}
+.footer-tagline{font-size:0.75rem;letter-spacing:4px}
+.footer-brand{width:120px;height:auto;display:block}
 </style>
 </head>
 <body>
@@ -805,6 +870,7 @@ img{max-width:100%;height:auto}
       </a>
     </div>
     <div class="nav-links" id="navLinks">
+      <a href="#for-toledo">For Toledo</a>
       <a href="#vision">Vision</a>
       <a href="#features">Spaces</a>
       <a href="#testimonials">Stories</a>
@@ -833,7 +899,7 @@ img{max-width:100%;height:auto}
      ======================================== -->
 <section class="hero" id="hero">
   <div class="c2-bg">
-    <img src="images/Exterior__East_Perspective_MSA.jpg" alt="Champions Complex East Perspective Rendering" width="1920" height="1080" loading="eager" fetchpriority="high">
+    <img src="images/web/Exterior__East_Perspective_MSA.webp" alt="Champions Complex East Perspective Rendering" width="1920" height="1080" loading="eager" fetchpriority="high">
   </div>
   <div class="c2-grid-edge c2-grid-top"></div>
   <div class="c2-grid-edge c2-grid-bot"></div>
@@ -844,8 +910,8 @@ img{max-width:100%;height:auto}
   <div class="c2-content">
     <div class="c2-kicker">Champions Complex</div>
     <h1 class="c2-headline">
-      <span class="line">Drawn for</span>
-      <span class="line gold">Champions.</span>
+      <span class="line">Built</span>
+      <span class="line gold">For Toledo.</span>
     </h1>
     <div class="c2-cta-group">
       <a href="#support" class="c2-primary">Make a Gift</a>
@@ -879,29 +945,58 @@ img{max-width:100%;height:auto}
 <div class="urgency-banner">
   <div class="container">
     <div class="urgency-inner">
-      <p class="urgency-text">Invest in the Champions Complex today and support Toledo Athletics as we strive to graduate champions who will change the world.</p>
-      <a href="#support" class="urgency-cta">Contact Us to Give &rarr;</a>
+      <p class="urgency-text"><span class="urgency-quote">&ldquo;We&rsquo;re one step away from truly being great.&rdquo;</span> <span class="urgency-cite">Tom Moreland, VP and Director of Athletics.</span> The Champions Complex is that step.</p>
+      <a href="#giving" class="urgency-cta">Take the Step &rarr;</a>
     </div>
   </div>
 </div>
 
+
 <!-- ========================================
-     MARQUEE
+     FOR TOLEDO (GLASS CITY STORY)
      ======================================== -->
-<div class="marquee">
-  <div class="marquee-track">
-    <span class="marquee-item">74,000 Square Feet</span>
-    <span class="marquee-item">450+ Student-Athletes</span>
-    <span class="marquee-item">17 Sports</span>
-    <span class="marquee-item">Toledo, Ohio</span>
-    <span class="marquee-item">One Facility. Every Rocket.</span>
-    <span class="marquee-item">74,000 Square Feet</span>
-    <span class="marquee-item">450+ Student-Athletes</span>
-    <span class="marquee-item">17 Sports</span>
-    <span class="marquee-item">Toledo, Ohio</span>
-    <span class="marquee-item">One Facility. Every Rocket.</span>
+<section class="for-toledo" id="for-toledo" aria-labelledby="forToledoTitle">
+  <div class="ft-glass" aria-hidden="true"></div>
+  <div class="ft-wordmark" aria-hidden="true">Toledo</div>
+  <div class="container ft-inner">
+    <div class="ft-intro reveal">
+      <p class="section-label">This is the Glass City</p>
+      <!-- TODO(confirm): logo prepared from the image provided; replace with the official SVG from marketing. -->
+      <h2 class="ft-title" id="forToledoTitle"><img class="ft-logo" src="images/brand/for-toledo-gold.webp" alt="For Toledo" width="1069" height="738"></h2>
+      <!-- TODO(asset): Glass City script logo goes here when the official files arrive. -->
+      <p class="ft-lead">Toledo was built by people who make things. Glass shaped under heat and pressure, then carried around the world with this city&rsquo;s name on it. Our Rockets carry that name too. The Champions Complex is where they will be shaped.</p>
+      <p class="ft-brandline">It&rsquo;s more than a new look. It&rsquo;s a declaration of where we belong and who we serve.</p>
+    </div>
+    <div class="ft-pillars">
+      <article class="ft-pillar reveal reveal-delay-1">
+        <p class="ft-pillar-kicker">Craft</p>
+        <h3 class="ft-pillar-title">Made here.</h3>
+        <p class="ft-pillar-text">Shaped by heat and pressure, like the glass that named the city. Every hour of a Rocket&rsquo;s day, under one roof.</p>
+      </article>
+      <article class="ft-pillar reveal reveal-delay-2">
+        <p class="ft-pillar-kicker">Place</p>
+        <h3 class="ft-pillar-title">Home.</h3>
+        <p class="ft-pillar-text">Baseball and softball come home from Scott Park. All 17 sports together, in the heart of campus.</p>
+      </article>
+      <article class="ft-pillar reveal reveal-delay-3">
+        <p class="ft-pillar-kicker">People</p>
+        <h3 class="ft-pillar-title">Every Rocket.</h3>
+        <p class="ft-pillar-text">450+ student-athletes, one building, and a whole city behind them.</p>
+      </article>
+    </div>
+    <div class="ft-manifesto reveal">
+      <ul class="ft-lines">
+        <li>For the Friday nights at the Glass Bowl.</li>
+        <li>For the fans who know what Bowling Green means.</li>
+        <li>For the alumni who still call it home.</li>
+        <li>For the next Rocket who signs here.</li>
+      </ul>
+      <div class="ft-sign">
+        <a href="#giving" class="c2-primary ft-cta">Make a Gift</a>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
 <!-- ========================================
      VISION SECTION
@@ -909,17 +1004,19 @@ img{max-width:100%;height:auto}
 <section class="vision" id="vision">
     <div class="vision-grid">
       <div class="vision-image reveal-left">
-        <img src="images/Exterior__Main_Entry_MSA.jpg" alt="Champions Complex Main Entry Rendering" width="800" height="533" loading="lazy" decoding="async">
+        <img src="images/web/Exterior__Main_Entry_MSA.webp" alt="Champions Complex Main Entry Rendering" width="800" height="533" loading="lazy" decoding="async">
       </div>
       <div class="vision-content reveal-right reveal-delay-1">
         <p class="section-label">The Vision</p>
         <h2 class="section-title">Building the Future of Toledo Athletics</h2>
-        <p class="section-text">The Champions Complex represents a transformational investment in the future of Toledo student-athletes. This project will renovate and reimagine the existing Health Education Building, creating 74,000 square feet of modern space designed to support the growth, development, and success of our Rockets. Located in the heart of campus, every detail has been thoughtfully planned to enhance the daily experience of the student-athletes who represent Toledo with pride.</p>
+        <p class="section-text">The Champions Complex renovates and reimagines the Health Education Building into 74,000 square feet built around one idea: every Rocket, in all 17 sports, gets what they need to win, in the classroom and in competition, under one roof in the heart of campus.</p>
+        <p class="section-text">It is one of the department&rsquo;s biggest priorities because it serves everyone. Academics, nutrition, wellness and training come together, and baseball and softball come home from Scott Park. The student-athletes who wear Toledo across their chest will feel it every day.</p>
+        <!-- TODO(confirm): this quote predates the public record; confirm it is approved by Toledo Athletics communications. -->
         <blockquote class="vision-quote">
           The Champions Complex is a vital commitment to our student-athletes. It guarantees they have the elite resources needed to achieve competitive excellence and succeed in every aspect of their lives.
           <cite>Tom Moreland, VP and Director of Athletics</cite>
         </blockquote>
-        <p class="vision-legacy">Gifts to the Champions Complex are among the most visible and lasting investments in Toledo Athletics history. This is your opportunity to leave something behind.</p>
+        <p class="vision-legacy">Gifts to the Champions Complex are among the most visible and lasting investments in Toledo Athletics history. This is your opportunity to leave something for Toledo.</p>
       </div>
     </div>
 </section>
@@ -939,7 +1036,7 @@ img{max-width:100%;height:auto}
       <div class="feature-card feature-card--hero reveal-scale reveal-delay-1 gallery-item" data-title="East Perspective" tabindex="0" role="button" aria-label="View East Perspective — click to enlarge">
         <div class="feature-card-image">
           <span class="feature-card-sheet">A-101</span>
-          <img src="images/Exterior__East_Perspective_MSA.jpg" alt="Champions Complex — East Perspective" width="600" height="400" loading="lazy" decoding="async">
+          <img src="images/web/Exterior__East_Perspective_MSA.webp" alt="Champions Complex — East Perspective" width="600" height="400" loading="lazy" decoding="async">
           <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
         </div>
         <div class="feature-card-body">
@@ -950,7 +1047,7 @@ img{max-width:100%;height:auto}
       <div class="feature-card reveal reveal-delay-2 gallery-item" data-title="Main Entry" tabindex="0" role="button" aria-label="View Main Entry — click to enlarge">
         <div class="feature-card-image">
           <span class="feature-card-sheet">A-102</span>
-          <img src="images/Exterior__Main_Entry_MSA.jpg" alt="Champions Complex — Main Entry" width="600" height="400" loading="lazy" decoding="async">
+          <img src="images/web/Exterior__Main_Entry_MSA.webp" alt="Champions Complex — Main Entry" width="600" height="400" loading="lazy" decoding="async">
           <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
         </div>
         <div class="feature-card-body">
@@ -961,7 +1058,7 @@ img{max-width:100%;height:auto}
       <div class="feature-card reveal reveal-delay-3 gallery-item" data-title="Champions Entry" tabindex="0" role="button" aria-label="View Champions Entry — click to enlarge">
         <div class="feature-card-image">
           <span class="feature-card-sheet">A-103</span>
-          <img src="images/Champions_Entry_MSA.jpg" alt="Champions Entry" width="600" height="400" loading="lazy" decoding="async">
+          <img src="images/web/Champions_Entry_MSA.webp" alt="Champions Entry" width="600" height="400" loading="lazy" decoding="async">
           <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
         </div>
         <div class="feature-card-body">
@@ -972,7 +1069,7 @@ img{max-width:100%;height:auto}
       <div class="feature-card reveal reveal-delay-1 gallery-item" data-title="Champions Corridor" tabindex="0" role="button" aria-label="View Champions Corridor — click to enlarge">
         <div class="feature-card-image">
           <span class="feature-card-sheet">A-104</span>
-          <img src="images/Champions_Corridor_MSA.jpg" alt="Champions Corridor" width="600" height="400" loading="lazy" decoding="async">
+          <img src="images/web/Champions_Corridor_MSA.webp" alt="Champions Corridor" width="600" height="400" loading="lazy" decoding="async">
           <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
         </div>
         <div class="feature-card-body">
@@ -983,7 +1080,7 @@ img{max-width:100%;height:auto}
       <div class="feature-card reveal reveal-delay-2 gallery-item" data-title="Indoor Turf Facility" tabindex="0" role="button" aria-label="View Indoor Turf Facility — click to enlarge">
         <div class="feature-card-image">
           <span class="feature-card-sheet">A-201</span>
-          <img src="images/Indoor_Turf__Interior_Facing_MSA.jpg" alt="Indoor Turf Facility" width="600" height="400" loading="lazy" decoding="async">
+          <img src="images/web/Indoor_Turf__Interior_Facing_MSA.webp" alt="Indoor Turf Facility" width="600" height="400" loading="lazy" decoding="async">
           <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
         </div>
         <div class="feature-card-body">
@@ -994,7 +1091,7 @@ img{max-width:100%;height:auto}
       <div class="feature-card reveal reveal-delay-3 gallery-item" data-title="Training Table" tabindex="0" role="button" aria-label="View Training Table — click to enlarge">
         <div class="feature-card-image">
           <span class="feature-card-sheet">A-202</span>
-          <img src="images/Training_Table_MSA.jpg" alt="Training Table Dining Area" width="600" height="400" loading="lazy" decoding="async">
+          <img src="images/web/Training_Table_MSA.webp" alt="Training Table Dining Area" width="600" height="400" loading="lazy" decoding="async">
           <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
         </div>
         <div class="feature-card-body">
@@ -1005,7 +1102,7 @@ img{max-width:100%;height:auto}
       <div class="feature-card reveal reveal-delay-1 gallery-item" data-title="Academic Lounge" tabindex="0" role="button" aria-label="View Academic Lounge — click to enlarge">
         <div class="feature-card-image">
           <span class="feature-card-sheet">A-203</span>
-          <img src="images/AcademicsLounge_MSA.jpg" alt="Academic Lounge Area" width="600" height="400" loading="lazy" decoding="async">
+          <img src="images/web/AcademicsLounge_MSA.webp" alt="Academic Lounge Area" width="600" height="400" loading="lazy" decoding="async">
           <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
         </div>
         <div class="feature-card-body">
@@ -1016,7 +1113,7 @@ img{max-width:100%;height:auto}
       <div class="feature-card reveal reveal-delay-2 gallery-item" data-title="Baseball Team Suite" tabindex="0" role="button" aria-label="View Baseball Team Suite — click to enlarge">
         <div class="feature-card-image">
           <span class="feature-card-sheet">A-301</span>
-          <img src="images/Baseball_Locker_RoomLounge_MSA.jpg" alt="Baseball Locker Room Lounge" width="600" height="400" loading="lazy" decoding="async">
+          <img src="images/web/Baseball_Locker_RoomLounge_MSA.webp" alt="Baseball Locker Room Lounge" width="600" height="400" loading="lazy" decoding="async">
           <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
         </div>
         <div class="feature-card-body">
@@ -1027,7 +1124,7 @@ img{max-width:100%;height:auto}
       <div class="feature-card reveal reveal-delay-3 gallery-item" data-title="Softball Team Suite" tabindex="0" role="button" aria-label="View Softball Team Suite — click to enlarge">
         <div class="feature-card-image">
           <span class="feature-card-sheet">A-302</span>
-          <img src="images/Softball_Locker_RoomLounge_MSA.jpg" alt="Softball Locker Room Lounge" width="600" height="400" loading="lazy" decoding="async">
+          <img src="images/web/Softball_Locker_RoomLounge_MSA.webp" alt="Softball Locker Room Lounge" width="600" height="400" loading="lazy" decoding="async">
           <div class="gallery-zoom-hint"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/></svg></div>
         </div>
         <div class="feature-card-body">
@@ -1063,13 +1160,15 @@ img{max-width:100%;height:auto}
     <div class="testimonials-header reveal">
       <p class="section-label">Voices of Toledo Athletics</p>
       <h2 class="section-title">Built for Every Rocket</h2>
-      <p class="section-text">Hear from student-athletes and coaches whose lives this facility will transform every single day.</p>
+      <p class="section-text">Hear from the student-athletes and coaches who will use it every single day.</p>
+      <!-- TODO(content): add a quote from head football coach Mike Jacobs and one women's or Olympic-sport student-athlete so this section reflects all 17 sports. -->
+
     </div>
     <div class="testimonials-grid">
       <div class="testimonial-card testimonial-card--featured reveal reveal-delay-1">
         <div class="testimonial-avatar-wrap">
           <div class="testimonial-avatar">
-            <img src="images/JAR.png" alt="John Alan Richter" loading="lazy">
+            <img src="images/web/JAR.webp" alt="John Alan Richter" loading="lazy">
           </div>
           <span class="testimonial-sport-pill">Football</span>
         </div>
@@ -1077,14 +1176,14 @@ img{max-width:100%;height:auto}
           <p class="testimonial-text">This project shows that Toledo truly cares about us beyond just competition. The Champions Complex will give us the resources we need to succeed in the classroom, take care of our mental health, and fuel our bodies the right way. I&rsquo;m grateful to the donors who are investing in our experience and our future.</p>
           <div class="testimonial-author">
             <p class="testimonial-author-name">John Alan Richter</p>
-            <p class="testimonial-author-sport">Quarterback &middot; Toledo Football</p>
+            <p class="testimonial-author-sport">Starting Quarterback &middot; Toledo Football</p>
           </div>
         </div>
       </div>
       <div class="testimonial-card reveal reveal-delay-2">
         <div class="testimonial-avatar-wrap">
           <div class="testimonial-avatar">
-            <img src="images/Rob Reinstetle.png" alt="Rob Reinstetle" loading="lazy">
+            <img src="images/web/Rob_Reinstetle.webp" alt="Rob Reinstetle" loading="lazy">
           </div>
           <span class="testimonial-sport-pill">Baseball</span>
         </div>
@@ -1099,12 +1198,13 @@ img{max-width:100%;height:auto}
       <div class="testimonial-card reveal reveal-delay-3">
         <div class="testimonial-avatar-wrap">
           <div class="testimonial-avatar">
-            <img src="images/Jessica Bracamonte.png" alt="Jessica Bracamonte" loading="lazy">
+            <img src="images/web/Jessica_Bracamonte.webp" alt="Jessica Bracamonte" loading="lazy">
           </div>
           <span class="testimonial-sport-pill">Softball</span>
         </div>
         <div class="testimonial-card-body">
-          <p class="testimonial-text">Having a home for softball on campus is incredibly meaningful for our program and our Rockets. The Champions Complex will play a huge role in elevating the student&#8209;athlete experience at Toledo and helping our players feel connected, supported, and inspired to represent this university and this city. When you believe in our student&#8209;athletes, it empowers them to accomplish great things make us proud Toledo Rockets.</p>
+          <p class="testimonial-text">Having a home for softball on campus is incredibly meaningful for our program and our Rockets. The Champions Complex will play a huge role in elevating the student&#8209;athlete experience at Toledo and helping our players feel connected, supported, and inspired to represent this university and this city. When you believe in our student&#8209;athletes, it empowers them to accomplish great things and make us proud to be Toledo Rockets.</p>
+          <!-- TODO(confirm): last sentence lightly corrected for grammar; confirm wording with Coach Bracamonte. -->
           <div class="testimonial-author">
             <p class="testimonial-author-name">Jessica Bracamonte</p>
             <p class="testimonial-author-sport">Head Coach &middot; Toledo Softball</p>
@@ -1121,9 +1221,9 @@ img{max-width:100%;height:auto}
 <section class="day-in-life" id="day-in-life">
   <div class="container">
     <div class="dil-header reveal">
-      <p class="section-label">Student-Athlete Experience</p>
-      <h2 class="section-title">Champions Complex will be the heartbeat of every Rocket’s day</h2>
-      <p class="section-text">From 6am conditioning to evening study hall, every hour of a student-athlete's day flows through this building.</p>
+      <p class="section-label chip">Made in the Glass City</p>
+      <h2 class="section-title">Shaped Here, Every Day</h2>
+      <p class="section-text">Toledo glass is shaped by heat and pressure. So are Rockets. From 6 a.m. conditioning to evening film, every hour of a student-athlete&rsquo;s day runs through this building.</p>
     </div>
     <div class="dil-timeline">
 
@@ -1230,7 +1330,7 @@ img{max-width:100%;height:auto}
       <div class="impact-content reveal-left">
         <p class="section-label">The Impact</p>
         <h2 class="section-title">Transforming Lives, Building Champions</h2>
-        <p class="section-text">The Champions Complex will single-handedly improve the lives of all 450+ Rocket student-athletes while returning baseball and softball programs to the main campus from Scott Park.</p>
+        <p class="section-text">The Champions Complex will change the daily life of every one of our 450+ student-athletes and bring baseball and softball home to main campus from Scott Park.</p>
         <ul class="impact-list">
           <li>Centralized academics, nutrition, health, wellness, and training under one roof</li>
           <li>State-of-the-art nutrition center supporting peak athletic performance</li>
@@ -1241,7 +1341,7 @@ img{max-width:100%;height:auto}
         </ul>
       </div>
       <div class="impact-image reveal-right reveal-delay-1">
-        <img src="images/Training_Table_MSA.jpg" alt="Training Table and Nutrition Center" width="800" height="533" loading="lazy" decoding="async">
+        <img src="images/web/Training_Table_MSA.webp" alt="Training Table and Nutrition Center" width="800" height="533" loading="lazy" decoding="async">
         <div class="impact-badge">
           <div class="impact-badge-number">74K</div>
           <div class="impact-badge-text">Sq Feet</div>
@@ -1257,30 +1357,37 @@ img{max-width:100%;height:auto}
   <div class="container">
     <div class="pt-header reveal">
       <p class="section-label">Project Milestones</p>
-      <h2 class="section-title">The Road to Champions</h2>
-      <p class="section-text">From campaign launch to grand opening, every step brings us closer to transforming the student-athlete experience at Toledo.</p>
+      <h2 class="section-title">One Step Away</h2>
+      <p class="section-text">From the first drawing to grand opening day, every gift moves the Champions Complex one step closer for Toledo&rsquo;s student-athletes.</p>
     </div>
+    <!-- TODO(confirm): milestone dates and wording with development; the old "Rise Together campaign launch, Fall 2024" step was removed because Rise Together is the 2023 strategic plan and the 2024 Armes gift was announced for the facilities master plan generally. -->
     <div class="pt-steps reveal reveal-delay-1">
       <div class="pt-step">
-        <div class="pt-dot completed">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
-        </div>
+        <div class="pt-dot completed"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></div>
         <div class="pt-step-content-inner">
-          <p class="pt-step-title">Campaign Launch</p>
-          <p class="pt-step-date">Fall 2024</p>
-          <p class="pt-step-desc">Rise Together campaign publicly launched with lead gift</p>
+          <p class="pt-step-title">Plans Drawn</p>
+          <p class="pt-step-date">2025</p>
+          <p class="pt-step-desc">Architect selected and the Champions Complex designed around every Rocket</p>
         </div>
       </div>
       <div class="pt-step">
-        <div class="pt-dot active">2</div>
+        <div class="pt-dot completed"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></div>
+        <div class="pt-step-content-inner">
+          <p class="pt-step-title">A Top Priority</p>
+          <p class="pt-step-date">2026</p>
+          <p class="pt-step-desc">Tom Moreland names the Champions Complex one of the department&rsquo;s biggest priorities</p>
+        </div>
+      </div>
+      <div class="pt-step">
+        <div class="pt-dot active">3</div>
         <div class="pt-step-content-inner">
           <p class="pt-step-title">Fundraising</p>
           <p class="pt-step-date">In Progress</p>
-          <p class="pt-step-desc">Building momentum with transformative gifts from Rocket supporters</p>
+          <p class="pt-step-desc">Rocket supporters building momentum toward groundbreaking</p>
         </div>
       </div>
       <div class="pt-step">
-        <div class="pt-dot pending-step">3</div>
+        <div class="pt-dot pending-step">4</div>
         <div class="pt-step-content-inner">
           <p class="pt-step-title">Groundbreaking</p>
           <p class="pt-step-date">TBD</p>
@@ -1288,7 +1395,7 @@ img{max-width:100%;height:auto}
         </div>
       </div>
       <div class="pt-step">
-        <div class="pt-dot pending-step">4</div>
+        <div class="pt-dot pending-step">5</div>
         <div class="pt-step-content-inner">
           <p class="pt-step-title">Grand Opening</p>
           <p class="pt-step-date">TBD</p>
@@ -1305,9 +1412,10 @@ img{max-width:100%;height:auto}
 <section class="giving-levels" id="giving">
   <div class="container">
     <div class="giving-header reveal">
-      <p class="section-label">Your Gift Matters</p>
+      <p class="section-label">Give For Toledo</p>
       <h2 class="section-title">Your Support Makes it Possible</h2>
-      <p class="section-text">You are a critical part of bringing the Champions Complex to life and creating lasting opportunities for Toledo student-athletes.</p>
+      <p class="section-text">You are a critical part of bringing the Champions Complex to life. Every level can be pledged over five years.</p>
+      <!-- TODO(confirm): five-year pledge terms with Athletic Development. --> 
     </div>
     <div class="giving-pullquote reveal">
       <p>"Your name — or the name of someone you love — could be permanently etched into this building, inspiring Rocket athletes for generations to come."</p>
@@ -1316,6 +1424,7 @@ img{max-width:100%;height:auto}
       <div class="giving-card reveal reveal-delay-1">
         <p class="giving-amount">$50,000</p>
         <p class="giving-label">Rocket Investor</p>
+        <p class="giving-term">or $10,000 a year for 5 years</p>
         <p class="giving-impact">Support a dedicated space within the Champions Complex and help elevate the daily experience of Rocket student-athletes.</p>
         <div class="giving-cta"><a href="tel:4195304183">Call to Give &rarr;</a></div>
       </div>
@@ -1323,20 +1432,42 @@ img{max-width:100%;height:auto}
         <span class="giving-badge">Most Impactful</span>
         <p class="giving-amount">$100,000</p>
         <p class="giving-label">Champions Sponsor</p>
+        <p class="giving-term">or $20,000 a year for 5 years</p>
         <p class="giving-impact">Fund a key amenity or student-athlete resource and earn prominent recognition within the Champions Complex.</p>
         <div class="giving-cta"><a href="tel:4195304183">Call to Give &rarr;</a></div>
       </div>
       <div class="giving-card reveal reveal-delay-1">
         <p class="giving-amount">$250,000</p>
         <p class="giving-label">Champions Circle</p>
+        <p class="giving-term">or $50,000 a year for 5 years</p>
         <p class="giving-impact">Secure a premier naming recognition opportunity and leave a lasting legacy that will inspire Rocket athletes for generations.</p>
         <div class="giving-cta"><a href="tel:4195304183">Call to Discuss &rarr;</a></div>
       </div>
       <div class="giving-card reveal reveal-delay-2">
         <p class="giving-amount">$1,000,000+</p>
         <p class="giving-label">Legacy Gift</p>
-        <p class="giving-impact">Naming rights to a major facility area — join the Armes family in leaving an enduring legacy at Toledo Athletics.</p>
+        <p class="giving-term">or $200,000+ a year for 5 years</p>
+        <!-- TODO(confirm): the earlier copy said "join the Armes family". Restore it only if the Armes gift is credited to the Champions Complex. -->
+        <p class="giving-impact">Naming rights to a major facility area and an enduring legacy at Toledo Athletics, in the building every Rocket walks through.</p>
         <div class="giving-cta"><a href="tel:4195304183">Call to Discuss &rarr;</a></div>
+      </div>
+    </div>
+    <div class="giving-more reveal">
+      <p class="giving-more-title">More ways to be part of it</p>
+      <div class="giving-more-grid">
+        <a class="giving-more-item" href="https://www.utfoundation.org/give/1923society" target="_blank" rel="noopener noreferrer" data-track="give-1923-society">
+          <span class="giving-more-amount">$25,000 over 5 years</span>
+          <span class="giving-more-name">The 1923 Society</span>
+          <span class="giving-more-desc">Toledo Athletics&rsquo; leadership giving society, named for the year the Rockets got their name.</span>
+          <span class="giving-more-link">Learn about the 1923 Society &rarr;</span>
+        </a>
+        <!-- TODO(confirm): replace with the UT Foundation online-giving link designated to the Champions Complex fund. -->
+        <a class="giving-more-item" href="https://supportutrockets.com/" target="_blank" rel="noopener noreferrer" data-track="give-online">
+          <span class="giving-more-amount">Any amount</span>
+          <span class="giving-more-name">Give online, For Toledo</span>
+          <span class="giving-more-desc">Every gift counts toward groundbreaking. Give through the Rocket Fund in a few minutes.</span>
+          <span class="giving-more-link">Give online &rarr;</span>
+        </a>
       </div>
     </div>
     <div class="giving-cta-center reveal">
@@ -1403,7 +1534,48 @@ img{max-width:100%;height:auto}
           <span class="faq-icon" aria-hidden="true"></span>
         </button>
         <div class="faq-answer" role="region">
-          <p>We are hoping to begin construction of the Champions Complex in the coming months.</p>
+          <!-- TODO(confirm): groundbreaking language with Toledo Athletics communications. -->
+          <p>The Champions Complex has been designed and is one of the department&rsquo;s biggest priorities. Groundbreaking will be announced as fundraising milestones are met, and every gift moves that date closer.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Can I pledge my gift over several years?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Yes. Gifts at every level can be pledged over up to five years. Our team will build a schedule that works for you. Call <a href="tel:4195304183" data-track="call">419.530.4183</a> to start.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Can I give online?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Yes. Gifts of any amount can be made online through the <a href="https://supportutrockets.com/" target="_blank" rel="noopener noreferrer" data-track="give-online">Rocket Fund</a>. For naming opportunities and multi-year pledges, our team will walk you through it personally.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Why give to a building when NIL and revenue sharing matter so much?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Rosters change every year. The Champions Complex serves all 17 sports and every future Rocket for decades: the meals, the study hours, the training and the recovery that help every student-athlete develop. It works alongside the Rocket Fund and the 1923 Society, which support the department&rsquo;s greatest needs today.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Is there a deadline for a 2026 gift?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p>Gifts made by December 31 count toward the 2026 tax year. Consult your tax advisor for specifics, and contact our team if you would like to time a gift or pledge.</p>
         </div>
       </div>
 
@@ -1419,8 +1591,8 @@ img{max-width:100%;height:auto}
     <div class="support-content reveal">
       <p class="section-label">Get Involved</p>
       <h2 class="section-title">Transformative Projects Take Tremendous Support</h2>
-      <p class="section-text">We are just getting started — and we need your help. The Champions Complex represents a once-in-a-generation opportunity to transform the lives of 450+ Rocket student-athletes. Every gift, at every level, brings us closer to groundbreaking.</p>
-      <p class="section-text" style="color:rgba(255,255,255,0.65);margin:0 auto 40px">For information on how you can help bring this once-in-a-generation project to life, reach out to the Rocket Fund team.</p>
+      <p class="section-text">Rocket supporters have already moved this project forward, and we need your help to finish it. The Champions Complex is a once-in-a-generation opportunity to change the daily life of 450+ Rocket student-athletes. Every gift, at every level, brings us closer to groundbreaking.</p>
+      <p class="section-text" style="color:rgba(255,255,255,0.65);margin:0 auto 40px">For information on how you can help bring this once-in-a-generation project to life, reach out to the Athletic Development team.</p>
     </div>
     <div class="support-office-bar reveal">
       <div class="support-office-item">
@@ -1438,9 +1610,10 @@ img{max-width:100%;height:auto}
         </div>
       </div>
     </div>
+    <!-- TODO(confirm): current Athletic Development staff and their titles (Dillon Horter has left). Add a title line under each name once confirmed. -->
     <div class="staff-grid reveal">
       <div class="staff-card">
-        <div class="staff-photo"><img src="images/Connor_Whelan_-_2025.png" alt="Connor Whelan"></div>
+        <div class="staff-photo"><img src="images/web/Connor_Whelan_-_2025.webp" alt="Connor Whelan"></div>
         <div class="staff-name-bar"><p class="staff-name">Connor Whelan</p></div>
         <div class="staff-contact">
           <a href="mailto:connor.whelan@utoledo.edu" class="staff-contact-item">
@@ -1454,7 +1627,7 @@ img{max-width:100%;height:auto}
         </div>
       </div>
       <div class="staff-card">
-        <div class="staff-photo"><img src="images/Josh_Dittman_8sP4L.jpeg" alt="Josh Dittman"></div>
+        <div class="staff-photo"><img src="images/web/Josh_Dittman_8sP4L.webp" alt="Josh Dittman"></div>
         <div class="staff-name-bar"><p class="staff-name">Josh Dittman</p></div>
         <div class="staff-contact">
           <a href="mailto:joshua.dittman@utoledo.edu" class="staff-contact-item">
@@ -1468,7 +1641,7 @@ img{max-width:100%;height:auto}
         </div>
       </div>
       <div class="staff-card">
-        <div class="staff-photo"><img src="images/Ryleigh_Gordon_lZHnC.jpeg" alt="Ryleigh Gordon"></div>
+        <div class="staff-photo"><img src="images/web/Ryleigh_Gordon_lZHnC.webp" alt="Ryleigh Gordon"></div>
         <div class="staff-name-bar"><p class="staff-name">Ryleigh Gordon</p></div>
         <div class="staff-contact">
           <a href="mailto:ryleigh.gordon@utoledo.edu" class="staff-contact-item">
@@ -1478,20 +1651,6 @@ img{max-width:100%;height:auto}
           <a href="tel:4195305316" class="staff-contact-item">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
             419.530.5316
-          </a>
-        </div>
-      </div>
-      <div class="staff-card">
-        <div class="staff-photo"><img src="images/Dillon_Horter_evaYx.jpeg" alt="Dillon Horter"></div>
-        <div class="staff-name-bar"><p class="staff-name">Dillon Horter</p></div>
-        <div class="staff-contact">
-          <a href="mailto:dillon.horter@utoledo.edu" class="staff-contact-item">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-            dillon.horter@utoledo.edu
-          </a>
-          <a href="tel:4195305347" class="staff-contact-item">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-            419.530.5347
           </a>
         </div>
       </div>
@@ -1520,8 +1679,13 @@ img{max-width:100%;height:auto}
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
         </a>
       </div>
+      <img class="footer-brand" src="images/brand/for-toledo-gold.webp" alt="For Toledo" width="1069" height="738" loading="lazy">
+      <p class="footer-tagline">This is the Glass City</p>
       <div class="footer-links">
         <a href="https://utrockets.com" target="_blank" rel="noopener noreferrer">UTRockets.com</a>
+        <a href="https://supportutrockets.com/" target="_blank" rel="noopener noreferrer">Rocket Fund</a>
+        <a href="https://www.utfoundation.org/give/1923society" target="_blank" rel="noopener noreferrer">1923 Society</a>
+        <!-- TODO(confirm): keep Rise Together only if the department still uses the strategic plan name. -->
         <a href="https://risetogethertoledo.com" target="_blank" rel="noopener noreferrer">Rise Together</a>
       </div>
       <p class="footer-copy">The University of Toledo Athletics. All rights reserved.</p>
@@ -1759,6 +1923,21 @@ img{max-width:100%;height:auto}
   checkCounters();
   checkBackToTop();
   checkCWBars();
+
+  /* ==========================================
+     CLICK TRACKING (for SIDEARM's Google Tag Manager / GA)
+     Pushes an event for call, email and give clicks if a dataLayer exists.
+     ========================================== */
+  document.addEventListener("click", function(e){
+    var link = e.target.closest ? e.target.closest("a") : null;
+    if(!link || !window.dataLayer) return;
+    var href = link.getAttribute("href") || "";
+    var action = link.getAttribute("data-track") ||
+      (href.indexOf("tel:") === 0 ? "call" : href.indexOf("mailto:") === 0 ? "email" : "");
+    if(action){
+      window.dataLayer.push({event: "champions_complex_cta", cta_action: action, cta_label: (link.textContent || "").trim().slice(0, 80)});
+    }
+  });
 
   /* ==========================================
      FAQ ACCORDION
